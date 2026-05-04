@@ -337,7 +337,78 @@
     margin: 0 auto;
   }
   .menu-pane { display: none; }
-  .menu-pane.active { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .menu-pane.active { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .dish-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: all .25s;
+    position: relative;
+  }
+  .dish-row:hover {
+    border-color: var(--verde);
+    transform: translateY(-2px);
+  }
+  .dish-row .info { flex: 1; min-width: 0; }
+  .dish-row h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--texto);
+    margin-bottom: 2px;
+  }
+  .dish-row .desc {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .dish-row .right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .dish-row .price {
+    color: var(--verde);
+    font-weight: 700;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+  .dish-row .add-btn {
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--verde);
+    border: 1px solid var(--border);
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .dish-row .add-btn:hover {
+    background: var(--verde);
+    color: var(--negro);
+  }
+  .dish-row .star {
+    position: absolute;
+    top: -8px; left: 14px;
+    background: var(--verde);
+    color: var(--negro);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 30px;
+    letter-spacing: 0.5px;
+  }
 
   .dish-card {
     display: flex;
@@ -928,6 +999,8 @@
     .nav .btn-verde { display: none; }
     .about-grid { grid-template-columns: 1fr; gap: 50px; }
     .menu-pane.active { grid-template-columns: 1fr; }
+    .tabs { gap: 6px; }
+    .tab { padding: 10px 16px; font-size: 13px; }
     .gal-grid { grid-template-columns: repeat(2, 1fr); }
     .steps { grid-template-columns: 1fr; gap: 16px; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
@@ -1058,116 +1131,20 @@
     </div>
 
     <div class="tabs">
-      <button class="tab active" data-tab="nigiris" onclick="switchTab('nigiris')">Nigiris & Sashimi</button>
-      <button class="tab" data-tab="rolls" onclick="switchTab('rolls')">Rolls Especiales</button>
-      <button class="tab" data-tab="hot" onclick="switchTab('hot')">Hot Food</button>
+      <button class="tab active" data-tab="frios" onclick="switchTab('frios')">Entrantes Fríos</button>
+      <button class="tab" data-tab="calientes" onclick="switchTab('calientes')">Entrantes Calientes</button>
+      <button class="tab" data-tab="nigiris" onclick="switchTab('nigiris')">Sushi · Nigiris</button>
+      <button class="tab" data-tab="rolls" onclick="switchTab('rolls')">Sushi · Rolls</button>
+      <button class="tab" data-tab="bambubox" onclick="switchTab('bambubox')">Bambú Box</button>
+      <button class="tab" data-tab="otros" onclick="switchTab('otros')">Otros & Postres</button>
     </div>
 
-    <div class="menu-pane active" id="pane-nigiris">
-      <article class="dish-card">
-        <div class="photo"><img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=400&q=80" alt="Nigiri Salmón" loading="lazy" /></div>
-        <div class="info">
-          <div class="row1"><h3>Nigiri Salmón x2</h3><span class="price">6,90€</span></div>
-          <p class="desc">Salmón noruego sobre arroz de sushi.</p>
-          <button class="add-btn" onclick="addFromCarta('Nigiri Salmón x2', 6.90)">➕ Añadir al pedido</button>
-        </div>
-      </article>
-      <article class="dish-card">
-        <div class="photo"><img src="https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?w=400&q=80" alt="Nigiri Atún" loading="lazy" /></div>
-        <div class="info">
-          <div class="row1"><h3>Nigiri Atún x2</h3><span class="price">7,50€</span></div>
-          <p class="desc">Atún rojo de almadraba.</p>
-          <button class="add-btn" onclick="addFromCarta('Nigiri Atún x2', 7.50)">➕ Añadir al pedido</button>
-        </div>
-      </article>
-      <article class="dish-card">
-        <div class="photo"><img src="https://images.unsplash.com/photo-1534482421-64566f976cfa?w=400&q=80" alt="Sashimi Variado" loading="lazy" /></div>
-        <div class="info">
-          <div class="row1"><h3>Sashimi Variado x8</h3><span class="price">14,90€</span></div>
-          <p class="desc">Selección del chef: salmón, atún, dorada.</p>
-          <button class="add-btn" onclick="addFromCarta('Sashimi Variado x8', 14.90)">➕ Añadir al pedido</button>
-        </div>
-      </article>
-      <article class="dish-card">
-        <div class="photo"><img src="https://images.unsplash.com/photo-1617196034099-b85200b455fd?w=400&q=80" alt="Nigiri Langostino" loading="lazy" /></div>
-        <div class="info">
-          <div class="row1"><h3>Nigiri Langostino x2</h3><span class="price">7,90€</span></div>
-          <p class="desc">Langostino tigre con mayonesa yuzu.</p>
-          <button class="add-btn" onclick="addFromCarta('Nigiri Langostino x2', 7.90)">➕ Añadir al pedido</button>
-        </div>
-      </article>
-    </div>
-
-    <div class="menu-pane" id="pane-rolls">
-      <article class="dish-card">
-        <div class="photo"><img src="https://images.unsplash.com/photo-1617196034099-b85200b455fd?w=400&q=80" alt="Dragon Roll" loading="lazy" /></div>
-        <div class="info">
-          <div class="row1"><h3>Dragon Roll x8</h3><span class="price">13,90€</span></div>
-          <p class="desc">Tempura de langostino, aguacate, anguila.</p>
-          <button class="add-btn" onclick="addFromCarta('Dragon Roll x8', 13.90)">➕ Añadir al pedido</button>
-        </div>
-      </article>
-      <article class="dish-card">
-        <div class="photo"><img src="https://images.unsplash.com/photo-1562802378-063ec186a863?w=400&q=80" alt="Rainbow Roll" loading="lazy" /></div>
-        <div class="info">
-          <div class="row1"><h3>Rainbow Roll x8</h3><span class="price">14,50€</span></div>
-          <p class="desc">Pepino, cangrejo, cubierto de 5 pescados.</p>
-          <button class="add-btn" onclick="addFromCarta('Rainbow Roll x8', 14.50)">➕ Añadir al pedido</button>
-        </div>
-      </article>
-      <article class="dish-card">
-        <div class="photo"><img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=400&q=80" alt="Spicy Tuna Roll" loading="lazy" /></div>
-        <div class="info">
-          <div class="row1"><h3>Spicy Tuna Roll x8</h3><span class="price">12,90€</span></div>
-          <p class="desc">Atún picante, pepino, sriracha.</p>
-          <button class="add-btn" onclick="addFromCarta('Spicy Tuna Roll x8', 12.90)">➕ Añadir al pedido</button>
-        </div>
-      </article>
-      <article class="dish-card">
-        <span class="star">⭐ Especial</span>
-        <div class="photo"><img src="https://images.unsplash.com/photo-1617196034776-bde0a2b44bbd?w=400&q=80" alt="Bambú Roll" loading="lazy" /></div>
-        <div class="info">
-          <div class="row1"><h3>Bambú Roll x8</h3><span class="price">15,90€</span></div>
-          <p class="desc">Nuestra creación: salmón, mango, wasabi.</p>
-          <button class="add-btn" onclick="addFromCarta('Bambú Roll x8', 15.90)">➕ Añadir al pedido</button>
-        </div>
-      </article>
-    </div>
-
-    <div class="menu-pane" id="pane-hot">
-      <article class="dish-card">
-        <div class="photo"><img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400&q=80" alt="Ramen de Miso" loading="lazy" /></div>
-        <div class="info">
-          <div class="row1"><h3>Ramen de Miso</h3><span class="price">13,50€</span></div>
-          <p class="desc">Caldo de miso, cerdo chashu, huevo nitamago.</p>
-          <button class="add-btn" onclick="addFromCarta('Ramen de Miso', 13.50)">➕ Añadir al pedido</button>
-        </div>
-      </article>
-      <article class="dish-card">
-        <div class="photo"><img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400&q=80" alt="Gyozas" loading="lazy" /></div>
-        <div class="info">
-          <div class="row1"><h3>Gyozas x6</h3><span class="price">7,90€</span></div>
-          <p class="desc">Dumpling de cerdo y verduras, salsa ponzu.</p>
-          <button class="add-btn" onclick="addFromCarta('Gyozas x6', 7.90)">➕ Añadir al pedido</button>
-        </div>
-      </article>
-      <article class="dish-card">
-        <div class="photo"><img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&q=80" alt="Edamame" loading="lazy" /></div>
-        <div class="info">
-          <div class="row1"><h3>Edamame</h3><span class="price">4,50€</span></div>
-          <p class="desc">Judías de soja con sal marina.</p>
-          <button class="add-btn" onclick="addFromCarta('Edamame', 4.50)">➕ Añadir al pedido</button>
-        </div>
-      </article>
-      <article class="dish-card">
-        <div class="photo"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80" alt="Mochi de Té Verde" loading="lazy" /></div>
-        <div class="info">
-          <div class="row1"><h3>Mochi de Té Verde x3</h3><span class="price">6,90€</span></div>
-          <p class="desc">Postre japonés de arroz y helado matcha.</p>
-          <button class="add-btn" onclick="addFromCarta('Mochi de Té Verde x3', 6.90)">➕ Añadir al pedido</button>
-        </div>
-      </article>
-    </div>
+    <div class="menu-pane active" id="pane-frios"></div>
+    <div class="menu-pane" id="pane-calientes"></div>
+    <div class="menu-pane" id="pane-nigiris"></div>
+    <div class="menu-pane" id="pane-rolls"></div>
+    <div class="menu-pane" id="pane-bambubox"></div>
+    <div class="menu-pane" id="pane-otros"></div>
   </div>
 </section>
 
@@ -1299,28 +1276,163 @@
     document.querySelectorAll('.menu-pane').forEach(p => p.classList.toggle('active', p.id === 'pane-' + name));
   }
 
-  /* ───────── DATA MENÚ ───────── */
-  const MENU = {
-    'Nigiris & Sashimi': [
-      { name: 'Nigiri Salmón x2', price: 6.90 },
-      { name: 'Nigiri Atún x2', price: 7.50 },
-      { name: 'Sashimi Variado x8', price: 14.90 },
-      { name: 'Nigiri Langostino x2', price: 7.90 }
+  /* ───────── DATA CARTA COMPLETA (web) ───────── */
+  const CARTA = {
+    frios: [
+      { name: 'Edamame', price: 6.00, desc: 'Judías de soja con sal marina.' },
+      { name: 'Wakame', price: 6.50, desc: 'Ensalada de algas con sésamo.' },
+      { name: 'Wakame Especial', price: 8.00, desc: 'Con pepino y tartar de salmón.' },
+      { name: 'Ensaladilla Japo', price: 8.50, desc: 'Versión japonesa de la ensaladilla.' },
+      { name: 'Tartar de Salmón', price: 13.00, desc: 'Salmón fresco con aliño nikkei.' },
+      { name: 'Tartar de Atún', price: 14.00, desc: 'Atún rojo de almadraba.' },
+      { name: 'Sashimi Mixto 6 ud.', price: 9.50, desc: 'Selección del chef.' },
+      { name: 'Sashimi Mixto 12 ud.', price: 17.50, desc: 'Selección del chef.' }
     ],
-    'Rolls Especiales': [
-      { name: 'Dragon Roll x8', price: 13.90 },
-      { name: 'Rainbow Roll x8', price: 14.50 },
-      { name: 'Spicy Tuna Roll x8', price: 12.90 },
-      { name: 'Bambú Roll x8', price: 15.90, star: true }
+    calientes: [
+      { name: 'Sopa Miso', price: 5.00, desc: 'Caldo tradicional de miso.' },
+      { name: 'Gyozas de Verdura 6 ud.', price: 7.50, desc: 'Dumpling vegetal.' },
+      { name: 'Gyozas de Pollo o Cerdo 6 ud.', price: 8.50, desc: 'Dumpling clásico.' },
+      { name: 'Gyozas de Pato o Langostino 6 ud.', price: 9.00, desc: 'Versión gourmet.' },
+      { name: 'Mix de Gyozas 8 ud.', price: 11.50, desc: 'Variedad para compartir.' },
+      { name: 'Takoyaki', price: 8.50, desc: 'Bolitas de pulpo japonesas.' },
+      { name: 'Yakitori de Pollo 2 ud.', price: 6.00, desc: 'Brocheta a la brasa.' },
+      { name: 'Yakitori de Atún 2 ud.', price: 7.00, desc: 'Brocheta a la brasa.' },
+      { name: 'Rollitos Thai de Pollo 5 ud.', price: 7.00, desc: 'Crujientes con salsa.' },
+      { name: 'Rollitos Thai de Salmón 5 ud.', price: 9.00, desc: 'Crujientes con salsa.' }
     ],
-    'Hot Food': [
-      { name: 'Ramen de Miso', price: 13.50 },
-      { name: 'Gyozas x6', price: 7.90 },
-      { name: 'Edamame', price: 4.50 },
-      { name: 'Mochi de Té Verde x3', price: 6.90 }
+    nigiris: [
+      { name: 'Nigiri Aguacate o Mango x2', price: 4.00, desc: 'Opción vegetal.' },
+      { name: 'Nigiri Salmón o Langostino x2', price: 4.50, desc: 'Sobre arroz de sushi.' },
+      { name: 'Nigiri Atún, Salmón Flambeado, Pez Mantequilla... x2', price: 5.00, desc: 'Selección premium.' },
+      { name: 'Nigiri Anguila x2', price: 5.50, desc: 'Anguila glaseada.' }
+    ],
+    rolls: [
+      { name: 'Hosomaki Pepino o Aguacate x8', price: 5.00, desc: 'Roll fino vegetal.' },
+      { name: 'Hosomaki Mango o Tamago x8', price: 5.50, desc: 'Roll fino dulce.' },
+      { name: 'Hosomaki Surimi/Atún/Salmón x8', price: 7.00, desc: 'Roll fino marino.' },
+      { name: 'Futomaki Pollo Teriyaki x10', price: 11.00, desc: 'Roll grueso de pollo.' },
+      { name: 'Futomaki Atún y Aguacate x10', price: 13.00, desc: 'Roll grueso clásico.' },
+      { name: 'Futomaki Tartar de Atún x10', price: 13.50, desc: 'Roll grueso premium.' },
+      { name: 'Uramaki Pepino y Surimi x10', price: 9.50, desc: 'Roll del revés.' },
+      { name: 'Uramaki Salmón y Aguacate x10', price: 11.00, desc: 'Roll del revés clásico.' },
+      { name: 'Uramaki Langostino Panko x10', price: 12.00, desc: 'Crujiente con langostino.' },
+      { name: 'Uramaki Tartar de Atún x10', price: 13.50, desc: 'Roll del revés premium.' },
+      { name: 'Uramaki Anguila y Aguacate x10', price: 13.50, desc: 'Con anguila glaseada.' },
+      { name: 'Uramaki Tataki de Atún y Aguacate x10', price: 14.00, desc: 'Atún marcado.', star: true }
+    ],
+    bambubox: [
+      { name: 'Nigiris 4 ud.', price: 8.00, desc: 'Selección del chef.' },
+      { name: 'Nigiris 8 ud.', price: 16.00, desc: 'Selección del chef.' },
+      { name: 'Bambú Box 6 piezas', price: 9.50, desc: 'Surtido para 1 persona.' },
+      { name: 'Bambú Box 12 piezas', price: 17.00, desc: 'Surtido para compartir.' },
+      { name: 'Bambú Box 24 piezas', price: 23.00, desc: 'Surtido grande.' },
+      { name: 'Bambú Box 40 piezas', price: 36.50, desc: 'Para grupo.', star: true }
+    ],
+    otros: [
+      { name: 'Pollo Teriyaki', price: 10.00, desc: 'Salsa teriyaki casera.' },
+      { name: 'Salmón Teriyaki', price: 11.00, desc: 'Salsa teriyaki casera.' },
+      { name: 'Tataki de Salmón', price: 14.00, desc: 'Salmón marcado en plancha.' },
+      { name: 'Tataki de Atún', price: 15.00, desc: 'Atún marcado en plancha.' },
+      { name: 'Secreto a Baja Temperatura', price: 17.00, desc: 'Cerdo ibérico jugoso.' },
+      { name: 'Poke Vegano', price: 11.50, desc: 'Bowl con verduras y arroz.' },
+      { name: 'Poke de Salmón/Atún', price: 14.00, desc: 'Bowl con pescado fresco.' },
+      { name: 'Wok', price: 8.50, desc: 'Salteado oriental (base).' },
+      { name: 'Dorayaki Casero', price: 5.00, desc: 'Pastelito de azuki.' },
+      { name: 'Tarta de Queso Casera', price: 5.00, desc: 'Receta de la casa.' },
+      { name: 'Mochi 1 ud.', price: 3.00, desc: 'Postre japonés.' }
     ]
   };
-  const CAT_ICON = { 'Nigiris & Sashimi': '🍣', 'Rolls Especiales': '🍱', 'Hot Food': '🔥' };
+
+  const CAT_LABEL = {
+    frios: 'Entrantes Fríos',
+    calientes: 'Entrantes Calientes',
+    nigiris: 'Sushi · Nigiris',
+    rolls: 'Sushi · Rolls',
+    bambubox: 'Bambú Box',
+    otros: 'Otros & Postres'
+  };
+
+  /* ───────── DATA MENÚ CHATBOT (selección destacada con precios reales) ───────── */
+  const MENU = {
+    'Entrantes Fríos': [
+      { name: 'Edamame', price: 6.00 },
+      { name: 'Wakame Especial', price: 8.00 },
+      { name: 'Tartar de Salmón', price: 13.00 },
+      { name: 'Tartar de Atún', price: 14.00 },
+      { name: 'Sashimi Mixto 6 ud.', price: 9.50 },
+      { name: 'Sashimi Mixto 12 ud.', price: 17.50 }
+    ],
+    'Entrantes Calientes': [
+      { name: 'Sopa Miso', price: 5.00 },
+      { name: 'Gyozas Pollo/Cerdo 6 ud.', price: 8.50 },
+      { name: 'Mix Gyozas 8 ud.', price: 11.50 },
+      { name: 'Takoyaki', price: 8.50 },
+      { name: 'Yakitori Pollo 2 ud.', price: 6.00 },
+      { name: 'Rollitos Thai Pollo 5 ud.', price: 7.00 }
+    ],
+    'Nigiris': [
+      { name: 'Nigiri Salmón/Langostino x2', price: 4.50 },
+      { name: 'Nigiri Atún x2', price: 5.00 },
+      { name: 'Nigiri Anguila x2', price: 5.50 }
+    ],
+    'Rolls': [
+      { name: 'Hosomaki Salmón x8', price: 7.00 },
+      { name: 'Futomaki Atún y Aguacate x10', price: 13.00 },
+      { name: 'Uramaki Salmón y Aguacate x10', price: 11.00 },
+      { name: 'Uramaki Langostino Panko x10', price: 12.00 },
+      { name: 'Uramaki Tataki Atún x10', price: 14.00 }
+    ],
+    'Bambú Box': [
+      { name: 'Bambú Box 6 piezas', price: 9.50 },
+      { name: 'Bambú Box 12 piezas', price: 17.00 },
+      { name: 'Bambú Box 24 piezas', price: 23.00 },
+      { name: 'Bambú Box 40 piezas', price: 36.50 }
+    ],
+    'Otros': [
+      { name: 'Pollo Teriyaki', price: 10.00 },
+      { name: 'Tataki de Salmón', price: 14.00 },
+      { name: 'Poke de Salmón/Atún', price: 14.00 },
+      { name: 'Wok', price: 8.50 }
+    ],
+    'Postres': [
+      { name: 'Dorayaki Casero', price: 5.00 },
+      { name: 'Tarta de Queso Casera', price: 5.00 },
+      { name: 'Mochi', price: 3.00 }
+    ]
+  };
+  const CAT_ICON = {
+    'Entrantes Fríos': '🥗',
+    'Entrantes Calientes': '🔥',
+    'Nigiris': '🍣',
+    'Rolls': '🍱',
+    'Bambú Box': '📦',
+    'Otros': '🍽️',
+    'Postres': '🍮'
+  };
+
+  /* ───────── RENDER CARTA WEB ───────── */
+  function renderCarta() {
+    Object.entries(CARTA).forEach(([cat, items]) => {
+      const pane = document.getElementById('pane-' + cat);
+      if (!pane) return;
+      pane.innerHTML = items.map(it => {
+        const star = it.star ? '<span class="star">⭐ Especial</span>' : '';
+        const safeName = it.name.replace(/'/g, "\\'");
+        return `<article class="dish-row">
+          ${star}
+          <div class="info">
+            <h3>${escapeHtml(it.name)}</h3>
+            <p class="desc">${escapeHtml(it.desc)}</p>
+          </div>
+          <div class="right">
+            <span class="price">${fmt(it.price)}</span>
+            <button class="add-btn" type="button" onclick="addFromCarta('${safeName}', ${it.price})" title="Añadir al pedido">+</button>
+          </div>
+        </article>`;
+      }).join('');
+    });
+  }
+  document.addEventListener('DOMContentLoaded', renderCarta);
 
   /* ───────── CHATBOT ───────── */
   const WA_NUMBER = '34643199580';
@@ -1451,7 +1563,7 @@
       return;
     }
     if (intent === 'precio') {
-      await botMsg('Nuestros precios van desde 4,50€ el edamame hasta 15,90€ nuestro Bambú Roll especial 🎋\n¿Quieres hacer un pedido?');
+      await botMsg('Nuestros precios van desde 3€ el Mochi hasta 17,50€ el Sashimi Mixto de 12 piezas 🍣\n¿Quieres hacer un pedido?');
       quickReplies([
         { label: '🛵 Pedir ahora', onClick: () => startPedido() },
         { label: '📅 Reservar mesa', onClick: () => startReserva() }
