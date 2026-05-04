@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GastronomIA · Restaurante de autor</title>
+<meta name="description" content="GastronomIA — Cocina de fusión mediterránea con influencias asiáticas. Reserva tu mesa." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --black-2: #131313;
+    --black-3: #1c1c1c;
+    --gold: #d4a853;
+    --gold-soft: #e6c279;
+    --cream: #f5f0e8;
+    --cream-2: #ece4d4;
+    --gray: #8a8a8a;
+    --line: rgba(212, 168, 83, 0.18);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ───────── NAV ───────── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+    backdrop-filter: blur(14px);
+    background: rgba(10, 10, 10, 0.78);
+    border-bottom: 1px solid var(--line);
+    transition: background .25s ease;
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 28px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.5px;
+  }
+  .logo span { color: var(--gold); }
+  .nav-links {
+    display: flex; gap: 38px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--cream);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 26px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all .25s;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--black);
+  }
+  .btn-gold:hover { background: var(--gold-soft); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid var(--cream);
+  }
+  .btn-outline:hover { background: var(--cream); color: var(--black); }
+  .btn-wa {
+    background: #25D366;
+    color: white;
+    padding: 16px 34px;
+    font-size: 14px;
+  }
+  .btn-wa:hover { background: #1ebe5a; transform: translateY(-2px); }
+
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--cream);
+    font-size: 26px;
+    cursor: pointer;
+  }
+
+  /* ───────── HERO ───────── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--cream);
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.05);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: rgba(10, 10, 10, 0.72);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 24px;
+    max-width: 920px;
+  }
+  .hero-eyebrow {
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+    vertical-align: middle;
+    margin: 0 14px;
+  }
+  .hero h1 {
+    font-size: clamp(42px, 7vw, 88px);
+    line-height: 1.05;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--cream-2);
+    margin-bottom: 44px;
+    max-width: 560px;
+    margin-left: auto; margin-right: auto;
+    font-weight: 300;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 80px;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 720px;
+    margin: 0 auto;
+    padding-top: 36px;
+    border-top: 1px solid rgba(212, 168, 83, 0.3);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--cream-2);
+  }
+
+  /* ───────── SECTIONS ───────── */
+  section { padding: 110px 0; }
+  .section-eyebrow {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 3.6px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .section-title {
+    font-size: clamp(32px, 4.6vw, 54px);
+    margin-bottom: 24px;
+    line-height: 1.1;
+  }
+  .section-head {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 70px;
+  }
+  .section-head p {
+    color: #5a5a5a;
+    font-size: 17px;
+    font-weight: 300;
+  }
+
+  /* ───────── ABOUT ───────── */
+  .about {
+    background: var(--cream);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-img {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+  }
+  .about-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .8s;
+  }
+  .about-img:hover img { transform: scale(1.04); }
+  .about-img::after {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border: 1px solid var(--gold);
+    pointer-events: none;
+  }
+  .about-content h2 { margin-bottom: 28px; }
+  .about-content p {
+    color: #4a4a4a;
+    margin-bottom: 18px;
+    font-size: 16px;
+    font-weight: 300;
+  }
+  .values {
+    margin-top: 44px;
+    display: grid;
+    gap: 22px;
+  }
+  .value {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 22px;
+    border-left: 2px solid var(--gold);
+    background: rgba(212, 168, 83, 0.06);
+  }
+  .value-icon {
+    width: 40px; height: 40px;
+    flex-shrink: 0;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--black);
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+  }
+  .value h4 { font-size: 18px; margin-bottom: 4px; }
+  .value p { font-size: 14px; color: #5a5a5a; margin: 0; }
+
+  /* ───────── MENU ───────── */
+  .menu {
+    background: var(--black);
+    color: var(--cream);
+  }
+  .menu .section-head p { color: var(--cream-2); }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .dish {
+    background: var(--black-2);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    transition: transform .35s, border-color .35s;
+  }
+  .dish:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold);
+  }
+  .dish-img {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .dish-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .8s;
+  }
+  .dish:hover .dish-img img { transform: scale(1.08); }
+  .dish-body {
+    padding: 28px 26px 32px;
+  }
+  .dish-name {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: var(--cream);
+  }
+  .dish-desc {
+    color: var(--gray);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+  .dish-tag {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* ───────── RESERVAS ───────── */
+  .reservas {
+    background: var(--black-2);
+    color: var(--cream);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .reservas::before {
+    content: '';
+    position: absolute;
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(212, 168, 83, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .reservas .section-head p { color: var(--cream-2); }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 980px;
+    margin: 0 auto 56px;
+    position: relative;
+    z-index: 2;
+  }
+  .step {
+    padding: 40px 28px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--line);
+    transition: all .3s;
+  }
+  .step:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+  .step-num {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 22px;
+  }
+  .step h4 { font-size: 20px; margin-bottom: 10px; }
+  .step p { color: var(--gray); font-size: 14px; font-weight: 300; }
+
+  /* ───────── GALERÍA ───────── */
+  .galeria {
+    background: var(--cream);
+  }
+  .gal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .gal-item {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+  }
+  .gal-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .8s, filter .4s;
+    filter: grayscale(20%);
+  }
+  .gal-item:hover img {
+    transform: scale(1.08);
+    filter: grayscale(0%);
+  }
+
+  /* ───────── FOOTER ───────── */
+  footer {
+    background: var(--black);
+    color: var(--cream-2);
+    padding: 80px 0 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 56px;
+  }
+  .footer-grid h4 {
+    font-size: 14px;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 22px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+  .footer-grid p, .footer-grid li {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 8px;
+    font-weight: 300;
+  }
+  .footer-grid ul { list-style: none; }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    color: var(--cream);
+    margin-bottom: 18px;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--gray);
+  }
+  .footer-bottom a { color: var(--gold); }
+
+  /* ───────── CHATBOT ───────── */
+  .chat-launcher {
+    position: fixed;
+    bottom: 26px; right: 26px;
+    z-index: 90;
+    background: var(--black);
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    transition: transform .25s;
+  }
+  .chat-launcher:hover { transform: scale(1.08); }
+  .chat-launcher svg { width: 28px; height: 28px; }
+  .chat-launcher::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+
+  .chat-tooltip {
+    position: fixed;
+    bottom: 38px; right: 100px;
+    z-index: 89;
+    background: var(--black);
+    color: var(--cream);
+    padding: 12px 18px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity .35s, transform .35s;
+    border: 1px solid var(--gold);
+    white-space: nowrap;
+  }
+  .chat-tooltip.show { opacity: 1; transform: translateX(0); }
+
+  .chat-modal {
+    position: fixed;
+    bottom: 100px; right: 26px;
+    width: 360px;
+    max-height: 600px;
+    background: var(--cream);
+    border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    z-index: 95;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .chat-modal.open { display: flex; animation: chatIn .3s ease; }
+  @keyframes chatIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .chat-header {
+    background: var(--black);
+    color: var(--cream);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 3px solid var(--gold);
+  }
+  .chat-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--black);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+  }
+  .chat-title-name { font-size: 15px; font-weight: 600; }
+  .chat-title-status { font-size: 12px; color: var(--gold); display: flex; align-items: center; gap: 6px; }
+  .chat-title-status::before {
+    content: ''; width: 7px; height: 7px;
+    background: #4cd964; border-radius: 50%;
+  }
+  .chat-close {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: var(--cream);
+    cursor: pointer;
+    font-size: 22px;
+    padding: 4px 8px;
+  }
+
+  .chat-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px;
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 320px;
+    max-height: 400px;
+  }
+  .chat-body::-webkit-scrollbar { width: 6px; }
+  .chat-body::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  .msg {
+    max-width: 82%;
+    padding: 11px 15px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.45;
+    animation: msgIn .25s ease;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .msg.bot {
+    background: white;
+    color: var(--black);
+    border-top-left-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    align-self: flex-start;
+  }
+  .msg.user {
+    background: var(--black);
+    color: var(--cream);
+    border-top-right-radius: 4px;
+    align-self: flex-end;
+  }
+
+  .quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-self: flex-start;
+    max-width: 90%;
+  }
+  .qr-btn {
+    background: white;
+    border: 1px solid var(--gold);
+    color: var(--black);
+    padding: 8px 14px;
+    border-radius: 18px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all .2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .qr-btn:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  .typing {
+    display: inline-flex;
+    gap: 4px;
+    padding: 12px 16px;
+    background: white;
+    border-radius: 14px;
+    border-top-left-radius: 4px;
+    align-self: flex-start;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  }
+  .typing span {
+    width: 7px; height: 7px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: bounce 1.2s infinite;
+  }
+  .typing span:nth-child(2) { animation-delay: 0.15s; }
+  .typing span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-7px); opacity: 1; }
+  }
+
+  .chat-input {
+    padding: 12px 14px;
+    background: white;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 8px;
+  }
+  .chat-input input {
+    flex: 1;
+    border: 1px solid #e5e0d4;
+    border-radius: 22px;
+    padding: 10px 16px;
+    font-size: 14px;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+  }
+  .chat-input input:focus { border-color: var(--gold); }
+  .chat-send {
+    background: var(--gold);
+    border: none;
+    color: var(--black);
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    transition: transform .2s;
+  }
+  .chat-send:hover { transform: scale(1.08); }
+
+  .summary-card {
+    background: white;
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    padding: 16px;
+    align-self: flex-start;
+    max-width: 90%;
+    font-size: 13px;
+  }
+  .summary-card h5 {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: 'Inter', sans-serif;
+  }
+  .summary-card .row {
+    padding: 5px 0;
+    border-bottom: 1px solid #f0eadb;
+    display: flex;
+    justify-content: space-between;
+    color: #444;
+  }
+  .summary-card .row:last-child { border-bottom: none; }
+  .summary-card .row b { color: var(--black); font-weight: 600; }
+  .summary-card .wa-link {
+    display: block;
+    margin-top: 12px;
+    background: #25D366;
+    color: white;
+    text-align: center;
+    padding: 11px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .summary-card .wa-link:hover { background: #1ebe5a; }
+
+  /* ───────── RESPONSIVE ───────── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links.open {
+      display: flex;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      background: var(--black);
+      padding: 28px;
+      gap: 22px;
+      border-top: 1px solid var(--line);
+    }
+    .nav .btn-gold { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 50px; }
+    .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .gal-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: 1fr; gap: 18px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    section { padding: 80px 0; }
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 44px; }
+    .hero-sub { font-size: 16px; }
+    .hero-stats { grid-template-columns: 1fr; gap: 24px; }
+    .stat-num { font-size: 36px; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .gal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .container { padding: 0 20px; }
+    .nav-inner { padding: 14px 20px; }
+
+    .chat-modal {
+      width: 100%;
+      max-width: 100%;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      max-height: 92vh;
+      height: 92vh;
+      border-radius: 16px 16px 0 0;
+    }
+    .chat-launcher {
+      bottom: 18px; right: 18px;
+      width: 58px; height: 58px;
+    }
+    .chat-tooltip { display: none; }
+    .chat-body { max-height: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─────── NAV ─────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">Gastronom<span>IA</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#carta">Carta</a></li>
+      <li><a href="#reservas">Reservas</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="btn btn-gold" onclick="openChat()">Reservar mesa</button>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<!-- ─────── HERO ─────── -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Restaurante de autor</div>
+    <h1>Gastronomía <em>de autor</em></h1>
+    <p class="hero-sub">Cocina de fusión mediterránea con influencias asiáticas. Una experiencia para los sentidos en cada plato.</p>
+    <div class="hero-actions">
+      <button class="btn btn-gold" onclick="openChat()">Reservar mesa</button>
+      <a href="#carta" class="btn btn-outline">Ver carta</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+      <div>
+        <div class="stat-num">24</div>
+        <div class="stat-label">Platos de temporada</div>
+      </div>
+      <div>
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Clientes satisfechos</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ─────── ABOUT ─────── -->
+<section class="about" id="nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800&q=80" alt="Chef de GastronomIA" loading="lazy" />
+      </div>
+      <div class="about-content">
+        <div class="section-eyebrow">Nuestra historia</div>
+        <h2 class="section-title">Donde tradición y vanguardia se encuentran</h2>
+        <p>En GastronomIA llevamos más de quince años explorando los límites de la cocina. Cada plato es el resultado de combinar producto local de máxima calidad con técnicas contemporáneas y la sutileza de la gastronomía asiática.</p>
+        <p>Nuestra filosofía es simple: respeto absoluto por la materia prima, ejecución impecable y una experiencia que perdure en la memoria.</p>
+        <div class="values">
+          <div class="value">
+            <div class="value-icon">★</div>
+            <div>
+              <h4>Producto local</h4>
+              <p>Trabajamos con productores de proximidad, pesca del día y verduras de huerta.</p>
+            </div>
+          </div>
+          <div class="value">
+            <div class="value-icon">✦</div>
+            <div>
+              <h4>Técnica</h4>
+              <p>Cocina de precisión que respeta el sabor y la textura del producto.</p>
+            </div>
+          </div>
+          <div class="value">
+            <div class="value-icon">◆</div>
+            <div>
+              <h4>Experiencia</h4>
+              <p>Un espacio íntimo y un servicio cuidado para una velada memorable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── CARTA ─────── -->
+<section class="menu" id="carta">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Nuestra carta</div>
+      <h2 class="section-title">Platos de temporada</h2>
+      <p>Una selección de creaciones que cambian con cada estación, siempre buscando la sorpresa y el equilibrio.</p>
+    </div>
+    <div class="menu-grid">
+      <article class="dish">
+        <div class="dish-img"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80" alt="Tartar de atún" loading="lazy" /></div>
+        <div class="dish-body">
+          <span class="dish-tag">Entrante frío</span>
+          <h3 class="dish-name">Tartar de atún rojo</h3>
+          <p class="dish-desc">Atún de almadraba, aguacate, sésamo tostado y emulsión de yuzu sobre crujiente de arroz.</p>
+        </div>
+      </article>
+      <article class="dish">
+        <div class="dish-img"><img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&q=80" alt="Risotto" loading="lazy" /></div>
+        <div class="dish-body">
+          <span class="dish-tag">Principal</span>
+          <h3 class="dish-name">Risotto de trufa</h3>
+          <p class="dish-desc">Arroz carnaroli con trufa negra, parmesano reggiano de 24 meses y mantequilla noisette.</p>
+        </div>
+      </article>
+      <article class="dish">
+        <div class="dish-img"><img src="https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=400&q=80" alt="Ceviche" loading="lazy" /></div>
+        <div class="dish-body">
+          <span class="dish-tag">Estilo nikkei</span>
+          <h3 class="dish-name">Ceviche de corvina</h3>
+          <p class="dish-desc">Corvina salvaje en leche de tigre con ají amarillo, cilantro y boniato confitado.</p>
+        </div>
+      </article>
+      <article class="dish">
+        <div class="dish-img"><img src="https://images.unsplash.com/photo-1558030006-450675393462?w=400&q=80" alt="Wagyu" loading="lazy" /></div>
+        <div class="dish-body">
+          <span class="dish-tag">Carne</span>
+          <h3 class="dish-name">Wagyu A5</h3>
+          <p class="dish-desc">Lomo de wagyu japonés con reducción de miso, daikon glaseado y verduras de temporada.</p>
+        </div>
+      </article>
+      <article class="dish">
+        <div class="dish-img"><img src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=400&q=80" alt="Vieiras" loading="lazy" /></div>
+        <div class="dish-body">
+          <span class="dish-tag">Pescado</span>
+          <h3 class="dish-name">Vieiras a la plancha</h3>
+          <p class="dish-desc">Vieiras gallegas marcadas, puré de coliflor ahumado y aceite de cebollino.</p>
+        </div>
+      </article>
+      <article class="dish">
+        <div class="dish-img"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80" alt="Postre" loading="lazy" /></div>
+        <div class="dish-body">
+          <span class="dish-tag">Postre</span>
+          <h3 class="dish-name">Texturas de chocolate</h3>
+          <p class="dish-desc">Bizcocho fluido, helado de cacao puro, tierra de avellana y polvo de oro comestible.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── RESERVAS ─────── -->
+<section class="reservas" id="reservas">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Reservas</div>
+      <h2 class="section-title">Reserva tu mesa</h2>
+      <p>En tres pasos sencillos te confirmamos tu reserva. Te esperamos.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Elige día</h4>
+        <p>Selecciona la fecha y franja horaria que prefieras.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Confirma personas</h4>
+        <p>Indícanos cuántos seréis y tus preferencias.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Recibe confirmación</h4>
+        <p>Te confirmamos por WhatsApp con todos los detalles.</p>
+      </div>
+    </div>
+    <button class="btn btn-wa" onclick="openChat()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Reservar por WhatsApp
+    </button>
+  </div>
+</section>
+
+<!-- ─────── GALERÍA ─────── -->
+<section class="galeria">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Galería</div>
+      <h2 class="section-title">El espacio</h2>
+      <p>Un ambiente íntimo, cuidado y elegante para una experiencia inolvidable.</p>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=400&q=80" alt="Detalle restaurante" loading="lazy" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400&q=80" alt="Plato gourmet" loading="lazy" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" alt="Plato del chef" loading="lazy" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=400&q=80" alt="Comida gourmet" loading="lazy" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80" alt="Ensalada" loading="lazy" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" alt="Pizza gourmet" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── FOOTER ─────── -->
+<footer id="contacto">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Gastronom<span>IA</span></div>
+        <p>Cocina de autor con alma mediterránea y guiños a Asia. Una experiencia gastronómica única en el corazón de la ciudad.</p>
+      </div>
+      <div>
+        <h4>Horarios</h4>
+        <ul>
+          <li>Martes a Domingo</li>
+          <li>Comidas: 13:30 - 16:00</li>
+          <li>Cenas: 20:30 - 23:30</li>
+          <li>Lunes cerrado</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li>Calle Mayor 24</li>
+          <li>28001 — Madrid</li>
+          <li>+34 643 19 95 80</li>
+          <li>hola@gastronomia.es</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="#carta">Carta</a></li>
+          <li><a href="#reservas">Reservas</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#" onclick="openChat(); return false;">Reservar</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      Web creada por <a href="http://whitemoon.es" target="_blank" rel="noopener">WhiteMoon · whitemoon.es</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ─────── CHATBOT ─────── -->
+<div class="chat-tooltip" id="chatTooltip">🍽️ ¿Reservas o consultas?</div>
+<button class="chat-launcher" id="chatLauncher" onclick="openChat()" aria-label="Abrir chat">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.94 2 11.5c0 2.07.93 3.96 2.46 5.41L4 21l4.35-1.42c1.13.45 2.36.69 3.65.69 5.52 0 10-3.94 10-8.77S17.52 3 12 3z"/></svg>
+</button>
+
+<div class="chat-modal" id="chatModal">
+  <div class="chat-header">
+    <div class="chat-avatar">G</div>
+    <div>
+      <div class="chat-title-name">GastronomIA · Asistente</div>
+      <div class="chat-title-status">En línea</div>
+    </div>
+    <button class="chat-close" onclick="closeChat()" aria-label="Cerrar">×</button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <form class="chat-input" id="chatForm" onsubmit="onUserSend(event)">
+    <input id="chatInput" type="text" placeholder="Escribe tu mensaje..." autocomplete="off" />
+    <button class="chat-send" type="submit" aria-label="Enviar">➤</button>
+  </form>
+</div>
+
+<script>
+  /* ───────── NAV ───────── */
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  /* ───────── CHATBOT ───────── */
+  const WA_NUMBER = '34643199580';
+  const body = () => document.getElementById('chatBody');
+  let state = { mode: 'idle', personas: null, dia: null, nombre: null, telefono: null, intent: null };
+  let chatStarted = false;
+
+  function normalize(str) {
+    return (str || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  }
+
+  function scrollChat() {
+    const b = body();
+    setTimeout(() => { b.scrollTop = b.scrollHeight; }, 30);
+  }
+
+  function botMsg(text, delay = 700) {
+    return new Promise(resolve => {
+      const typing = document.createElement('div');
+      typing.className = 'typing';
+      typing.innerHTML = '<span></span><span></span><span></span>';
+      body().appendChild(typing);
+      scrollChat();
+      setTimeout(() => {
+        typing.remove();
+        const m = document.createElement('div');
+        m.className = 'msg bot';
+        m.textContent = text;
+        body().appendChild(m);
+        scrollChat();
+        resolve();
+      }, delay);
+    });
+  }
+
+  function userMsg(text) {
+    const m = document.createElement('div');
+    m.className = 'msg user';
+    m.textContent = text;
+    body().appendChild(m);
+    scrollChat();
+  }
+
+  function quickReplies(options) {
+    const wrap = document.createElement('div');
+    wrap.className = 'quick-replies';
+    options.forEach(opt => {
+      const b = document.createElement('button');
+      b.className = 'qr-btn';
+      b.type = 'button';
+      b.textContent = opt.label;
+      b.onclick = () => {
+        wrap.remove();
+        userMsg(opt.label);
+        opt.onClick();
+      };
+      wrap.appendChild(b);
+    });
+    body().appendChild(wrap);
+    scrollChat();
+  }
+
+  function getNext7Days() {
+    const days = [];
+    const names = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+    for (let i = 1; i <= 7; i++) {
+      const d = new Date();
+      d.setDate(d.getDate() + i);
+      const label = `${names[d.getDay()]} ${d.getDate()}/${d.getMonth() + 1}`;
+      days.push({ label, value: label });
+    }
+    return days;
+  }
+
+  async function welcome() {
+    if (chatStarted) return;
+    chatStarted = true;
+    await botMsg('¡Buenas! 👋 Bienvenido/a a GastronomIA.\n¿En qué puedo ayudarte?', 1500);
+    quickReplies([
+      { label: '📅 Reservar mesa', onClick: () => startReserva() },
+      { label: '🍽️ Ver la carta', onClick: () => handleIntent('carta') },
+      { label: '⏰ Horarios', onClick: () => handleIntent('horario') },
+      { label: '📍 Dónde estamos', onClick: () => handleIntent('donde') }
+    ]);
+  }
+
+  function openChat() {
+    document.getElementById('chatModal').classList.add('open');
+    document.getElementById('chatTooltip').classList.remove('show');
+    welcome();
+  }
+  function closeChat() {
+    document.getElementById('chatModal').classList.remove('open');
+  }
+
+  setTimeout(() => {
+    if (!chatStarted) document.getElementById('chatTooltip').classList.add('show');
+  }, 4000);
+  setTimeout(() => {
+    document.getElementById('chatTooltip').classList.remove('show');
+  }, 12000);
+
+  /* ───────── INTENTS ───────── */
+  async function handleIntent(intent) {
+    state.intent = intent;
+    if (intent === 'reserva') return startReserva();
+
+    if (intent === 'carta') {
+      await botMsg('Nuestra carta cambia con la temporada 🍃\nAlgunos de nuestros platos estrella:\n\n• Tartar de atún con aguacate y sésamo\n• Risotto de trufa y parmesano\n• Ceviche de corvina estilo nikkei\n• Wagyu A5 con reducción de miso\n\n¿Tienes alguna alergia o preferencia?');
+      quickReplies([
+        { label: 'Reservar mesa', onClick: () => startReserva() },
+        { label: 'Soy vegetariano/a', onClick: () => handleIntent('alergia') },
+        { label: 'Sin gluten', onClick: () => handleIntent('alergia') }
+      ]);
+      return;
+    }
+
+    if (intent === 'alergia') {
+      await botMsg('Nos adaptamos a todas las necesidades 🌿\nTenemos opciones vegetarianas, veganas y sin gluten. Indícanos en la reserva y lo preparamos con antelación.');
+      quickReplies([{ label: '📅 Hacer reserva', onClick: () => startReserva() }]);
+      return;
+    }
+
+    if (intent === 'horario') {
+      await botMsg('Nuestro horario:\n\n🕐 Martes a Domingo\n🍽️ Comidas: 13:30 - 16:00\n🌙 Cenas: 20:30 - 23:30\n\nLunes cerrado.');
+      quickReplies([{ label: '📅 Reservar mesa', onClick: () => startReserva() }]);
+      return;
+    }
+
+    if (intent === 'precio') {
+      await botMsg('El precio medio por persona es orientativo y depende de los platos elegidos. Escríbenos y te informamos sin compromiso.');
+      quickReplies([{ label: '📅 Reservar mesa', onClick: () => startReserva() }]);
+      return;
+    }
+
+    if (intent === 'donde') {
+      await botMsg('Estamos en el centro de la ciudad 📍\nTe compartimos la ubicación exacta por WhatsApp al confirmar la reserva.');
+      quickReplies([{ label: '📅 Reservar mesa', onClick: () => startReserva() }]);
+      return;
+    }
+
+    if (intent === 'evento') {
+      await botMsg('¡Nos encanta celebrar contigo! 🥂\nPara grupos y eventos privados tenemos menús especiales y sala reservada.\n¿Cuántas personas seríais?');
+      askPersonas();
+      return;
+    }
+
+    await botMsg('¿Quieres que te ayude con una reserva o tienes alguna consulta sobre la carta?');
+    quickReplies([
+      { label: '📅 Reservar mesa', onClick: () => startReserva() },
+      { label: '🍽️ Ver la carta', onClick: () => handleIntent('carta') }
+    ]);
+  }
+
+  /* ───────── RESERVA FLOW ───────── */
+  async function startReserva() {
+    state = { mode: 'reserva', personas: null, dia: null, nombre: null, telefono: null, intent: 'reserva' };
+    await botMsg('¡Perfecto! Para gestionar tu reserva necesito algunos datos. ¿Para cuántas personas?');
+    askPersonas();
+  }
+
+  function askPersonas() {
+    state.mode = 'await_personas';
+    quickReplies([
+      { label: '1-2', onClick: () => setPersonas('1-2') },
+      { label: '3-4', onClick: () => setPersonas('3-4') },
+      { label: '5-6', onClick: () => setPersonas('5-6') },
+      { label: '+6 personas', onClick: () => setPersonas('+6 personas') }
+    ]);
+  }
+
+  async function setPersonas(p) {
+    state.personas = p;
+    await botMsg('¿Qué día te viene mejor?');
+    state.mode = 'await_dia';
+    quickReplies(getNext7Days().map(d => ({
+      label: d.label,
+      onClick: () => setDia(d.value)
+    })));
+  }
+
+  async function setDia(d) {
+    state.dia = d;
+    await botMsg('Genial. ¿A qué nombre hacemos la reserva?');
+    state.mode = 'await_nombre';
+  }
+
+  async function setNombre(n) {
+    state.nombre = n;
+    await botMsg('Por último, ¿me das un teléfono de contacto? (9 dígitos)');
+    state.mode = 'await_telefono';
+  }
+
+  async function setTelefono(t) {
+    state.telefono = t;
+    await botMsg('¡Listo! Aquí tienes el resumen de tu reserva:');
+    showSummary();
+  }
+
+  function showSummary() {
+    const card = document.createElement('div');
+    card.className = 'summary-card';
+    const wa = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildWaMessage())}`;
+    card.innerHTML = `
+      <h5>Resumen de reserva</h5>
+      <div class="row"><span>Nombre</span><b>${escapeHtml(state.nombre)}</b></div>
+      <div class="row"><span>Teléfono</span><b>+34 ${escapeHtml(state.telefono)}</b></div>
+      <div class="row"><span>Personas</span><b>${escapeHtml(state.personas)}</b></div>
+      <div class="row"><span>Día</span><b>${escapeHtml(state.dia)}</b></div>
+      <a class="wa-link" href="${wa}" target="_blank" rel="noopener">📲 Confirmar por WhatsApp</a>
+    `;
+    body().appendChild(card);
+    scrollChat();
+    state.mode = 'done';
+    setTimeout(async () => {
+      await botMsg('Pulsa el botón verde para enviar tu reserva por WhatsApp y la confirmaremos en breve. ¡Te esperamos! 🍽️');
+    }, 800);
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  function buildWaMessage() {
+    return `🍽️ *NUEVA RESERVA — GastronomIA*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n👥 *Personas:* ${state.personas}\n📅 *Día:* ${state.dia}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
+  }
+
+  /* ───────── INPUT HANDLER ───────── */
+  async function onUserSend(e) {
+    e.preventDefault();
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    userMsg(text);
+    await processInput(text);
+  }
+
+  async function processInput(raw) {
+    const text = normalize(raw);
+
+    if (state.mode === 'await_nombre') {
+      if (raw.length < 2) {
+        await botMsg('¿Me dices tu nombre, por favor?');
+        return;
+      }
+      return setNombre(raw);
+    }
+    if (state.mode === 'await_telefono') {
+      const digits = raw.replace(/\D/g, '');
+      if (digits.length !== 9) {
+        await botMsg('Necesito un teléfono de 9 dígitos. ¿Puedes revisarlo?');
+        return;
+      }
+      return setTelefono(digits);
+    }
+
+    if (/(reserv|mesa|cita|reservar)/.test(text)) return startReserva();
+    if (/(carta|menu|platos|comer|comida)/.test(text)) return handleIntent('carta');
+    if (/(alerg|intoleran|vegano|vegetarian|celiac|gluten)/.test(text)) return handleIntent('alergia');
+    if (/(horario|cuando|abierto|hora|abren|cierran)/.test(text)) return handleIntent('horario');
+    if (/(precio|cuanto|cuesta|coste|tarifa|vale)/.test(text)) return handleIntent('precio');
+    if (/(donde|ubicacion|direccion|aparcar|parking|llegar|estais|sitio)/.test(text)) return handleIntent('donde');
+    if (/(evento|celebracion|cumpleanos|boda|empresa|grupo|privad)/.test(text)) return handleIntent('evento');
+    if (/(hola|buenas|buenos|hey|holi)/.test(text)) {
+      await botMsg('¡Hola! 👋 ¿En qué puedo ayudarte?');
+      quickReplies([
+        { label: '📅 Reservar mesa', onClick: () => startReserva() },
+        { label: '🍽️ Ver la carta', onClick: () => handleIntent('carta') },
+        { label: '⏰ Horarios', onClick: () => handleIntent('horario') }
+      ]);
+      return;
+    }
+    if (/(gracias|merci|ok|vale|perfecto)/.test(text)) {
+      await botMsg('¡A ti! ¿Algo más en lo que pueda ayudarte? 😊');
+      return;
+    }
+
+    await botMsg('¿Quieres que te ayude con una reserva o tienes alguna consulta sobre la carta?');
+    quickReplies([
+      { label: '📅 Reservar mesa', onClick: () => startReserva() },
+      { label: '🍽️ Ver la carta', onClick: () => handleIntent('carta') },
+      { label: '⏰ Horarios', onClick: () => handleIntent('horario') }
+    ]);
+  }
+</script>
+
+</body>
+</html>
