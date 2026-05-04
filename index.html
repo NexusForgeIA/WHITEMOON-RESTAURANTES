@@ -1584,14 +1584,48 @@
     ]);
   }
 
+  /* Estados de captura del chatbot:
+     - 0 → libre (idle, info, browsing carta sin commitment)
+     - 1 → captura activa (datos personales / dirección / tipo pedido / día / hora / personas / dishes)
+     - 3 → flujo completado (resumen + WhatsApp)
+     Mientras chatStep===1 no se puede cerrar el modal y el launcher se oculta. */
+  function chatStep() {
+    if (state.mode === 'done') return 3;
+    const captureModes = [
+      'reserva', 'pedido',
+      'await_personas', 'await_dia', 'await_hora',
+      'await_dishes', 'await_tipo_pedido', 'await_direccion',
+      'await_nombre', 'await_telefono'
+    ];
+    if (captureModes.includes(state.mode)) return 1;
+    return 0;
+  }
+
+  function updateChatChrome() {
+    const launcher = document.getElementById('chatLauncher');
+    const closeBtn = document.querySelector('.chat-close');
+    const modal = document.getElementById('chatModal');
+    const isOpen = modal.classList.contains('open');
+    const step = chatStep();
+    if (isOpen) {
+      launcher.style.display = 'none';
+      closeBtn.style.visibility = (step === 1) ? 'hidden' : 'visible';
+    } else {
+      launcher.style.display = 'flex';
+      closeBtn.style.visibility = 'visible';
+    }
+  }
+
   function openChat() {
     document.getElementById('chatModal').classList.add('open');
     document.getElementById('chatTooltip').classList.remove('show');
+    updateChatChrome();
     welcome();
   }
   function openChatPedido() {
     document.getElementById('chatModal').classList.add('open');
     document.getElementById('chatTooltip').classList.remove('show');
+    updateChatChrome();
     if (!chatStarted) {
       chatStarted = true;
       setTimeout(() => startPedido(), 300);
@@ -1600,7 +1634,9 @@
     }
   }
   function closeChat() {
+    if (chatStep() === 1) return;
     document.getElementById('chatModal').classList.remove('open');
+    updateChatChrome();
   }
 
   setTimeout(() => { if (!chatStarted) document.getElementById('chatTooltip').classList.add('show'); }, 4000);
@@ -1670,6 +1706,7 @@
     state = resetState();
     state.intent = 'reserva';
     state.mode = 'reserva';
+    updateChatChrome();
     await botMsg('¡Perfecto! Reservamos tu mesa 🎋\n¿Para cuántas personas?');
     askPersonas();
   }
@@ -1708,12 +1745,14 @@
     state.intent = 'pedido';
     state.mode = 'pedido';
     if (preTipo) state.tipoPedido = preTipo;
+    updateChatChrome();
     await botMsg('¡Vamos con tu pedido! 🛵\nSelecciona tus platos:');
     showMenuPicker();
   }
 
   function showMenuPicker() {
     state.mode = 'await_dishes';
+    updateChatChrome();
     const wrap = document.createElement('div');
     wrap.className = 'menu-picker';
     let html = '';
@@ -1765,6 +1804,7 @@
     } else {
       await botMsg('¿Recoger en local o a domicilio?');
       state.mode = 'await_tipo_pedido';
+      updateChatChrome();
       quickReplies([
         { label: '🏃 Recoger en local', onClick: () => setTipoPedido('Recoger en local') },
         { label: '🛵 A domicilio', onClick: () => setTipoPedido('A domicilio') }
@@ -1839,6 +1879,7 @@
     body().appendChild(card);
     scrollChat();
     state.mode = 'done';
+    updateChatChrome();
     setTimeout(async () => {
       const final = state.intent === 'pedido'
         ? 'Pulsa el botón verde para enviar tu pedido por WhatsApp y lo confirmaremos en breve. ¡Arigatō! 🎋'
