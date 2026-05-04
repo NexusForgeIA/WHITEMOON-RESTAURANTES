@@ -1071,8 +1071,17 @@
   /* ───────── CHATBOT ───────── */
   const WA_NUMBER = '34643199580';
   const body = () => document.getElementById('chatBody');
-  let state = { mode: 'idle', personas: null, dia: null, nombre: null, telefono: null, intent: null };
+  let state = { mode: 'idle', personas: null, dia: null, nombre: null, telefono: null, intent: null, pedido: [], tipoPedido: null, direccion: null };
   let chatStarted = false;
+
+  const DISHES = [
+    { emoji: '🐟', name: 'Tartar de atún' },
+    { emoji: '🍚', name: 'Risotto de trufa' },
+    { emoji: '🍋', name: 'Ceviche de corvina' },
+    { emoji: '🥩', name: 'Wagyu A5' },
+    { emoji: '🐚', name: 'Vieiras' },
+    { emoji: '🍮', name: 'Postre del día' }
+  ];
 
   function normalize(str) {
     return (str || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -1147,6 +1156,7 @@
     await botMsg('¡Buenas! 👋 Bienvenido/a a GastronomIA.\n¿En qué puedo ayudarte?', 1500);
     quickReplies([
       { label: '📅 Reservar mesa', onClick: () => startReserva() },
+      { label: '🛵 Hacer pedido', onClick: () => startPedido() },
       { label: '🍽️ Ver la carta', onClick: () => handleIntent('carta') },
       { label: '⏰ Horarios', onClick: () => handleIntent('horario') },
       { label: '📍 Dónde estamos', onClick: () => handleIntent('donde') }
@@ -1223,9 +1233,70 @@
 
   /* ───────── RESERVA FLOW ───────── */
   async function startReserva() {
-    state = { mode: 'reserva', personas: null, dia: null, nombre: null, telefono: null, intent: 'reserva' };
+    state = { mode: 'reserva', personas: null, dia: null, nombre: null, telefono: null, intent: 'reserva', pedido: [], tipoPedido: null, direccion: null };
     await botMsg('¡Perfecto! Para gestionar tu reserva necesito algunos datos. ¿Para cuántas personas?');
     askPersonas();
+  }
+
+  /* ───────── PEDIDO FLOW ───────── */
+  async function startPedido() {
+    state = { mode: 'pedido', personas: null, dia: null, nombre: null, telefono: null, intent: 'pedido', pedido: [], tipoPedido: null, direccion: null };
+    await botMsg('¡Claro! Puedes hacer tu pedido aquí mismo 🛵\nTe lo preparamos para recoger o a domicilio.\n\n¿Qué te apetece pedir?');
+    askDishes();
+  }
+
+  function askDishes() {
+    state.mode = 'await_dishes';
+    const opts = DISHES.map(d => ({
+      label: `${d.emoji} ${d.name}`,
+      onClick: () => addDish(d.name)
+    }));
+    if (state.pedido.length > 0) {
+      opts.push({ label: '✅ Finalizar pedido', onClick: () => finishDishes() });
+    }
+    quickReplies(opts);
+  }
+
+  async function addDish(name) {
+    state.pedido.push(name);
+    const lista = state.pedido.map(p => `• ${p}`).join('\n');
+    await botMsg(`Añadido ✅\n\nTu pedido hasta ahora:\n${lista}\n\n¿Quieres añadir otro plato o finalizar?`);
+    quickReplies([
+      { label: '➕ Añadir otro plato', onClick: () => askDishes() },
+      { label: '✅ Finalizar pedido', onClick: () => finishDishes() }
+    ]);
+  }
+
+  async function finishDishes() {
+    if (state.pedido.length === 0) {
+      await botMsg('Aún no has elegido ningún plato. Selecciona al menos uno 🙂');
+      askDishes();
+      return;
+    }
+    const lista = state.pedido.map(p => `• ${p}`).join('\n');
+    await botMsg(`Perfecto, tu pedido:\n${lista}\n\n¿Es para recoger o a domicilio?`);
+    state.mode = 'await_tipo_pedido';
+    quickReplies([
+      { label: '🏃 Recoger en local', onClick: () => setTipoPedido('Recoger en local') },
+      { label: '🛵 A domicilio', onClick: () => setTipoPedido('A domicilio') }
+    ]);
+  }
+
+  async function setTipoPedido(tipo) {
+    state.tipoPedido = tipo;
+    if (tipo === 'A domicilio') {
+      await botMsg('Genial. ¿Cuál es la dirección de entrega?');
+      state.mode = 'await_direccion';
+    } else {
+      await botMsg('Perfecto. ¿A qué nombre hacemos el pedido?');
+      state.mode = 'await_nombre';
+    }
+  }
+
+  async function setDireccion(d) {
+    state.direccion = d;
+    await botMsg('Anotado 📍 ¿A qué nombre hacemos el pedido?');
+    state.mode = 'await_nombre';
   }
 
   function askPersonas() {
@@ -1262,7 +1333,8 @@
 
   async function setTelefono(t) {
     state.telefono = t;
-    await botMsg('¡Listo! Aquí tienes el resumen de tu reserva:');
+    const tipo = state.intent === 'pedido' ? 'pedido' : 'reserva';
+    await botMsg(`¡Listo! Aquí tienes el resumen de tu ${tipo}:`);
     showSummary();
   }
 
@@ -1270,19 +1342,35 @@
     const card = document.createElement('div');
     card.className = 'summary-card';
     const wa = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildWaMessage())}`;
-    card.innerHTML = `
-      <h5>Resumen de reserva</h5>
-      <div class="row"><span>Nombre</span><b>${escapeHtml(state.nombre)}</b></div>
-      <div class="row"><span>Teléfono</span><b>+34 ${escapeHtml(state.telefono)}</b></div>
-      <div class="row"><span>Personas</span><b>${escapeHtml(state.personas)}</b></div>
-      <div class="row"><span>Día</span><b>${escapeHtml(state.dia)}</b></div>
-      <a class="wa-link" href="${wa}" target="_blank" rel="noopener">📲 Confirmar por WhatsApp</a>
-    `;
+    let rows = '';
+    if (state.intent === 'pedido') {
+      const lista = state.pedido.map(p => escapeHtml(p)).join('<br>');
+      rows = `
+        <h5>Resumen de pedido</h5>
+        <div class="row"><span>Nombre</span><b>${escapeHtml(state.nombre)}</b></div>
+        <div class="row"><span>Teléfono</span><b>+34 ${escapeHtml(state.telefono)}</b></div>
+        <div class="row"><span>Pedido</span><b style="text-align:right">${lista}</b></div>
+        <div class="row"><span>Tipo</span><b>${escapeHtml(state.tipoPedido)}</b></div>
+        ${state.direccion ? `<div class="row"><span>Dirección</span><b>${escapeHtml(state.direccion)}</b></div>` : ''}
+      `;
+    } else {
+      rows = `
+        <h5>Resumen de reserva</h5>
+        <div class="row"><span>Nombre</span><b>${escapeHtml(state.nombre)}</b></div>
+        <div class="row"><span>Teléfono</span><b>+34 ${escapeHtml(state.telefono)}</b></div>
+        <div class="row"><span>Personas</span><b>${escapeHtml(state.personas)}</b></div>
+        <div class="row"><span>Día</span><b>${escapeHtml(state.dia)}</b></div>
+      `;
+    }
+    card.innerHTML = `${rows}<a class="wa-link" href="${wa}" target="_blank" rel="noopener">📲 Confirmar por WhatsApp</a>`;
     body().appendChild(card);
     scrollChat();
     state.mode = 'done';
     setTimeout(async () => {
-      await botMsg('Pulsa el botón verde para enviar tu reserva por WhatsApp y la confirmaremos en breve. ¡Te esperamos! 🍽️');
+      const final = state.intent === 'pedido'
+        ? 'Pulsa el botón verde para enviar tu pedido por WhatsApp y lo confirmaremos en breve. 🛵'
+        : 'Pulsa el botón verde para enviar tu reserva por WhatsApp y la confirmaremos en breve. ¡Te esperamos! 🍽️';
+      await botMsg(final);
     }, 800);
   }
 
@@ -1291,6 +1379,11 @@
   }
 
   function buildWaMessage() {
+    if (state.intent === 'pedido') {
+      const lista = state.pedido.map(p => `• ${p}`).join('\n');
+      const dir = state.direccion ? `\n📍 *Dirección:* ${state.direccion}` : '';
+      return `🛵 *NUEVO PEDIDO — GastronomIA*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n🍽️ *Pedido:*\n${lista}\n📦 *Tipo:* ${state.tipoPedido}${dir}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
+    }
     return `🍽️ *NUEVA RESERVA — GastronomIA*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n👥 *Personas:* ${state.personas}\n📅 *Día:* ${state.dia}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
   }
 
@@ -1323,7 +1416,15 @@
       }
       return setTelefono(digits);
     }
+    if (state.mode === 'await_direccion') {
+      if (raw.length < 5) {
+        await botMsg('¿Puedes darme una dirección un poco más completa?');
+        return;
+      }
+      return setDireccion(raw);
+    }
 
+    if (/(pedido|pedir|llevar|domicilio|recoger|takeaway|delivery)/.test(text)) return startPedido();
     if (/(reserv|mesa|cita|reservar)/.test(text)) return startReserva();
     if (/(carta|menu|platos|comer|comida)/.test(text)) return handleIntent('carta');
     if (/(alerg|intoleran|vegano|vegetarian|celiac|gluten)/.test(text)) return handleIntent('alergia');
@@ -1335,6 +1436,7 @@
       await botMsg('¡Hola! 👋 ¿En qué puedo ayudarte?');
       quickReplies([
         { label: '📅 Reservar mesa', onClick: () => startReserva() },
+        { label: '🛵 Hacer pedido', onClick: () => startPedido() },
         { label: '🍽️ Ver la carta', onClick: () => handleIntent('carta') },
         { label: '⏰ Horarios', onClick: () => handleIntent('horario') }
       ]);
@@ -1345,9 +1447,10 @@
       return;
     }
 
-    await botMsg('¿Quieres que te ayude con una reserva o tienes alguna consulta sobre la carta?');
+    await botMsg('¿Quieres hacer una reserva, un pedido a domicilio o tienes alguna consulta?');
     quickReplies([
       { label: '📅 Reservar mesa', onClick: () => startReserva() },
+      { label: '🛵 Hacer pedido', onClick: () => startPedido() },
       { label: '🍽️ Ver la carta', onClick: () => handleIntent('carta') },
       { label: '⏰ Horarios', onClick: () => handleIntent('horario') }
     ]);
