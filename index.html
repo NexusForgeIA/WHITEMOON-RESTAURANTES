@@ -341,13 +341,12 @@
 
   .dish-row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     gap: 14px;
-    padding: 16px 18px;
+    padding: 14px;
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 12px;
     transition: all .25s;
     position: relative;
   }
@@ -355,25 +354,38 @@
     border-color: var(--verde);
     transform: translateY(-2px);
   }
-  .dish-row .info { flex: 1; min-width: 0; }
+  .dish-row .photo {
+    width: 80px; height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    align-self: center;
+  }
+  .dish-row .photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .5s;
+  }
+  .dish-row:hover .photo img { transform: scale(1.08); }
+  .dish-row .info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .dish-row .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
   .dish-row h3 {
     font-family: 'Inter', sans-serif;
     font-size: 15px;
     font-weight: 600;
     color: var(--texto);
-    margin-bottom: 2px;
-  }
-  .dish-row .desc {
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.4;
-  }
-  .dish-row .right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
-    flex-shrink: 0;
+    line-height: 1.25;
   }
   .dish-row .price {
     color: var(--verde);
@@ -381,18 +393,27 @@
     font-family: 'Noto Serif JP', serif;
     font-size: 16px;
     white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .dish-row .desc {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+    flex: 1;
   }
   .dish-row .add-btn {
+    align-self: flex-end;
     background: rgba(74, 222, 128, 0.1);
     color: var(--verde);
     border: 1px solid var(--border);
-    width: 32px; height: 32px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
     cursor: pointer;
     transition: all .2s;
-    display: flex; align-items: center; justify-content: center;
+    font-family: 'Inter', sans-serif;
   }
   .dish-row .add-btn:hover {
     background: var(--verde);
@@ -834,7 +855,13 @@
     color: var(--texto);
   }
   .menu-picker .item:last-child { border-bottom: none; }
-  .menu-picker .item .name { flex: 1; }
+  .menu-picker .item .thumb {
+    width: 38px; height: 38px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .menu-picker .item .name { flex: 1; min-width: 0; }
   .menu-picker .item .price {
     color: var(--verde);
     font-weight: 600;
@@ -1018,6 +1045,9 @@
     .nav-inner { padding: 14px 18px; }
     .dish-card { flex-direction: column; }
     .dish-card .photo { width: 100%; height: 160px; }
+    .dish-row .photo { width: 64px; height: 64px; }
+    .dish-row .head { flex-direction: column; gap: 4px; }
+    .dish-row .price { font-size: 15px; }
 
     .chat-modal {
       width: 100%;
@@ -1276,70 +1306,93 @@
     document.querySelectorAll('.menu-pane').forEach(p => p.classList.toggle('active', p.id === 'pane-' + name));
   }
 
+  /* ───────── FOTOS ───────── */
+  const PHOTOS = {
+    fallback:    'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400&q=80',
+    edamame:     'https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&q=80',
+    tartarSalmon:'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80',
+    tartarAtun:  'https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=400&q=80',
+    sashimi:     'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=400&q=80',
+    sopaMiso:    'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400&q=80',
+    gyozas:      'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400&q=80',
+    takoyaki:    'https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=400&q=80',
+    nigiriSalmon:'https://images.unsplash.com/photo-1617196034099-b85200b455fd?w=400&q=80',
+    nigiriAtun:  'https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?w=400&q=80',
+    uramaki:     'https://images.unsplash.com/photo-1562802378-063ec186a863?w=400&q=80',
+    futomaki:    'https://images.unsplash.com/photo-1617196034776-bde0a2b44bbd?w=400&q=80',
+    rainbow:     'https://images.unsplash.com/photo-1553621042-f6e147245754?w=400&q=80',
+    bambuBox:    'https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=400&q=80',
+    pollo:       'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80',
+    tataki:      'https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=400&q=80',
+    poke:        'https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?w=400&q=80',
+    mochi:       'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80',
+    tartaQueso:  'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80'
+  };
+
   /* ───────── DATA CARTA COMPLETA (web) ───────── */
   const CARTA = {
     frios: [
-      { name: 'Edamame', price: 6.00, desc: 'Judías de soja con sal marina.' },
-      { name: 'Wakame', price: 6.50, desc: 'Ensalada de algas con sésamo.' },
-      { name: 'Wakame Especial', price: 8.00, desc: 'Con pepino y tartar de salmón.' },
-      { name: 'Ensaladilla Japo', price: 8.50, desc: 'Versión japonesa de la ensaladilla.' },
-      { name: 'Tartar de Salmón', price: 13.00, desc: 'Salmón fresco con aliño nikkei.' },
-      { name: 'Tartar de Atún', price: 14.00, desc: 'Atún rojo de almadraba.' },
-      { name: 'Sashimi Mixto 6 ud.', price: 9.50, desc: 'Selección del chef.' },
-      { name: 'Sashimi Mixto 12 ud.', price: 17.50, desc: 'Selección del chef.' }
+      { name: 'Edamame', price: 6.00, desc: 'Judías de soja con sal marina.', img: PHOTOS.edamame },
+      { name: 'Wakame', price: 6.50, desc: 'Ensalada de algas con sésamo.', img: PHOTOS.fallback },
+      { name: 'Wakame Especial', price: 8.00, desc: 'Con pepino y tartar de salmón.', img: PHOTOS.tartarSalmon },
+      { name: 'Ensaladilla Japo', price: 8.50, desc: 'Versión japonesa de la ensaladilla.', img: PHOTOS.fallback },
+      { name: 'Tartar de Salmón', price: 13.00, desc: 'Salmón fresco con aliño nikkei.', img: PHOTOS.tartarSalmon },
+      { name: 'Tartar de Atún', price: 14.00, desc: 'Atún rojo de almadraba.', img: PHOTOS.tartarAtun },
+      { name: 'Sashimi Mixto 6 ud.', price: 9.50, desc: 'Selección del chef.', img: PHOTOS.sashimi },
+      { name: 'Sashimi Mixto 12 ud.', price: 17.50, desc: 'Selección del chef.', img: PHOTOS.sashimi }
     ],
     calientes: [
-      { name: 'Sopa Miso', price: 5.00, desc: 'Caldo tradicional de miso.' },
-      { name: 'Gyozas de Verdura 6 ud.', price: 7.50, desc: 'Dumpling vegetal.' },
-      { name: 'Gyozas de Pollo o Cerdo 6 ud.', price: 8.50, desc: 'Dumpling clásico.' },
-      { name: 'Gyozas de Pato o Langostino 6 ud.', price: 9.00, desc: 'Versión gourmet.' },
-      { name: 'Mix de Gyozas 8 ud.', price: 11.50, desc: 'Variedad para compartir.' },
-      { name: 'Takoyaki', price: 8.50, desc: 'Bolitas de pulpo japonesas.' },
-      { name: 'Yakitori de Pollo 2 ud.', price: 6.00, desc: 'Brocheta a la brasa.' },
-      { name: 'Yakitori de Atún 2 ud.', price: 7.00, desc: 'Brocheta a la brasa.' },
-      { name: 'Rollitos Thai de Pollo 5 ud.', price: 7.00, desc: 'Crujientes con salsa.' },
-      { name: 'Rollitos Thai de Salmón 5 ud.', price: 9.00, desc: 'Crujientes con salsa.' }
+      { name: 'Sopa Miso', price: 5.00, desc: 'Caldo tradicional de miso.', img: PHOTOS.sopaMiso },
+      { name: 'Gyozas de Verdura 6 ud.', price: 7.50, desc: 'Dumpling vegetal.', img: PHOTOS.gyozas },
+      { name: 'Gyozas de Pollo o Cerdo 6 ud.', price: 8.50, desc: 'Dumpling clásico.', img: PHOTOS.gyozas },
+      { name: 'Gyozas de Pato o Langostino 6 ud.', price: 9.00, desc: 'Versión gourmet.', img: PHOTOS.gyozas },
+      { name: 'Mix de Gyozas 8 ud.', price: 11.50, desc: 'Variedad para compartir.', img: PHOTOS.gyozas },
+      { name: 'Takoyaki', price: 8.50, desc: 'Bolitas de pulpo japonesas.', img: PHOTOS.takoyaki },
+      { name: 'Yakitori de Pollo 2 ud.', price: 6.00, desc: 'Brocheta a la brasa.', img: PHOTOS.pollo },
+      { name: 'Yakitori de Atún 2 ud.', price: 7.00, desc: 'Brocheta a la brasa.', img: PHOTOS.fallback },
+      { name: 'Rollitos Thai de Pollo 5 ud.', price: 7.00, desc: 'Crujientes con salsa.', img: PHOTOS.fallback },
+      { name: 'Rollitos Thai de Salmón 5 ud.', price: 9.00, desc: 'Crujientes con salsa.', img: PHOTOS.fallback }
     ],
     nigiris: [
-      { name: 'Nigiri Aguacate o Mango x2', price: 4.00, desc: 'Opción vegetal.' },
-      { name: 'Nigiri Salmón o Langostino x2', price: 4.50, desc: 'Sobre arroz de sushi.' },
-      { name: 'Nigiri Atún, Salmón Flambeado, Pez Mantequilla... x2', price: 5.00, desc: 'Selección premium.' },
-      { name: 'Nigiri Anguila x2', price: 5.50, desc: 'Anguila glaseada.' }
+      { name: 'Nigiri Aguacate o Mango x2', price: 4.00, desc: 'Opción vegetal.', img: PHOTOS.nigiriSalmon },
+      { name: 'Nigiri Salmón o Langostino x2', price: 4.50, desc: 'Sobre arroz de sushi.', img: PHOTOS.nigiriSalmon },
+      { name: 'Nigiri Atún, Salmón Flambeado, Pez Mantequilla... x2', price: 5.00, desc: 'Selección premium.', img: PHOTOS.nigiriAtun },
+      { name: 'Nigiri Anguila x2', price: 5.50, desc: 'Anguila glaseada.', img: PHOTOS.nigiriAtun }
     ],
     rolls: [
-      { name: 'Hosomaki Pepino o Aguacate x8', price: 5.00, desc: 'Roll fino vegetal.' },
-      { name: 'Hosomaki Mango o Tamago x8', price: 5.50, desc: 'Roll fino dulce.' },
-      { name: 'Hosomaki Surimi/Atún/Salmón x8', price: 7.00, desc: 'Roll fino marino.' },
-      { name: 'Futomaki Pollo Teriyaki x10', price: 11.00, desc: 'Roll grueso de pollo.' },
-      { name: 'Futomaki Atún y Aguacate x10', price: 13.00, desc: 'Roll grueso clásico.' },
-      { name: 'Futomaki Tartar de Atún x10', price: 13.50, desc: 'Roll grueso premium.' },
-      { name: 'Uramaki Pepino y Surimi x10', price: 9.50, desc: 'Roll del revés.' },
-      { name: 'Uramaki Salmón y Aguacate x10', price: 11.00, desc: 'Roll del revés clásico.' },
-      { name: 'Uramaki Langostino Panko x10', price: 12.00, desc: 'Crujiente con langostino.' },
-      { name: 'Uramaki Tartar de Atún x10', price: 13.50, desc: 'Roll del revés premium.' },
-      { name: 'Uramaki Anguila y Aguacate x10', price: 13.50, desc: 'Con anguila glaseada.' },
-      { name: 'Uramaki Tataki de Atún y Aguacate x10', price: 14.00, desc: 'Atún marcado.', star: true }
+      { name: 'Hosomaki Pepino o Aguacate x8', price: 5.00, desc: 'Roll fino vegetal.', img: PHOTOS.uramaki },
+      { name: 'Hosomaki Mango o Tamago x8', price: 5.50, desc: 'Roll fino dulce.', img: PHOTOS.uramaki },
+      { name: 'Hosomaki Surimi/Atún/Salmón x8', price: 7.00, desc: 'Roll fino marino.', img: PHOTOS.uramaki },
+      { name: 'Futomaki Pollo Teriyaki x10', price: 11.00, desc: 'Roll grueso de pollo.', img: PHOTOS.futomaki },
+      { name: 'Futomaki Atún y Aguacate x10', price: 13.00, desc: 'Roll grueso clásico.', img: PHOTOS.futomaki },
+      { name: 'Futomaki Tartar de Atún x10', price: 13.50, desc: 'Roll grueso premium.', img: PHOTOS.futomaki },
+      { name: 'Uramaki Pepino y Surimi x10', price: 9.50, desc: 'Roll del revés.', img: PHOTOS.uramaki },
+      { name: 'Uramaki Salmón y Aguacate x10', price: 11.00, desc: 'Roll del revés clásico.', img: PHOTOS.uramaki },
+      { name: 'Uramaki Langostino Panko x10', price: 12.00, desc: 'Crujiente con langostino.', img: PHOTOS.rainbow },
+      { name: 'Uramaki Tartar de Atún x10', price: 13.50, desc: 'Roll del revés premium.', img: PHOTOS.uramaki },
+      { name: 'Uramaki Anguila y Aguacate x10', price: 13.50, desc: 'Con anguila glaseada.', img: PHOTOS.uramaki },
+      { name: 'Uramaki Tataki de Atún y Aguacate x10', price: 14.00, desc: 'Atún marcado.', star: true, img: PHOTOS.rainbow }
     ],
     bambubox: [
-      { name: 'Nigiris 4 ud.', price: 8.00, desc: 'Selección del chef.' },
-      { name: 'Nigiris 8 ud.', price: 16.00, desc: 'Selección del chef.' },
-      { name: 'Bambú Box 6 piezas', price: 9.50, desc: 'Surtido para 1 persona.' },
-      { name: 'Bambú Box 12 piezas', price: 17.00, desc: 'Surtido para compartir.' },
-      { name: 'Bambú Box 24 piezas', price: 23.00, desc: 'Surtido grande.' },
-      { name: 'Bambú Box 40 piezas', price: 36.50, desc: 'Para grupo.', star: true }
+      { name: 'Nigiris 4 ud.', price: 8.00, desc: 'Selección del chef.', img: PHOTOS.nigiriSalmon },
+      { name: 'Nigiris 8 ud.', price: 16.00, desc: 'Selección del chef.', img: PHOTOS.nigiriSalmon },
+      { name: 'Bambú Box 6 piezas', price: 9.50, desc: 'Surtido para 1 persona.', img: PHOTOS.bambuBox },
+      { name: 'Bambú Box 12 piezas', price: 17.00, desc: 'Surtido para compartir.', img: PHOTOS.bambuBox },
+      { name: 'Bambú Box 24 piezas', price: 23.00, desc: 'Surtido grande.', img: PHOTOS.bambuBox },
+      { name: 'Bambú Box 40 piezas', price: 36.50, desc: 'Para grupo.', star: true, img: PHOTOS.bambuBox }
     ],
     otros: [
-      { name: 'Pollo Teriyaki', price: 10.00, desc: 'Salsa teriyaki casera.' },
-      { name: 'Salmón Teriyaki', price: 11.00, desc: 'Salsa teriyaki casera.' },
-      { name: 'Tataki de Salmón', price: 14.00, desc: 'Salmón marcado en plancha.' },
-      { name: 'Tataki de Atún', price: 15.00, desc: 'Atún marcado en plancha.' },
-      { name: 'Secreto a Baja Temperatura', price: 17.00, desc: 'Cerdo ibérico jugoso.' },
-      { name: 'Poke Vegano', price: 11.50, desc: 'Bowl con verduras y arroz.' },
-      { name: 'Poke de Salmón/Atún', price: 14.00, desc: 'Bowl con pescado fresco.' },
-      { name: 'Wok', price: 8.50, desc: 'Salteado oriental (base).' },
-      { name: 'Dorayaki Casero', price: 5.00, desc: 'Pastelito de azuki.' },
-      { name: 'Tarta de Queso Casera', price: 5.00, desc: 'Receta de la casa.' },
-      { name: 'Mochi 1 ud.', price: 3.00, desc: 'Postre japonés.' }
+      { name: 'Pollo Teriyaki', price: 10.00, desc: 'Salsa teriyaki casera.', img: PHOTOS.pollo },
+      { name: 'Salmón Teriyaki', price: 11.00, desc: 'Salsa teriyaki casera.', img: PHOTOS.tataki },
+      { name: 'Tataki de Salmón', price: 14.00, desc: 'Salmón marcado en plancha.', img: PHOTOS.tataki },
+      { name: 'Tataki de Atún', price: 15.00, desc: 'Atún marcado en plancha.', img: PHOTOS.tataki },
+      { name: 'Secreto a Baja Temperatura', price: 17.00, desc: 'Cerdo ibérico jugoso.', img: PHOTOS.fallback },
+      { name: 'Poke Vegano', price: 11.50, desc: 'Bowl con verduras y arroz.', img: PHOTOS.poke },
+      { name: 'Poke de Salmón/Atún', price: 14.00, desc: 'Bowl con pescado fresco.', img: PHOTOS.poke },
+      { name: 'Wok', price: 8.50, desc: 'Salteado oriental (base).', img: PHOTOS.fallback },
+      { name: 'Dorayaki Casero', price: 5.00, desc: 'Pastelito de azuki.', img: PHOTOS.mochi },
+      { name: 'Tarta de Queso Casera', price: 5.00, desc: 'Receta de la casa.', img: PHOTOS.tartaQueso },
+      { name: 'Mochi 1 ud.', price: 3.00, desc: 'Postre japonés.', img: PHOTOS.mochi }
     ]
   };
 
@@ -1355,49 +1408,49 @@
   /* ───────── DATA MENÚ CHATBOT (selección destacada con precios reales) ───────── */
   const MENU = {
     'Entrantes Fríos': [
-      { name: 'Edamame', price: 6.00 },
-      { name: 'Wakame Especial', price: 8.00 },
-      { name: 'Tartar de Salmón', price: 13.00 },
-      { name: 'Tartar de Atún', price: 14.00 },
-      { name: 'Sashimi Mixto 6 ud.', price: 9.50 },
-      { name: 'Sashimi Mixto 12 ud.', price: 17.50 }
+      { name: 'Edamame', price: 6.00, img: PHOTOS.edamame },
+      { name: 'Wakame Especial', price: 8.00, img: PHOTOS.tartarSalmon },
+      { name: 'Tartar de Salmón', price: 13.00, img: PHOTOS.tartarSalmon },
+      { name: 'Tartar de Atún', price: 14.00, img: PHOTOS.tartarAtun },
+      { name: 'Sashimi Mixto 6 ud.', price: 9.50, img: PHOTOS.sashimi },
+      { name: 'Sashimi Mixto 12 ud.', price: 17.50, img: PHOTOS.sashimi }
     ],
     'Entrantes Calientes': [
-      { name: 'Sopa Miso', price: 5.00 },
-      { name: 'Gyozas Pollo/Cerdo 6 ud.', price: 8.50 },
-      { name: 'Mix Gyozas 8 ud.', price: 11.50 },
-      { name: 'Takoyaki', price: 8.50 },
-      { name: 'Yakitori Pollo 2 ud.', price: 6.00 },
-      { name: 'Rollitos Thai Pollo 5 ud.', price: 7.00 }
+      { name: 'Sopa Miso', price: 5.00, img: PHOTOS.sopaMiso },
+      { name: 'Gyozas Pollo/Cerdo 6 ud.', price: 8.50, img: PHOTOS.gyozas },
+      { name: 'Mix Gyozas 8 ud.', price: 11.50, img: PHOTOS.gyozas },
+      { name: 'Takoyaki', price: 8.50, img: PHOTOS.takoyaki },
+      { name: 'Yakitori Pollo 2 ud.', price: 6.00, img: PHOTOS.pollo },
+      { name: 'Rollitos Thai Pollo 5 ud.', price: 7.00, img: PHOTOS.fallback }
     ],
     'Nigiris': [
-      { name: 'Nigiri Salmón/Langostino x2', price: 4.50 },
-      { name: 'Nigiri Atún x2', price: 5.00 },
-      { name: 'Nigiri Anguila x2', price: 5.50 }
+      { name: 'Nigiri Salmón/Langostino x2', price: 4.50, img: PHOTOS.nigiriSalmon },
+      { name: 'Nigiri Atún x2', price: 5.00, img: PHOTOS.nigiriAtun },
+      { name: 'Nigiri Anguila x2', price: 5.50, img: PHOTOS.nigiriAtun }
     ],
     'Rolls': [
-      { name: 'Hosomaki Salmón x8', price: 7.00 },
-      { name: 'Futomaki Atún y Aguacate x10', price: 13.00 },
-      { name: 'Uramaki Salmón y Aguacate x10', price: 11.00 },
-      { name: 'Uramaki Langostino Panko x10', price: 12.00 },
-      { name: 'Uramaki Tataki Atún x10', price: 14.00 }
+      { name: 'Hosomaki Salmón x8', price: 7.00, img: PHOTOS.uramaki },
+      { name: 'Futomaki Atún y Aguacate x10', price: 13.00, img: PHOTOS.futomaki },
+      { name: 'Uramaki Salmón y Aguacate x10', price: 11.00, img: PHOTOS.uramaki },
+      { name: 'Uramaki Langostino Panko x10', price: 12.00, img: PHOTOS.rainbow },
+      { name: 'Uramaki Tataki Atún x10', price: 14.00, img: PHOTOS.rainbow }
     ],
     'Bambú Box': [
-      { name: 'Bambú Box 6 piezas', price: 9.50 },
-      { name: 'Bambú Box 12 piezas', price: 17.00 },
-      { name: 'Bambú Box 24 piezas', price: 23.00 },
-      { name: 'Bambú Box 40 piezas', price: 36.50 }
+      { name: 'Bambú Box 6 piezas', price: 9.50, img: PHOTOS.bambuBox },
+      { name: 'Bambú Box 12 piezas', price: 17.00, img: PHOTOS.bambuBox },
+      { name: 'Bambú Box 24 piezas', price: 23.00, img: PHOTOS.bambuBox },
+      { name: 'Bambú Box 40 piezas', price: 36.50, img: PHOTOS.bambuBox }
     ],
     'Otros': [
-      { name: 'Pollo Teriyaki', price: 10.00 },
-      { name: 'Tataki de Salmón', price: 14.00 },
-      { name: 'Poke de Salmón/Atún', price: 14.00 },
-      { name: 'Wok', price: 8.50 }
+      { name: 'Pollo Teriyaki', price: 10.00, img: PHOTOS.pollo },
+      { name: 'Tataki de Salmón', price: 14.00, img: PHOTOS.tataki },
+      { name: 'Poke de Salmón/Atún', price: 14.00, img: PHOTOS.poke },
+      { name: 'Wok', price: 8.50, img: PHOTOS.fallback }
     ],
     'Postres': [
-      { name: 'Dorayaki Casero', price: 5.00 },
-      { name: 'Tarta de Queso Casera', price: 5.00 },
-      { name: 'Mochi', price: 3.00 }
+      { name: 'Dorayaki Casero', price: 5.00, img: PHOTOS.mochi },
+      { name: 'Tarta de Queso Casera', price: 5.00, img: PHOTOS.tartaQueso },
+      { name: 'Mochi', price: 3.00, img: PHOTOS.mochi }
     ]
   };
   const CAT_ICON = {
@@ -1418,15 +1471,17 @@
       pane.innerHTML = items.map(it => {
         const star = it.star ? '<span class="star">⭐ Especial</span>' : '';
         const safeName = it.name.replace(/'/g, "\\'");
+        const img = it.img || PHOTOS.fallback;
         return `<article class="dish-row">
           ${star}
+          <div class="photo"><img src="${img}" alt="${escapeHtml(it.name)}" loading="lazy" /></div>
           <div class="info">
-            <h3>${escapeHtml(it.name)}</h3>
+            <div class="head">
+              <h3>${escapeHtml(it.name)}</h3>
+              <span class="price">${fmt(it.price)}</span>
+            </div>
             <p class="desc">${escapeHtml(it.desc)}</p>
-          </div>
-          <div class="right">
-            <span class="price">${fmt(it.price)}</span>
-            <button class="add-btn" type="button" onclick="addFromCarta('${safeName}', ${it.price})" title="Añadir al pedido">+</button>
+            <button class="add-btn" type="button" onclick="addFromCarta('${safeName}', ${it.price})">➕ Añadir al pedido</button>
           </div>
         </article>`;
       }).join('');
@@ -1666,7 +1721,8 @@
       html += `<div class="cat">${CAT_ICON[cat] || ''} ${cat.toUpperCase()}</div>`;
       items.forEach((it, idx) => {
         const star = it.star ? ' ⭐' : '';
-        html += `<div class="item"><span class="name">${escapeHtml(it.name)}${star}</span><span class="price">${fmt(it.price)}</span><button class="add" data-cat="${escapeHtml(cat)}" data-idx="${idx}" type="button">+</button></div>`;
+        const img = it.img || PHOTOS.fallback;
+        html += `<div class="item"><img class="thumb" src="${img}" alt="" loading="lazy" /><span class="name">${escapeHtml(it.name)}${star}</span><span class="price">${fmt(it.price)}</span><button class="add" data-cat="${escapeHtml(cat)}" data-idx="${idx}" type="button">+</button></div>`;
       });
     });
     html += `<div class="confirm-row"><span class="total">Total: <b id="picker-total">0,00€</b></span><button class="confirm-btn" id="picker-confirm" type="button" disabled>✅ Confirmar pedido</button></div>`;
