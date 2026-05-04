@@ -3,116 +3,115 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GastronomIA · Restaurante de autor</title>
-<meta name="description" content="GastronomIA — Cocina de fusión mediterránea con influencias asiáticas. Reserva tu mesa." />
+<title>Bambú Sushi · Frescura japonesa, sabor auténtico</title>
+<meta name="description" content="Bambú Sushi — Cocina japonesa auténtica. Reserva tu mesa o pide a domicilio." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black: #0a0a0a;
-    --black-2: #131313;
-    --black-3: #1c1c1c;
-    --gold: #d4a853;
-    --gold-soft: #e6c279;
-    --cream: #f5f0e8;
-    --cream-2: #ece4d4;
-    --gray: #8a8a8a;
-    --line: rgba(212, 168, 83, 0.18);
+    --verde: #4ade80;
+    --verde2: #22c55e;
+    --verde-dark: #166534;
+    --negro: #080f0a;
+    --negro2: #0d1a0f;
+    --negro3: #111f13;
+    --card: #0f1f11;
+    --texto: #f0fdf4;
+    --texto2: #86efac;
+    --muted: #4b7a52;
+    --border: rgba(74, 222, 128, .15);
   }
 
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    background: var(--cream);
-    color: var(--black);
+    background: var(--negro);
+    color: var(--texto);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3, h4 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    letter-spacing: -0.005em;
   }
 
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; display: block; }
 
-  .container {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 28px;
-  }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
 
   /* ───────── NAV ───────── */
   .nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+    background: rgba(8, 15, 10, 0.92);
     backdrop-filter: blur(14px);
-    background: rgba(10, 10, 10, 0.78);
-    border-bottom: 1px solid var(--line);
-    transition: background .25s ease;
+    border-bottom: 1px solid rgba(74, 222, 128, 0.2);
   }
   .nav-inner {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 28px;
+    padding: 16px 28px;
     max-width: 1240px;
     margin: 0 auto;
   }
   .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px; font-weight: 600;
-    color: var(--cream);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--verde);
+    display: flex; align-items: center; gap: 8px;
     letter-spacing: 0.5px;
   }
-  .logo span { color: var(--gold); }
   .nav-links {
-    display: flex; gap: 38px;
+    display: flex; gap: 36px;
     list-style: none;
   }
   .nav-links a {
-    color: var(--cream);
+    color: var(--texto);
     font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
+    font-weight: 500;
     transition: color .2s;
   }
-  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover { color: var(--verde); }
 
   .btn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 13px 26px;
-    border-radius: 2px;
-    font-size: 13px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
     font-weight: 600;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
     cursor: pointer;
     border: none;
     transition: all .25s;
     font-family: 'Inter', sans-serif;
   }
-  .btn-gold {
-    background: var(--gold);
-    color: var(--black);
+  .btn-verde {
+    background: var(--verde);
+    color: var(--negro);
   }
-  .btn-gold:hover { background: var(--gold-soft); transform: translateY(-2px); }
+  .btn-verde:hover {
+    background: var(--verde2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(74, 222, 128, 0.25);
+  }
   .btn-outline {
     background: transparent;
-    color: var(--cream);
-    border: 1px solid var(--cream);
+    color: var(--verde);
+    border: 1.5px solid var(--verde);
   }
-  .btn-outline:hover { background: var(--cream); color: var(--black); }
+  .btn-outline:hover { background: var(--verde); color: var(--negro); }
   .btn-wa {
     background: #25D366;
     color: white;
     padding: 16px 34px;
-    font-size: 14px;
+    font-size: 15px;
   }
   .btn-wa:hover { background: #1ebe5a; transform: translateY(-2px); }
 
@@ -120,8 +119,8 @@
     display: none;
     background: transparent;
     border: none;
-    color: var(--cream);
-    font-size: 26px;
+    color: var(--verde);
+    font-size: 24px;
     cursor: pointer;
   }
 
@@ -133,65 +132,65 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--cream);
+    color: var(--texto);
     overflow: hidden;
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80');
+    background-image: url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1400&q=80');
     background-size: cover;
     background-position: center;
     transform: scale(1.05);
   }
   .hero-overlay {
     position: absolute; inset: 0;
-    background: rgba(10, 10, 10, 0.72);
+    background:
+      radial-gradient(ellipse at top, rgba(22, 101, 52, 0.4), transparent 60%),
+      linear-gradient(180deg, rgba(8, 15, 10, 0.78) 0%, rgba(8, 15, 10, 0.85) 100%);
   }
   .hero-content {
     position: relative; z-index: 2;
-    padding: 0 24px;
+    padding: 120px 24px 60px;
     max-width: 920px;
   }
-  .hero-eyebrow {
-    color: var(--gold);
-    font-size: 13px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    font-weight: 500;
-  }
-  .hero-eyebrow::before, .hero-eyebrow::after {
-    content: '';
+  .hero-badge {
     display: inline-block;
-    width: 32px; height: 1px;
-    background: var(--gold);
-    vertical-align: middle;
-    margin: 0 14px;
+    padding: 8px 18px;
+    border: 1px solid var(--verde);
+    border-radius: 30px;
+    color: var(--verde);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    background: rgba(74, 222, 128, 0.05);
   }
   .hero h1 {
-    font-size: clamp(42px, 7vw, 88px);
-    line-height: 1.05;
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(54px, 9vw, 110px);
+    line-height: 1;
     margin-bottom: 24px;
-    font-weight: 500;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold);
+    font-weight: 900;
+    background: linear-gradient(180deg, #f0fdf4 0%, var(--verde) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .hero-sub {
     font-size: 18px;
-    color: var(--cream-2);
-    margin-bottom: 44px;
-    max-width: 560px;
+    color: var(--texto2);
+    margin-bottom: 40px;
+    max-width: 580px;
     margin-left: auto; margin-right: auto;
     font-weight: 300;
   }
   .hero-actions {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 80px;
+    margin-bottom: 70px;
   }
   .hero-stats {
     display: grid;
@@ -200,52 +199,53 @@
     max-width: 720px;
     margin: 0 auto;
     padding-top: 36px;
-    border-top: 1px solid rgba(212, 168, 83, 0.3);
+    border-top: 1px solid var(--border);
   }
   .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 44px;
-    color: var(--gold);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 38px;
+    color: var(--verde);
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    font-weight: 900;
   }
   .stat-label {
     font-size: 12px;
-    letter-spacing: 1.6px;
+    letter-spacing: 1.4px;
     text-transform: uppercase;
-    color: var(--cream-2);
+    color: var(--muted);
   }
 
   /* ───────── SECTIONS ───────── */
   section { padding: 110px 0; }
   .section-eyebrow {
-    color: var(--gold);
+    color: var(--verde);
     font-size: 12px;
-    letter-spacing: 3.6px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     font-weight: 500;
+    display: inline-block;
   }
   .section-title {
-    font-size: clamp(32px, 4.6vw, 54px);
-    margin-bottom: 24px;
+    font-size: clamp(34px, 5vw, 56px);
+    margin-bottom: 22px;
     line-height: 1.1;
+    color: var(--texto);
   }
   .section-head {
     text-align: center;
-    max-width: 720px;
-    margin: 0 auto 70px;
+    max-width: 680px;
+    margin: 0 auto 64px;
   }
   .section-head p {
-    color: #5a5a5a;
-    font-size: 17px;
+    color: var(--muted);
+    font-size: 16px;
     font-weight: 300;
   }
 
   /* ───────── ABOUT ───────── */
-  .about {
-    background: var(--cream);
-  }
+  .about { background: var(--negro2); }
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -254,166 +254,176 @@
   }
   .about-img {
     position: relative;
-    border-radius: 4px;
+    border-radius: 12px;
     overflow: hidden;
     aspect-ratio: 4 / 5;
+    border: 1px solid var(--border);
   }
   .about-img img {
     width: 100%; height: 100%;
     object-fit: cover;
     transition: transform .8s;
+    filter: brightness(0.85);
   }
   .about-img:hover img { transform: scale(1.04); }
-  .about-img::after {
-    content: '';
-    position: absolute;
-    inset: 18px;
-    border: 1px solid var(--gold);
-    pointer-events: none;
-  }
-  .about-content h2 { margin-bottom: 28px; }
+  .about-content h2 { margin-bottom: 24px; }
   .about-content p {
-    color: #4a4a4a;
-    margin-bottom: 18px;
+    color: #b8e6c1;
+    margin-bottom: 16px;
     font-size: 16px;
     font-weight: 300;
   }
   .values {
-    margin-top: 44px;
+    margin-top: 40px;
     display: grid;
-    gap: 22px;
+    gap: 16px;
   }
   .value {
     display: flex;
-    gap: 18px;
+    gap: 16px;
     align-items: flex-start;
-    padding: 22px;
-    border-left: 2px solid var(--gold);
-    background: rgba(212, 168, 83, 0.06);
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color .25s;
   }
+  .value:hover { border-color: var(--verde); }
   .value-icon {
-    width: 40px; height: 40px;
+    width: 44px; height: 44px;
     flex-shrink: 0;
-    background: var(--gold);
-    border-radius: 50%;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid var(--verde);
+    border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    color: var(--black);
-    font-size: 18px;
-    font-weight: 700;
-    font-family: 'Playfair Display', serif;
+    font-size: 20px;
   }
-  .value h4 { font-size: 18px; margin-bottom: 4px; }
-  .value p { font-size: 14px; color: #5a5a5a; margin: 0; }
+  .value h4 { font-size: 16px; margin-bottom: 4px; color: var(--verde); font-family: 'Inter', sans-serif; font-weight: 600; }
+  .value p { font-size: 14px; color: var(--muted); margin: 0; }
 
-  /* ───────── MENU ───────── */
-  .menu {
-    background: var(--black);
-    color: var(--cream);
+  /* ───────── CARTA ───────── */
+  .menu { background: var(--negro); }
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
   }
-  .menu .section-head p { color: var(--cream-2); }
-  .menu-grid {
+  .tab {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--texto);
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all .25s;
+    font-family: 'Inter', sans-serif;
+  }
+  .tab:hover { border-color: var(--verde); color: var(--verde); }
+  .tab.active {
+    background: var(--verde);
+    color: var(--negro);
+    border-color: var(--verde);
+  }
+
+  .menu-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    max-width: 1100px;
+    margin: 0 auto;
   }
-  .dish {
-    background: var(--black-2);
-    border: 1px solid var(--line);
+  .menu-pane { display: none; }
+  .menu-pane.active { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+  .dish-card {
+    display: flex;
+    gap: 18px;
+    padding: 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: all .3s;
+    position: relative;
+  }
+  .dish-card:hover {
+    border-color: var(--verde);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  }
+  .dish-card .photo {
+    width: 120px; height: 120px;
+    border-radius: 10px;
     overflow: hidden;
-    transition: transform .35s, border-color .35s;
+    flex-shrink: 0;
   }
-  .dish:hover {
-    transform: translateY(-6px);
-    border-color: var(--gold);
-  }
-  .dish-img {
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-  }
-  .dish-img img {
+  .dish-card .photo img {
     width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform .8s;
+    transition: transform .6s;
   }
-  .dish:hover .dish-img img { transform: scale(1.08); }
-  .dish-body {
-    padding: 28px 26px 32px;
+  .dish-card:hover .photo img { transform: scale(1.08); }
+  .dish-card .info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .dish-card .row1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 6px;
   }
-  .dish-name {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: var(--cream);
-  }
-  .dish-desc {
-    color: var(--gray);
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.65;
-  }
-  .dish-tag {
-    display: inline-block;
-    color: var(--gold);
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  /* ───────── RESERVAS ───────── */
-  .reservas {
-    background: var(--black-2);
-    color: var(--cream);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .reservas::before {
-    content: '';
-    position: absolute;
-    top: -120px; left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(212, 168, 83, 0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .reservas .section-head p { color: var(--cream-2); }
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 980px;
-    margin: 0 auto 56px;
-    position: relative;
-    z-index: 2;
-  }
-  .step {
-    padding: 40px 28px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--line);
-    transition: all .3s;
-  }
-  .step:hover {
-    border-color: var(--gold);
-    transform: translateY(-4px);
-  }
-  .step-num {
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    background: var(--gold);
-    color: var(--black);
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
+  .dish-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
     font-weight: 600;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 22px;
+    color: var(--texto);
   }
-  .step h4 { font-size: 20px; margin-bottom: 10px; }
-  .step p { color: var(--gray); font-size: 14px; font-weight: 300; }
+  .dish-card .price {
+    color: var(--verde);
+    font-weight: 700;
+    font-size: 16px;
+    flex-shrink: 0;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .dish-card .desc {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 14px;
+    flex: 1;
+  }
+  .dish-card .add-btn {
+    align-self: flex-start;
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--verde);
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .dish-card .add-btn:hover {
+    background: var(--verde);
+    color: var(--negro);
+  }
+  .dish-card .star {
+    position: absolute;
+    top: -10px; right: 16px;
+    background: var(--verde);
+    color: var(--negro);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 30px;
+    letter-spacing: 0.5px;
+  }
 
   /* ───────── GALERÍA ───────── */
-  .galeria {
-    background: var(--cream);
-  }
+  .galeria { background: var(--negro2); }
   .gal-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -422,87 +432,146 @@
   .gal-item {
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    cursor: pointer;
+    border-radius: 10px;
     position: relative;
+    cursor: pointer;
   }
   .gal-item img {
     width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform .8s, filter .4s;
-    filter: grayscale(20%);
+    transition: transform .8s;
+    filter: brightness(0.8);
   }
-  .gal-item:hover img {
-    transform: scale(1.08);
-    filter: grayscale(0%);
+  .gal-item::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(74, 222, 128, 0.4));
+    opacity: 0;
+    transition: opacity .35s;
   }
+  .gal-item:hover img { transform: scale(1.1); filter: brightness(1); }
+  .gal-item:hover::after { opacity: 1; }
+
+  /* ───────── RESERVAS ───────── */
+  .reservas {
+    background: var(--negro);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .reservas::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(74, 222, 128, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 980px;
+    margin: 0 auto 50px;
+    position: relative;
+    z-index: 2;
+  }
+  .step {
+    padding: 40px 28px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: all .3s;
+  }
+  .step:hover { border-color: var(--verde); transform: translateY(-4px); }
+  .step-icon {
+    width: 60px; height: 60px;
+    border-radius: 14px;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid var(--verde);
+    color: var(--verde);
+    font-size: 26px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 22px;
+  }
+  .step h4 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: var(--texto);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+  .step p { color: var(--muted); font-size: 14px; font-weight: 300; }
 
   /* ───────── FOOTER ───────── */
   footer {
-    background: var(--black);
-    color: var(--cream-2);
-    padding: 80px 0 32px;
+    background: var(--negro);
+    color: var(--texto2);
+    padding: 70px 0 30px;
+    border-top: 1px solid var(--border);
   }
   .footer-grid {
     display: grid;
     grid-template-columns: 1.4fr 1fr 1fr 1fr;
     gap: 50px;
-    margin-bottom: 56px;
+    margin-bottom: 50px;
   }
   .footer-grid h4 {
-    font-size: 14px;
-    color: var(--gold);
+    font-size: 13px;
+    color: var(--verde);
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 22px;
+    letter-spacing: 1.8px;
+    margin-bottom: 20px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
   }
   .footer-grid p, .footer-grid li {
     font-size: 14px;
-    color: var(--gray);
-    margin-bottom: 8px;
+    color: var(--muted);
+    margin-bottom: 6px;
     font-weight: 300;
   }
   .footer-grid ul { list-style: none; }
   .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-    color: var(--cream);
-    margin-bottom: 18px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 24px;
+    color: var(--verde);
+    margin-bottom: 16px;
+    font-weight: 900;
   }
-  .footer-logo span { color: var(--gold); }
   .footer-bottom {
-    border-top: 1px solid var(--line);
-    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
     text-align: center;
     font-size: 13px;
-    color: var(--gray);
+    color: var(--muted);
   }
-  .footer-bottom a { color: var(--gold); }
+  .footer-bottom a { color: var(--verde); }
 
   /* ───────── CHATBOT ───────── */
   .chat-launcher {
     position: fixed;
     bottom: 26px; right: 26px;
     z-index: 90;
-    background: var(--black);
-    color: var(--gold);
-    border: 2px solid var(--gold);
+    background: var(--negro);
+    color: var(--verde);
+    border: 2px solid var(--verde);
     width: 64px; height: 64px;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 12px 30px rgba(74, 222, 128, 0.25);
     transition: transform .25s;
+    font-size: 28px;
   }
   .chat-launcher:hover { transform: scale(1.08); }
-  .chat-launcher svg { width: 28px; height: 28px; }
   .chat-launcher::after {
     content: '';
     position: absolute;
     inset: -4px;
     border-radius: 50%;
-    border: 2px solid var(--gold);
+    border: 2px solid var(--verde);
     animation: pulse 2s infinite;
   }
   @keyframes pulse {
@@ -514,18 +583,18 @@
     position: fixed;
     bottom: 38px; right: 100px;
     z-index: 89;
-    background: var(--black);
-    color: var(--cream);
+    background: var(--negro);
+    color: var(--texto);
     padding: 12px 18px;
     border-radius: 30px;
     font-size: 13px;
     font-weight: 500;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     pointer-events: none;
     opacity: 0;
     transform: translateX(20px);
     transition: opacity .35s, transform .35s;
-    border: 1px solid var(--gold);
+    border: 1px solid var(--verde);
     white-space: nowrap;
   }
   .chat-tooltip.show { opacity: 1; transform: translateX(0); }
@@ -534,15 +603,15 @@
     position: fixed;
     bottom: 100px; right: 26px;
     width: 360px;
-    max-height: 600px;
-    background: var(--cream);
-    border-radius: 14px;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    max-height: 620px;
+    background: var(--negro2);
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
     z-index: 95;
     display: none;
     flex-direction: column;
     overflow: hidden;
-    border: 1px solid var(--line);
+    border: 1px solid var(--border);
   }
   .chat-modal.open { display: flex; animation: chatIn .3s ease; }
   @keyframes chatIn {
@@ -551,35 +620,50 @@
   }
 
   .chat-header {
-    background: var(--black);
-    color: var(--cream);
-    padding: 18px 20px;
+    background: var(--negro);
+    color: var(--texto);
+    padding: 16px 20px;
     display: flex;
     align-items: center;
     gap: 12px;
-    border-bottom: 3px solid var(--gold);
+    border-bottom: 3px solid var(--verde);
   }
   .chat-avatar {
-    width: 42px; height: 42px;
+    width: 40px; height: 40px;
     border-radius: 50%;
-    background: var(--gold);
-    color: var(--black);
+    background: var(--verde);
+    color: var(--negro);
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
+    font-size: 20px;
   }
-  .chat-title-name { font-size: 15px; font-weight: 600; }
-  .chat-title-status { font-size: 12px; color: var(--gold); display: flex; align-items: center; gap: 6px; }
+  .chat-title-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto);
+  }
+  .chat-title-status {
+    font-size: 12px;
+    color: var(--verde);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
   .chat-title-status::before {
-    content: ''; width: 7px; height: 7px;
-    background: #4cd964; border-radius: 50%;
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--verde);
+    border-radius: 50%;
+    animation: pulseDot 1.5s infinite;
+  }
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
   }
   .chat-close {
     margin-left: auto;
     background: transparent;
     border: none;
-    color: var(--cream);
+    color: var(--texto);
     cursor: pointer;
     font-size: 22px;
     padding: 4px 8px;
@@ -589,22 +673,23 @@
     flex: 1;
     overflow-y: auto;
     padding: 18px;
-    background: var(--cream);
+    background: var(--negro2);
     display: flex;
     flex-direction: column;
     gap: 12px;
-    min-height: 320px;
-    max-height: 400px;
+    min-height: 340px;
+    max-height: 420px;
   }
   .chat-body::-webkit-scrollbar { width: 6px; }
-  .chat-body::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+  .chat-body::-webkit-scrollbar-thumb { background: var(--verde); border-radius: 3px; }
+  .chat-body::-webkit-scrollbar-track { background: var(--negro3); }
 
   .msg {
-    max-width: 82%;
+    max-width: 84%;
     padding: 11px 15px;
     border-radius: 14px;
     font-size: 14px;
-    line-height: 1.45;
+    line-height: 1.5;
     animation: msgIn .25s ease;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -614,31 +699,32 @@
     to   { opacity: 1; transform: translateY(0); }
   }
   .msg.bot {
-    background: white;
-    color: var(--black);
+    background: var(--card);
+    color: var(--texto);
+    border: 1px solid var(--border);
     border-top-left-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
     align-self: flex-start;
   }
   .msg.user {
-    background: var(--black);
-    color: var(--cream);
+    background: var(--verde);
+    color: var(--negro);
     border-top-right-radius: 4px;
     align-self: flex-end;
+    font-weight: 500;
   }
 
   .quick-replies {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 7px;
     align-self: flex-start;
-    max-width: 90%;
+    max-width: 100%;
   }
   .qr-btn {
-    background: white;
-    border: 1px solid var(--gold);
-    color: var(--black);
-    padding: 8px 14px;
+    background: transparent;
+    border: 1px solid var(--verde);
+    color: var(--verde);
+    padding: 7px 13px;
     border-radius: 18px;
     font-size: 13px;
     cursor: pointer;
@@ -646,23 +732,100 @@
     font-family: 'Inter', sans-serif;
   }
   .qr-btn:hover {
-    background: var(--gold);
-    color: var(--black);
+    background: var(--verde);
+    color: var(--negro);
+  }
+
+  .menu-picker {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    align-self: stretch;
+    max-width: 100%;
+  }
+  .menu-picker .cat {
+    color: var(--verde);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin: 10px 0 8px;
+  }
+  .menu-picker .cat:first-child { margin-top: 0; }
+  .menu-picker .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--texto);
+  }
+  .menu-picker .item:last-child { border-bottom: none; }
+  .menu-picker .item .name { flex: 1; }
+  .menu-picker .item .price {
+    color: var(--verde);
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .menu-picker .item .add {
+    background: var(--verde);
+    color: var(--negro);
+    border: none;
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .menu-picker .item .add:hover { background: var(--verde2); }
+  .menu-picker .item .add.added { background: var(--verde-dark); color: var(--verde); }
+  .menu-picker .confirm-row {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .menu-picker .total {
+    color: var(--verde);
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .menu-picker .confirm-btn {
+    background: var(--verde);
+    color: var(--negro);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+  }
+  .menu-picker .confirm-btn:disabled {
+    background: var(--negro3);
+    color: var(--muted);
+    cursor: not-allowed;
   }
 
   .typing {
     display: inline-flex;
     gap: 4px;
     padding: 12px 16px;
-    background: white;
+    background: var(--card);
+    border: 1px solid var(--border);
     border-radius: 14px;
     border-top-left-radius: 4px;
     align-self: flex-start;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
   }
   .typing span {
     width: 7px; height: 7px;
-    background: var(--gold);
+    background: var(--verde);
     border-radius: 50%;
     animation: bounce 1.2s infinite;
   }
@@ -675,27 +838,29 @@
 
   .chat-input {
     padding: 12px 14px;
-    background: white;
-    border-top: 1px solid var(--line);
+    background: var(--negro);
+    border-top: 1px solid var(--border);
     display: flex;
     gap: 8px;
   }
   .chat-input input {
     flex: 1;
-    border: 1px solid #e5e0d4;
+    border: 1px solid var(--border);
+    background: var(--negro2);
+    color: var(--texto);
     border-radius: 22px;
     padding: 10px 16px;
     font-size: 14px;
     outline: none;
     font-family: 'Inter', sans-serif;
-    background: var(--cream);
   }
-  .chat-input input:focus { border-color: var(--gold); }
+  .chat-input input:focus { border-color: var(--verde); }
+  .chat-input input::placeholder { color: var(--muted); }
   .chat-send {
-    background: var(--gold);
+    background: var(--verde);
     border: none;
-    color: var(--black);
-    width: 42px; height: 42px;
+    color: var(--negro);
+    width: 40px; height: 40px;
     border-radius: 50%;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
@@ -705,38 +870,40 @@
   .chat-send:hover { transform: scale(1.08); }
 
   .summary-card {
-    background: white;
-    border: 1px solid var(--gold);
+    background: var(--card);
+    border: 1px solid var(--verde);
     border-radius: 12px;
     padding: 16px;
-    align-self: flex-start;
-    max-width: 90%;
+    align-self: stretch;
+    max-width: 100%;
     font-size: 13px;
   }
   .summary-card h5 {
-    color: var(--gold);
+    color: var(--verde);
     font-size: 12px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-family: 'Inter', sans-serif;
   }
   .summary-card .row {
-    padding: 5px 0;
-    border-bottom: 1px solid #f0eadb;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
-    color: #444;
+    color: var(--texto2);
+    gap: 12px;
   }
-  .summary-card .row:last-child { border-bottom: none; }
-  .summary-card .row b { color: var(--black); font-weight: 600; }
+  .summary-card .row:last-of-type { border-bottom: none; }
+  .summary-card .row b { color: var(--texto); font-weight: 600; text-align: right; }
+  .summary-card .total-row b { color: var(--verde); font-size: 15px; }
   .summary-card .wa-link {
     display: block;
     margin-top: 12px;
     background: #25D366;
     color: white;
     text-align: center;
-    padding: 11px;
+    padding: 12px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
@@ -753,30 +920,31 @@
       position: absolute;
       top: 100%; left: 0; right: 0;
       flex-direction: column;
-      background: var(--black);
-      padding: 28px;
-      gap: 22px;
-      border-top: 1px solid var(--line);
+      background: var(--negro);
+      padding: 24px;
+      gap: 18px;
+      border-top: 1px solid var(--border);
     }
-    .nav .btn-gold { display: none; }
+    .nav .btn-verde { display: none; }
     .about-grid { grid-template-columns: 1fr; gap: 50px; }
-    .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .menu-pane.active { grid-template-columns: 1fr; }
     .gal-grid { grid-template-columns: repeat(2, 1fr); }
-    .steps { grid-template-columns: 1fr; gap: 18px; }
+    .steps { grid-template-columns: 1fr; gap: 16px; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     section { padding: 80px 0; }
   }
 
   @media (max-width: 600px) {
-    .hero h1 { font-size: 44px; }
+    .hero h1 { font-size: 60px; }
     .hero-sub { font-size: 16px; }
-    .hero-stats { grid-template-columns: 1fr; gap: 24px; }
-    .stat-num { font-size: 36px; }
-    .menu-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr; gap: 22px; }
+    .stat-num { font-size: 32px; }
     .gal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .container { padding: 0 20px; }
-    .nav-inner { padding: 14px 20px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .container { padding: 0 18px; }
+    .nav-inner { padding: 14px 18px; }
+    .dish-card { flex-direction: column; }
+    .dish-card .photo { width: 100%; height: 160px; }
 
     .chat-modal {
       width: 100%;
@@ -788,10 +956,7 @@
       height: 92vh;
       border-radius: 16px 16px 0 0;
     }
-    .chat-launcher {
-      bottom: 18px; right: 18px;
-      width: 58px; height: 58px;
-    }
+    .chat-launcher { bottom: 18px; right: 18px; width: 58px; height: 58px; }
     .chat-tooltip { display: none; }
     .chat-body { max-height: none; }
   }
@@ -802,14 +967,14 @@
 <!-- ─────── NAV ─────── -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="logo">Gastronom<span>IA</span></a>
+    <a href="#" class="logo">🎋 Bambú Sushi</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#carta">Carta</a></li>
       <li><a href="#reservas">Reservas</a></li>
       <li><a href="#nosotros">Nosotros</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#" onclick="openChatPedido(); return false;">Pedidos</a></li>
     </ul>
-    <button class="btn btn-gold" onclick="openChat()">Reservar mesa</button>
+    <button class="btn btn-verde" onclick="openChat()">Reservar</button>
     <button class="nav-toggle" onclick="toggleNav()">☰</button>
   </div>
 </nav>
@@ -819,25 +984,25 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Restaurante de autor</div>
-    <h1>Gastronomía <em>de autor</em></h1>
-    <p class="hero-sub">Cocina de fusión mediterránea con influencias asiáticas. Una experiencia para los sentidos en cada plato.</p>
+    <div class="hero-badge">🎋 Cocina japonesa auténtica</div>
+    <h1>Bambú Sushi</h1>
+    <p class="hero-sub">Pescado fresco del día. Técnica tradicional. Experiencia única.</p>
     <div class="hero-actions">
-      <button class="btn btn-gold" onclick="openChat()">Reservar mesa</button>
-      <a href="#carta" class="btn btn-outline">Ver carta</a>
+      <button class="btn btn-verde" onclick="openChat()">Reservar mesa</button>
+      <button class="btn btn-outline" onclick="openChatPedido()">Pedir ahora</button>
     </div>
     <div class="hero-stats">
       <div>
-        <div class="stat-num">15+</div>
+        <div class="stat-num">+15</div>
         <div class="stat-label">Años de experiencia</div>
       </div>
       <div>
-        <div class="stat-num">24</div>
-        <div class="stat-label">Platos de temporada</div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Pescado del día</div>
       </div>
       <div>
-        <div class="stat-num">98%</div>
-        <div class="stat-label">Clientes satisfechos</div>
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">Valoración Google</div>
       </div>
     </div>
   </div>
@@ -848,33 +1013,33 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-img">
-        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800&q=80" alt="Chef de GastronomIA" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=800&q=80" alt="Chef de Bambú Sushi" loading="lazy" />
       </div>
       <div class="about-content">
-        <div class="section-eyebrow">Nuestra historia</div>
-        <h2 class="section-title">Donde tradición y vanguardia se encuentran</h2>
-        <p>En GastronomIA llevamos más de quince años explorando los límites de la cocina. Cada plato es el resultado de combinar producto local de máxima calidad con técnicas contemporáneas y la sutileza de la gastronomía asiática.</p>
-        <p>Nuestra filosofía es simple: respeto absoluto por la materia prima, ejecución impecable y una experiencia que perdure en la memoria.</p>
+        <span class="section-eyebrow">Nuestra historia</span>
+        <h2 class="section-title">Tradición japonesa en el corazón de la ciudad</h2>
+        <p>En Bambú Sushi llevamos más de quince años llevando la auténtica gastronomía japonesa a tu mesa. Nuestro chef, formado en Tokio, selecciona personalmente el mejor pescado fresco cada mañana.</p>
+        <p>Filosofía 旨味 (umami): respeto absoluto por el producto, técnica afilada y la calma de la cocina japonesa más pura.</p>
         <div class="values">
           <div class="value">
-            <div class="value-icon">★</div>
+            <div class="value-icon">🎋</div>
             <div>
-              <h4>Producto local</h4>
-              <p>Trabajamos con productores de proximidad, pesca del día y verduras de huerta.</p>
+              <h4>Producto fresco</h4>
+              <p>Pescado seleccionado a diario en lonja por nuestro chef.</p>
             </div>
           </div>
           <div class="value">
-            <div class="value-icon">✦</div>
+            <div class="value-icon">🍃</div>
             <div>
-              <h4>Técnica</h4>
-              <p>Cocina de precisión que respeta el sabor y la textura del producto.</p>
+              <h4>Técnica japonesa</h4>
+              <p>Cortes precisos y arroz preparado según la tradición.</p>
             </div>
           </div>
           <div class="value">
-            <div class="value-icon">◆</div>
+            <div class="value-icon">⭐</div>
             <div>
-              <h4>Experiencia</h4>
-              <p>Un espacio íntimo y un servicio cuidado para una velada memorable.</p>
+              <h4>Experiencia premium</h4>
+              <p>Un espacio íntimo para disfrutar con todos los sentidos.</p>
             </div>
           </div>
         </div>
@@ -887,59 +1052,140 @@
 <section class="menu" id="carta">
   <div class="container">
     <div class="section-head">
-      <div class="section-eyebrow">Nuestra carta</div>
-      <h2 class="section-title">Platos de temporada</h2>
-      <p>Una selección de creaciones que cambian con cada estación, siempre buscando la sorpresa y el equilibrio.</p>
+      <span class="section-eyebrow">Nuestra carta</span>
+      <h2 class="section-title">Sabores de Japón</h2>
+      <p>Una selección que combina tradición y creatividad. Pescado del día y producto local.</p>
     </div>
-    <div class="menu-grid">
-      <article class="dish">
-        <div class="dish-img"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80" alt="Tartar de atún" loading="lazy" /></div>
-        <div class="dish-body">
-          <span class="dish-tag">Entrante frío</span>
-          <h3 class="dish-name">Tartar de atún rojo</h3>
-          <p class="dish-desc">Atún de almadraba, aguacate, sésamo tostado y emulsión de yuzu sobre crujiente de arroz.</p>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="nigiris" onclick="switchTab('nigiris')">Nigiris & Sashimi</button>
+      <button class="tab" data-tab="rolls" onclick="switchTab('rolls')">Rolls Especiales</button>
+      <button class="tab" data-tab="hot" onclick="switchTab('hot')">Hot Food</button>
+    </div>
+
+    <div class="menu-pane active" id="pane-nigiris">
+      <article class="dish-card">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=400&q=80" alt="Nigiri Salmón" loading="lazy" /></div>
+        <div class="info">
+          <div class="row1"><h3>Nigiri Salmón x2</h3><span class="price">6,90€</span></div>
+          <p class="desc">Salmón noruego sobre arroz de sushi.</p>
+          <button class="add-btn" onclick="addFromCarta('Nigiri Salmón x2', 6.90)">➕ Añadir al pedido</button>
         </div>
       </article>
-      <article class="dish">
-        <div class="dish-img"><img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&q=80" alt="Risotto" loading="lazy" /></div>
-        <div class="dish-body">
-          <span class="dish-tag">Principal</span>
-          <h3 class="dish-name">Risotto de trufa</h3>
-          <p class="dish-desc">Arroz carnaroli con trufa negra, parmesano reggiano de 24 meses y mantequilla noisette.</p>
+      <article class="dish-card">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?w=400&q=80" alt="Nigiri Atún" loading="lazy" /></div>
+        <div class="info">
+          <div class="row1"><h3>Nigiri Atún x2</h3><span class="price">7,50€</span></div>
+          <p class="desc">Atún rojo de almadraba.</p>
+          <button class="add-btn" onclick="addFromCarta('Nigiri Atún x2', 7.50)">➕ Añadir al pedido</button>
         </div>
       </article>
-      <article class="dish">
-        <div class="dish-img"><img src="https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=400&q=80" alt="Ceviche" loading="lazy" /></div>
-        <div class="dish-body">
-          <span class="dish-tag">Estilo nikkei</span>
-          <h3 class="dish-name">Ceviche de corvina</h3>
-          <p class="dish-desc">Corvina salvaje en leche de tigre con ají amarillo, cilantro y boniato confitado.</p>
+      <article class="dish-card">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1534482421-64566f976cfa?w=400&q=80" alt="Sashimi Variado" loading="lazy" /></div>
+        <div class="info">
+          <div class="row1"><h3>Sashimi Variado x8</h3><span class="price">14,90€</span></div>
+          <p class="desc">Selección del chef: salmón, atún, dorada.</p>
+          <button class="add-btn" onclick="addFromCarta('Sashimi Variado x8', 14.90)">➕ Añadir al pedido</button>
         </div>
       </article>
-      <article class="dish">
-        <div class="dish-img"><img src="https://images.unsplash.com/photo-1558030006-450675393462?w=400&q=80" alt="Wagyu" loading="lazy" /></div>
-        <div class="dish-body">
-          <span class="dish-tag">Carne</span>
-          <h3 class="dish-name">Wagyu A5</h3>
-          <p class="dish-desc">Lomo de wagyu japonés con reducción de miso, daikon glaseado y verduras de temporada.</p>
+      <article class="dish-card">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1617196034099-b85200b455fd?w=400&q=80" alt="Nigiri Langostino" loading="lazy" /></div>
+        <div class="info">
+          <div class="row1"><h3>Nigiri Langostino x2</h3><span class="price">7,90€</span></div>
+          <p class="desc">Langostino tigre con mayonesa yuzu.</p>
+          <button class="add-btn" onclick="addFromCarta('Nigiri Langostino x2', 7.90)">➕ Añadir al pedido</button>
         </div>
       </article>
-      <article class="dish">
-        <div class="dish-img"><img src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=400&q=80" alt="Vieiras" loading="lazy" /></div>
-        <div class="dish-body">
-          <span class="dish-tag">Pescado</span>
-          <h3 class="dish-name">Vieiras a la plancha</h3>
-          <p class="dish-desc">Vieiras gallegas marcadas, puré de coliflor ahumado y aceite de cebollino.</p>
+    </div>
+
+    <div class="menu-pane" id="pane-rolls">
+      <article class="dish-card">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1617196034099-b85200b455fd?w=400&q=80" alt="Dragon Roll" loading="lazy" /></div>
+        <div class="info">
+          <div class="row1"><h3>Dragon Roll x8</h3><span class="price">13,90€</span></div>
+          <p class="desc">Tempura de langostino, aguacate, anguila.</p>
+          <button class="add-btn" onclick="addFromCarta('Dragon Roll x8', 13.90)">➕ Añadir al pedido</button>
         </div>
       </article>
-      <article class="dish">
-        <div class="dish-img"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80" alt="Postre" loading="lazy" /></div>
-        <div class="dish-body">
-          <span class="dish-tag">Postre</span>
-          <h3 class="dish-name">Texturas de chocolate</h3>
-          <p class="dish-desc">Bizcocho fluido, helado de cacao puro, tierra de avellana y polvo de oro comestible.</p>
+      <article class="dish-card">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1562802378-063ec186a863?w=400&q=80" alt="Rainbow Roll" loading="lazy" /></div>
+        <div class="info">
+          <div class="row1"><h3>Rainbow Roll x8</h3><span class="price">14,50€</span></div>
+          <p class="desc">Pepino, cangrejo, cubierto de 5 pescados.</p>
+          <button class="add-btn" onclick="addFromCarta('Rainbow Roll x8', 14.50)">➕ Añadir al pedido</button>
         </div>
       </article>
+      <article class="dish-card">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=400&q=80" alt="Spicy Tuna Roll" loading="lazy" /></div>
+        <div class="info">
+          <div class="row1"><h3>Spicy Tuna Roll x8</h3><span class="price">12,90€</span></div>
+          <p class="desc">Atún picante, pepino, sriracha.</p>
+          <button class="add-btn" onclick="addFromCarta('Spicy Tuna Roll x8', 12.90)">➕ Añadir al pedido</button>
+        </div>
+      </article>
+      <article class="dish-card">
+        <span class="star">⭐ Especial</span>
+        <div class="photo"><img src="https://images.unsplash.com/photo-1617196034776-bde0a2b44bbd?w=400&q=80" alt="Bambú Roll" loading="lazy" /></div>
+        <div class="info">
+          <div class="row1"><h3>Bambú Roll x8</h3><span class="price">15,90€</span></div>
+          <p class="desc">Nuestra creación: salmón, mango, wasabi.</p>
+          <button class="add-btn" onclick="addFromCarta('Bambú Roll x8', 15.90)">➕ Añadir al pedido</button>
+        </div>
+      </article>
+    </div>
+
+    <div class="menu-pane" id="pane-hot">
+      <article class="dish-card">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400&q=80" alt="Ramen de Miso" loading="lazy" /></div>
+        <div class="info">
+          <div class="row1"><h3>Ramen de Miso</h3><span class="price">13,50€</span></div>
+          <p class="desc">Caldo de miso, cerdo chashu, huevo nitamago.</p>
+          <button class="add-btn" onclick="addFromCarta('Ramen de Miso', 13.50)">➕ Añadir al pedido</button>
+        </div>
+      </article>
+      <article class="dish-card">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400&q=80" alt="Gyozas" loading="lazy" /></div>
+        <div class="info">
+          <div class="row1"><h3>Gyozas x6</h3><span class="price">7,90€</span></div>
+          <p class="desc">Dumpling de cerdo y verduras, salsa ponzu.</p>
+          <button class="add-btn" onclick="addFromCarta('Gyozas x6', 7.90)">➕ Añadir al pedido</button>
+        </div>
+      </article>
+      <article class="dish-card">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&q=80" alt="Edamame" loading="lazy" /></div>
+        <div class="info">
+          <div class="row1"><h3>Edamame</h3><span class="price">4,50€</span></div>
+          <p class="desc">Judías de soja con sal marina.</p>
+          <button class="add-btn" onclick="addFromCarta('Edamame', 4.50)">➕ Añadir al pedido</button>
+        </div>
+      </article>
+      <article class="dish-card">
+        <div class="photo"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80" alt="Mochi de Té Verde" loading="lazy" /></div>
+        <div class="info">
+          <div class="row1"><h3>Mochi de Té Verde x3</h3><span class="price">6,90€</span></div>
+          <p class="desc">Postre japonés de arroz y helado matcha.</p>
+          <button class="add-btn" onclick="addFromCarta('Mochi de Té Verde x3', 6.90)">➕ Añadir al pedido</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── GALERÍA ─────── -->
+<section class="galeria">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Galería</span>
+      <h2 class="section-title">El espacio</h2>
+      <p>Un ambiente íntimo, oscuro y elegante con guiños a la naturaleza japonesa.</p>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1617196034776-bde0a2b44bbd?w=500&q=80" alt="Sushi" loading="lazy" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=500&q=80" alt="Chef" loading="lazy" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=500&q=80" alt="Plato japonés" loading="lazy" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?w=500&q=80" alt="Nigiri" loading="lazy" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=500&q=80" alt="Ramen" loading="lazy" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1562802378-063ec186a863?w=500&q=80" alt="Roll" loading="lazy" /></div>
     </div>
   </div>
 </section>
@@ -948,50 +1194,31 @@
 <section class="reservas" id="reservas">
   <div class="container">
     <div class="section-head">
-      <div class="section-eyebrow">Reservas</div>
+      <span class="section-eyebrow">Reservas</span>
       <h2 class="section-title">Reserva tu mesa</h2>
-      <p>En tres pasos sencillos te confirmamos tu reserva. Te esperamos.</p>
+      <p>En tres pasos sencillos. Te confirmamos por WhatsApp.</p>
     </div>
     <div class="steps">
       <div class="step">
-        <div class="step-num">1</div>
-        <h4>Elige día</h4>
+        <div class="step-icon">📅</div>
+        <h4>Elige día y hora</h4>
         <p>Selecciona la fecha y franja horaria que prefieras.</p>
       </div>
       <div class="step">
-        <div class="step-num">2</div>
+        <div class="step-icon">👥</div>
         <h4>Confirma personas</h4>
         <p>Indícanos cuántos seréis y tus preferencias.</p>
       </div>
       <div class="step">
-        <div class="step-num">3</div>
+        <div class="step-icon">✅</div>
         <h4>Recibe confirmación</h4>
         <p>Te confirmamos por WhatsApp con todos los detalles.</p>
       </div>
     </div>
     <button class="btn btn-wa" onclick="openChat()">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
       Reservar por WhatsApp
     </button>
-  </div>
-</section>
-
-<!-- ─────── GALERÍA ─────── -->
-<section class="galeria">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-eyebrow">Galería</div>
-      <h2 class="section-title">El espacio</h2>
-      <p>Un ambiente íntimo, cuidado y elegante para una experiencia inolvidable.</p>
-    </div>
-    <div class="gal-grid">
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=400&q=80" alt="Detalle restaurante" loading="lazy" /></div>
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400&q=80" alt="Plato gourmet" loading="lazy" /></div>
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" alt="Plato del chef" loading="lazy" /></div>
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=400&q=80" alt="Comida gourmet" loading="lazy" /></div>
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80" alt="Ensalada" loading="lazy" /></div>
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" alt="Pizza gourmet" loading="lazy" /></div>
-    </div>
   </div>
 </section>
 
@@ -1000,25 +1227,25 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo">Gastronom<span>IA</span></div>
-        <p>Cocina de autor con alma mediterránea y guiños a Asia. Una experiencia gastronómica única en el corazón de la ciudad.</p>
+        <div class="footer-logo">🎋 Bambú Sushi</div>
+        <p>Frescura japonesa. Sabor auténtico. Cocina tradicional con técnica precisa y producto del día.</p>
       </div>
       <div>
         <h4>Horarios</h4>
         <ul>
           <li>Martes a Domingo</li>
-          <li>Comidas: 13:30 - 16:00</li>
-          <li>Cenas: 20:30 - 23:30</li>
+          <li>Comidas: 13:00 - 16:00</li>
+          <li>Cenas: 20:00 - 23:30</li>
           <li>Lunes cerrado</li>
         </ul>
       </div>
       <div>
         <h4>Contacto</h4>
         <ul>
-          <li>Calle Mayor 24</li>
+          <li>Calle Bambú 24</li>
           <li>28001 — Madrid</li>
           <li>+34 643 19 95 80</li>
-          <li>hola@gastronomia.es</li>
+          <li>hola@bambusushi.es</li>
         </ul>
       </div>
       <div>
@@ -1027,7 +1254,7 @@
           <li><a href="#carta">Carta</a></li>
           <li><a href="#reservas">Reservas</a></li>
           <li><a href="#nosotros">Nosotros</a></li>
-          <li><a href="#" onclick="openChat(); return false;">Reservar</a></li>
+          <li><a href="#" onclick="openChatPedido(); return false;">Pedidos</a></li>
         </ul>
       </div>
     </div>
@@ -1038,16 +1265,14 @@
 </footer>
 
 <!-- ─────── CHATBOT ─────── -->
-<div class="chat-tooltip" id="chatTooltip">🍽️ ¿Reservas o consultas?</div>
-<button class="chat-launcher" id="chatLauncher" onclick="openChat()" aria-label="Abrir chat">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.94 2 11.5c0 2.07.93 3.96 2.46 5.41L4 21l4.35-1.42c1.13.45 2.36.69 3.65.69 5.52 0 10-3.94 10-8.77S17.52 3 12 3z"/></svg>
-</button>
+<div class="chat-tooltip" id="chatTooltip">🍣 ¿Reservas o pedidos?</div>
+<button class="chat-launcher" id="chatLauncher" onclick="openChat()" aria-label="Abrir chat">🎋</button>
 
 <div class="chat-modal" id="chatModal">
   <div class="chat-header">
-    <div class="chat-avatar">G</div>
+    <div class="chat-avatar">🎋</div>
     <div>
-      <div class="chat-title-name">GastronomIA · Asistente</div>
+      <div class="chat-title-name">Bambú Sushi · Asistente IA</div>
       <div class="chat-title-status">En línea</div>
     </div>
     <button class="chat-close" onclick="closeChat()" aria-label="Cerrar">×</button>
@@ -1068,25 +1293,53 @@
     a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
   });
 
+  /* ───────── TABS CARTA ───────── */
+  function switchTab(name) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+    document.querySelectorAll('.menu-pane').forEach(p => p.classList.toggle('active', p.id === 'pane-' + name));
+  }
+
+  /* ───────── DATA MENÚ ───────── */
+  const MENU = {
+    'Nigiris & Sashimi': [
+      { name: 'Nigiri Salmón x2', price: 6.90 },
+      { name: 'Nigiri Atún x2', price: 7.50 },
+      { name: 'Sashimi Variado x8', price: 14.90 },
+      { name: 'Nigiri Langostino x2', price: 7.90 }
+    ],
+    'Rolls Especiales': [
+      { name: 'Dragon Roll x8', price: 13.90 },
+      { name: 'Rainbow Roll x8', price: 14.50 },
+      { name: 'Spicy Tuna Roll x8', price: 12.90 },
+      { name: 'Bambú Roll x8', price: 15.90, star: true }
+    ],
+    'Hot Food': [
+      { name: 'Ramen de Miso', price: 13.50 },
+      { name: 'Gyozas x6', price: 7.90 },
+      { name: 'Edamame', price: 4.50 },
+      { name: 'Mochi de Té Verde x3', price: 6.90 }
+    ]
+  };
+  const CAT_ICON = { 'Nigiris & Sashimi': '🍣', 'Rolls Especiales': '🍱', 'Hot Food': '🔥' };
+
   /* ───────── CHATBOT ───────── */
   const WA_NUMBER = '34643199580';
   const body = () => document.getElementById('chatBody');
-  let state = { mode: 'idle', personas: null, dia: null, nombre: null, telefono: null, intent: null, pedido: [], tipoPedido: null, direccion: null };
+  let state = resetState();
   let chatStarted = false;
 
-  const DISHES = [
-    { emoji: '🐟', name: 'Tartar de atún' },
-    { emoji: '🍚', name: 'Risotto de trufa' },
-    { emoji: '🍋', name: 'Ceviche de corvina' },
-    { emoji: '🥩', name: 'Wagyu A5' },
-    { emoji: '🐚', name: 'Vieiras' },
-    { emoji: '🍮', name: 'Postre del día' }
-  ];
+  function resetState() {
+    return { mode: 'idle', intent: null, personas: null, dia: null, hora: null, nombre: null, telefono: null, pedido: [], tipoPedido: null, direccion: null };
+  }
 
   function normalize(str) {
     return (str || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
   }
-
+  function fmt(n) { return n.toFixed(2).replace('.', ',') + '€'; }
+  function calcTotal() { return state.pedido.reduce((s, it) => s + it.price * it.qty, 0); }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
   function scrollChat() {
     const b = body();
     setTimeout(() => { b.scrollTop = b.scrollHeight; }, 30);
@@ -1150,16 +1403,17 @@
     return days;
   }
 
+  /* ───────── WELCOME ───────── */
   async function welcome() {
     if (chatStarted) return;
     chatStarted = true;
-    await botMsg('¡Buenas! 👋 Bienvenido/a a GastronomIA.\n¿En qué puedo ayudarte?', 1500);
+    await botMsg('¡Irasshaimase! 🎋 Bienvenido/a a Bambú Sushi.\n¿En qué puedo ayudarte?', 1500);
     quickReplies([
       { label: '📅 Reservar mesa', onClick: () => startReserva() },
-      { label: '🛵 Hacer pedido', onClick: () => startPedido() },
-      { label: '🍽️ Ver la carta', onClick: () => handleIntent('carta') },
-      { label: '⏰ Horarios', onClick: () => handleIntent('horario') },
-      { label: '📍 Dónde estamos', onClick: () => handleIntent('donde') }
+      { label: '🛵 Pedir a domicilio', onClick: () => startPedido('A domicilio') },
+      { label: '🏃 Recoger en local', onClick: () => startPedido('Recoger en local') },
+      { label: '🍣 Ver la carta', onClick: () => handleIntent('carta') },
+      { label: '⏰ Horarios', onClick: () => handleIntent('horario') }
     ]);
   }
 
@@ -1168,137 +1422,90 @@
     document.getElementById('chatTooltip').classList.remove('show');
     welcome();
   }
+  function openChatPedido() {
+    document.getElementById('chatModal').classList.add('open');
+    document.getElementById('chatTooltip').classList.remove('show');
+    if (!chatStarted) {
+      chatStarted = true;
+      setTimeout(() => startPedido(), 300);
+    } else {
+      startPedido();
+    }
+  }
   function closeChat() {
     document.getElementById('chatModal').classList.remove('open');
   }
 
-  setTimeout(() => {
-    if (!chatStarted) document.getElementById('chatTooltip').classList.add('show');
-  }, 4000);
-  setTimeout(() => {
-    document.getElementById('chatTooltip').classList.remove('show');
-  }, 12000);
+  setTimeout(() => { if (!chatStarted) document.getElementById('chatTooltip').classList.add('show'); }, 4000);
+  setTimeout(() => { document.getElementById('chatTooltip').classList.remove('show'); }, 12000);
 
   /* ───────── INTENTS ───────── */
   async function handleIntent(intent) {
-    state.intent = intent;
-    if (intent === 'reserva') return startReserva();
-
     if (intent === 'carta') {
-      await botMsg('Nuestra carta cambia con la temporada 🍃\nAlgunos de nuestros platos estrella:\n\n• Tartar de atún con aguacate y sésamo\n• Risotto de trufa y parmesano\n• Ceviche de corvina estilo nikkei\n• Wagyu A5 con reducción de miso\n\n¿Tienes alguna alergia o preferencia?');
+      await botMsg('Tenemos nigiris, sashimi, rolls especiales y hot food 🍣\nTodo fresco del día.\n¿Quieres ver la carta completa o pedir directamente?');
       quickReplies([
-        { label: 'Reservar mesa', onClick: () => startReserva() },
-        { label: 'Soy vegetariano/a', onClick: () => handleIntent('alergia') },
-        { label: 'Sin gluten', onClick: () => handleIntent('alergia') }
+        { label: '📖 Ver carta', onClick: () => { closeChat(); document.getElementById('carta').scrollIntoView({ behavior: 'smooth' }); } },
+        { label: '🛵 Pedir ahora', onClick: () => startPedido() },
+        { label: '📅 Reservar mesa', onClick: () => startReserva() }
       ]);
       return;
     }
-
-    if (intent === 'alergia') {
-      await botMsg('Nos adaptamos a todas las necesidades 🌿\nTenemos opciones vegetarianas, veganas y sin gluten. Indícanos en la reserva y lo preparamos con antelación.');
-      quickReplies([{ label: '📅 Hacer reserva', onClick: () => startReserva() }]);
-      return;
-    }
-
-    if (intent === 'horario') {
-      await botMsg('Nuestro horario:\n\n🕐 Martes a Domingo\n🍽️ Comidas: 13:30 - 16:00\n🌙 Cenas: 20:30 - 23:30\n\nLunes cerrado.');
-      quickReplies([{ label: '📅 Reservar mesa', onClick: () => startReserva() }]);
-      return;
-    }
-
     if (intent === 'precio') {
-      await botMsg('El precio medio por persona es orientativo y depende de los platos elegidos. Escríbenos y te informamos sin compromiso.');
-      quickReplies([{ label: '📅 Reservar mesa', onClick: () => startReserva() }]);
+      await botMsg('Nuestros precios van desde 4,50€ el edamame hasta 15,90€ nuestro Bambú Roll especial 🎋\n¿Quieres hacer un pedido?');
+      quickReplies([
+        { label: '🛵 Pedir ahora', onClick: () => startPedido() },
+        { label: '📅 Reservar mesa', onClick: () => startReserva() }
+      ]);
       return;
     }
-
+    if (intent === 'alergia') {
+      await botMsg('Tenemos opciones para todos 🌿\nEdamame, rolls de verdura y mochi son perfectos.\nIndícanos tu alergia al pedir y lo adaptamos.');
+      quickReplies([
+        { label: '🛵 Pedir ahora', onClick: () => startPedido() },
+        { label: '📅 Reservar mesa', onClick: () => startReserva() }
+      ]);
+      return;
+    }
+    if (intent === 'horario') {
+      await botMsg('🗓️ Martes a Domingo\n🍱 Comidas: 13:00 - 16:00\n🌙 Cenas: 20:00 - 23:30\n🚫 Lunes cerrado\n¿Reservamos?');
+      quickReplies([
+        { label: '📅 Reservar mesa', onClick: () => startReserva() },
+        { label: '🛵 Pedir ahora', onClick: () => startPedido() }
+      ]);
+      return;
+    }
+    if (intent === 'sushi') {
+      await botMsg('Llevamos más de 15 años con la auténtica cocina japonesa en la ciudad 🎋\nNuestro chef se formó en Japón y usa ingredientes frescos cada día.');
+      quickReplies([
+        { label: '📅 Reservar mesa', onClick: () => startReserva() },
+        { label: '🛵 Pedir ahora', onClick: () => startPedido() }
+      ]);
+      return;
+    }
     if (intent === 'donde') {
-      await botMsg('Estamos en el centro de la ciudad 📍\nTe compartimos la ubicación exacta por WhatsApp al confirmar la reserva.');
-      quickReplies([{ label: '📅 Reservar mesa', onClick: () => startReserva() }]);
+      await botMsg('Estamos en el centro de la ciudad 📍\nAl confirmar tu reserva o pedido te enviamos la ubicación exacta por WhatsApp.');
+      quickReplies([
+        { label: '📅 Reservar mesa', onClick: () => startReserva() },
+        { label: '🛵 Pedir ahora', onClick: () => startPedido() }
+      ]);
       return;
     }
-
-    if (intent === 'evento') {
-      await botMsg('¡Nos encanta celebrar contigo! 🥂\nPara grupos y eventos privados tenemos menús especiales y sala reservada.\n¿Cuántas personas seríais?');
-      askPersonas();
-      return;
-    }
-
-    await botMsg('¿Quieres que te ayude con una reserva o tienes alguna consulta sobre la carta?');
+    await botMsg('¿Te ayudo con una reserva, un pedido o tienes alguna consulta? 🎋');
     quickReplies([
       { label: '📅 Reservar mesa', onClick: () => startReserva() },
-      { label: '🍽️ Ver la carta', onClick: () => handleIntent('carta') }
+      { label: '🛵 Pedir ahora', onClick: () => startPedido() },
+      { label: '🍣 Ver la carta', onClick: () => handleIntent('carta') }
     ]);
   }
 
   /* ───────── RESERVA FLOW ───────── */
   async function startReserva() {
-    state = { mode: 'reserva', personas: null, dia: null, nombre: null, telefono: null, intent: 'reserva', pedido: [], tipoPedido: null, direccion: null };
-    await botMsg('¡Perfecto! Para gestionar tu reserva necesito algunos datos. ¿Para cuántas personas?');
+    state = resetState();
+    state.intent = 'reserva';
+    state.mode = 'reserva';
+    await botMsg('¡Perfecto! Reservamos tu mesa 🎋\n¿Para cuántas personas?');
     askPersonas();
   }
-
-  /* ───────── PEDIDO FLOW ───────── */
-  async function startPedido() {
-    state = { mode: 'pedido', personas: null, dia: null, nombre: null, telefono: null, intent: 'pedido', pedido: [], tipoPedido: null, direccion: null };
-    await botMsg('¡Claro! Puedes hacer tu pedido aquí mismo 🛵\nTe lo preparamos para recoger o a domicilio.\n\n¿Qué te apetece pedir?');
-    askDishes();
-  }
-
-  function askDishes() {
-    state.mode = 'await_dishes';
-    const opts = DISHES.map(d => ({
-      label: `${d.emoji} ${d.name}`,
-      onClick: () => addDish(d.name)
-    }));
-    if (state.pedido.length > 0) {
-      opts.push({ label: '✅ Finalizar pedido', onClick: () => finishDishes() });
-    }
-    quickReplies(opts);
-  }
-
-  async function addDish(name) {
-    state.pedido.push(name);
-    const lista = state.pedido.map(p => `• ${p}`).join('\n');
-    await botMsg(`Añadido ✅\n\nTu pedido hasta ahora:\n${lista}\n\n¿Quieres añadir otro plato o finalizar?`);
-    quickReplies([
-      { label: '➕ Añadir otro plato', onClick: () => askDishes() },
-      { label: '✅ Finalizar pedido', onClick: () => finishDishes() }
-    ]);
-  }
-
-  async function finishDishes() {
-    if (state.pedido.length === 0) {
-      await botMsg('Aún no has elegido ningún plato. Selecciona al menos uno 🙂');
-      askDishes();
-      return;
-    }
-    const lista = state.pedido.map(p => `• ${p}`).join('\n');
-    await botMsg(`Perfecto, tu pedido:\n${lista}\n\n¿Es para recoger o a domicilio?`);
-    state.mode = 'await_tipo_pedido';
-    quickReplies([
-      { label: '🏃 Recoger en local', onClick: () => setTipoPedido('Recoger en local') },
-      { label: '🛵 A domicilio', onClick: () => setTipoPedido('A domicilio') }
-    ]);
-  }
-
-  async function setTipoPedido(tipo) {
-    state.tipoPedido = tipo;
-    if (tipo === 'A domicilio') {
-      await botMsg('Genial. ¿Cuál es la dirección de entrega?');
-      state.mode = 'await_direccion';
-    } else {
-      await botMsg('Perfecto. ¿A qué nombre hacemos el pedido?');
-      state.mode = 'await_nombre';
-    }
-  }
-
-  async function setDireccion(d) {
-    state.direccion = d;
-    await botMsg('Anotado 📍 ¿A qué nombre hacemos el pedido?');
-    state.mode = 'await_nombre';
-  }
-
   function askPersonas() {
     state.mode = 'await_personas';
     quickReplies([
@@ -1308,26 +1515,121 @@
       { label: '+6 personas', onClick: () => setPersonas('+6 personas') }
     ]);
   }
-
   async function setPersonas(p) {
     state.personas = p;
-    await botMsg('¿Qué día te viene mejor?');
+    await botMsg('¿Qué día prefieres?');
     state.mode = 'await_dia';
-    quickReplies(getNext7Days().map(d => ({
-      label: d.label,
-      onClick: () => setDia(d.value)
-    })));
+    quickReplies(getNext7Days().map(d => ({ label: d.label, onClick: () => setDia(d.value) })));
   }
-
   async function setDia(d) {
     state.dia = d;
-    await botMsg('Genial. ¿A qué nombre hacemos la reserva?');
+    await botMsg('¿A qué hora?');
+    state.mode = 'await_hora';
+    quickReplies(['13:00', '13:30', '14:00', '20:00', '20:30', '21:00', '21:30'].map(h => ({
+      label: h, onClick: () => setHora(h)
+    })));
+  }
+  async function setHora(h) {
+    state.hora = h;
+    await botMsg('¿Me dices tu nombre?');
     state.mode = 'await_nombre';
   }
 
+  /* ───────── PEDIDO FLOW ───────── */
+  async function startPedido(preTipo) {
+    state = resetState();
+    state.intent = 'pedido';
+    state.mode = 'pedido';
+    if (preTipo) state.tipoPedido = preTipo;
+    await botMsg('¡Vamos con tu pedido! 🛵\nSelecciona tus platos:');
+    showMenuPicker();
+  }
+
+  function showMenuPicker() {
+    state.mode = 'await_dishes';
+    const wrap = document.createElement('div');
+    wrap.className = 'menu-picker';
+    let html = '';
+    Object.entries(MENU).forEach(([cat, items]) => {
+      html += `<div class="cat">${CAT_ICON[cat] || ''} ${cat.toUpperCase()}</div>`;
+      items.forEach((it, idx) => {
+        const star = it.star ? ' ⭐' : '';
+        html += `<div class="item"><span class="name">${escapeHtml(it.name)}${star}</span><span class="price">${fmt(it.price)}</span><button class="add" data-cat="${escapeHtml(cat)}" data-idx="${idx}" type="button">+</button></div>`;
+      });
+    });
+    html += `<div class="confirm-row"><span class="total">Total: <b id="picker-total">0,00€</b></span><button class="confirm-btn" id="picker-confirm" type="button" disabled>✅ Confirmar pedido</button></div>`;
+    wrap.innerHTML = html;
+    body().appendChild(wrap);
+    scrollChat();
+
+    wrap.querySelectorAll('.item .add').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.dataset.cat;
+        const idx = parseInt(btn.dataset.idx, 10);
+        const item = MENU[cat][idx];
+        const existing = state.pedido.find(p => p.name === item.name);
+        if (existing) existing.qty += 1;
+        else state.pedido.push({ name: item.name, price: item.price, qty: 1 });
+        btn.classList.add('added');
+        btn.textContent = '✓';
+        setTimeout(() => { btn.textContent = '+'; btn.classList.remove('added'); }, 600);
+        wrap.querySelector('#picker-total').textContent = fmt(calcTotal());
+        wrap.querySelector('#picker-confirm').disabled = state.pedido.length === 0;
+      });
+    });
+
+    wrap.querySelector('#picker-confirm').addEventListener('click', () => {
+      wrap.querySelectorAll('button').forEach(b => b.disabled = true);
+      finishDishes();
+    });
+  }
+
+  async function finishDishes() {
+    if (state.pedido.length === 0) {
+      await botMsg('Aún no has elegido ningún plato 🙂');
+      return;
+    }
+    const lista = state.pedido.map(p => `• ${p.name}${p.qty > 1 ? ' x' + p.qty : ''} — ${fmt(p.price * p.qty)}`).join('\n');
+    const total = calcTotal();
+    await botMsg(`Tu pedido 🛒:\n${lista}\n─────────────\nTotal: ${fmt(total)}`);
+    if (state.tipoPedido) {
+      await askDireccionOrName();
+    } else {
+      await botMsg('¿Recoger en local o a domicilio?');
+      state.mode = 'await_tipo_pedido';
+      quickReplies([
+        { label: '🏃 Recoger en local', onClick: () => setTipoPedido('Recoger en local') },
+        { label: '🛵 A domicilio', onClick: () => setTipoPedido('A domicilio') }
+      ]);
+    }
+  }
+
+  async function setTipoPedido(tipo) {
+    state.tipoPedido = tipo;
+    await askDireccionOrName();
+  }
+
+  async function askDireccionOrName() {
+    if (state.tipoPedido === 'A domicilio') {
+      await botMsg('Genial. ¿Dirección de entrega?');
+      state.mode = 'await_direccion';
+    } else {
+      await botMsg('Perfecto. ¿Tu nombre?');
+      state.mode = 'await_nombre';
+    }
+  }
+
+  async function setDireccion(d) {
+    state.direccion = d;
+    await botMsg('Anotado 📍 ¿Tu nombre?');
+    state.mode = 'await_nombre';
+  }
+
+  /* ───────── COMÚN ───────── */
   async function setNombre(n) {
     state.nombre = n;
-    await botMsg('Por último, ¿me das un teléfono de contacto? (9 dígitos)');
+    const tipo = state.intent === 'pedido' ? 'pedido' : 'reserva';
+    await botMsg(`Perfecto ${n}. ¿Tu teléfono de contacto? (9 dígitos)`);
     state.mode = 'await_telefono';
   }
 
@@ -1344,14 +1646,16 @@
     const wa = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildWaMessage())}`;
     let rows = '';
     if (state.intent === 'pedido') {
-      const lista = state.pedido.map(p => escapeHtml(p)).join('<br>');
+      const lista = state.pedido.map(p => `${escapeHtml(p.name)}${p.qty > 1 ? ' x' + p.qty : ''} — ${fmt(p.price * p.qty)}`).join('<br>');
+      const total = calcTotal();
       rows = `
         <h5>Resumen de pedido</h5>
         <div class="row"><span>Nombre</span><b>${escapeHtml(state.nombre)}</b></div>
         <div class="row"><span>Teléfono</span><b>+34 ${escapeHtml(state.telefono)}</b></div>
-        <div class="row"><span>Pedido</span><b style="text-align:right">${lista}</b></div>
+        <div class="row"><span>Pedido</span><b>${lista}</b></div>
         <div class="row"><span>Tipo</span><b>${escapeHtml(state.tipoPedido)}</b></div>
         ${state.direccion ? `<div class="row"><span>Dirección</span><b>${escapeHtml(state.direccion)}</b></div>` : ''}
+        <div class="row total-row"><span>Total</span><b>${fmt(total)}</b></div>
       `;
     } else {
       rows = `
@@ -1360,6 +1664,7 @@
         <div class="row"><span>Teléfono</span><b>+34 ${escapeHtml(state.telefono)}</b></div>
         <div class="row"><span>Personas</span><b>${escapeHtml(state.personas)}</b></div>
         <div class="row"><span>Día</span><b>${escapeHtml(state.dia)}</b></div>
+        <div class="row"><span>Hora</span><b>${escapeHtml(state.hora)}</b></div>
       `;
     }
     card.innerHTML = `${rows}<a class="wa-link" href="${wa}" target="_blank" rel="noopener">📲 Confirmar por WhatsApp</a>`;
@@ -1368,23 +1673,45 @@
     state.mode = 'done';
     setTimeout(async () => {
       const final = state.intent === 'pedido'
-        ? 'Pulsa el botón verde para enviar tu pedido por WhatsApp y lo confirmaremos en breve. 🛵'
-        : 'Pulsa el botón verde para enviar tu reserva por WhatsApp y la confirmaremos en breve. ¡Te esperamos! 🍽️';
+        ? 'Pulsa el botón verde para enviar tu pedido por WhatsApp y lo confirmaremos en breve. ¡Arigatō! 🎋'
+        : 'Pulsa el botón verde para enviar tu reserva por WhatsApp. ¡Te esperamos! 🎋';
       await botMsg(final);
     }, 800);
   }
 
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-  }
-
   function buildWaMessage() {
     if (state.intent === 'pedido') {
-      const lista = state.pedido.map(p => `• ${p}`).join('\n');
+      const lista = state.pedido.map(p => `• ${p.name}${p.qty > 1 ? ' x' + p.qty : ''} — ${fmt(p.price * p.qty)}`).join('\n');
+      const total = calcTotal();
       const dir = state.direccion ? `\n📍 *Dirección:* ${state.direccion}` : '';
-      return `🛵 *NUEVO PEDIDO — GastronomIA*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n🍽️ *Pedido:*\n${lista}\n📦 *Tipo:* ${state.tipoPedido}${dir}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
+      return `🛵 *PEDIDO — Bambú Sushi*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n🍣 *Pedido:*\n${lista}\n💰 *Total:* ${fmt(total)}\n📦 *Tipo:* ${state.tipoPedido}${dir}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
     }
-    return `🍽️ *NUEVA RESERVA — GastronomIA*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n👥 *Personas:* ${state.personas}\n📅 *Día:* ${state.dia}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
+    return `🎋 *RESERVA — Bambú Sushi*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n👥 *Personas:* ${state.personas}\n📅 *Día:* ${state.dia}\n🕐 *Hora:* ${state.hora}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
+  }
+
+  /* ───────── AÑADIR DESDE CARTA ───────── */
+  async function addFromCarta(name, price) {
+    if (!chatStarted) {
+      document.getElementById('chatModal').classList.add('open');
+      document.getElementById('chatTooltip').classList.remove('show');
+      chatStarted = true;
+      await botMsg(`¡Buena elección! 🎋`, 600);
+      state = resetState();
+      state.intent = 'pedido';
+    }
+    if (state.intent !== 'pedido') {
+      state = resetState();
+      state.intent = 'pedido';
+    }
+    const existing = state.pedido.find(p => p.name === name);
+    if (existing) existing.qty += 1;
+    else state.pedido.push({ name, price, qty: 1 });
+    document.getElementById('chatModal').classList.add('open');
+    await botMsg(`Añadido ✅ ${name} — ${fmt(price)}\n¿Quieres añadir más platos o finalizar?`);
+    quickReplies([
+      { label: '➕ Seguir añadiendo', onClick: () => showMenuPicker() },
+      { label: '✅ Finalizar pedido', onClick: () => finishDishes() }
+    ]);
   }
 
   /* ───────── INPUT HANDLER ───────── */
@@ -1402,57 +1729,46 @@
     const text = normalize(raw);
 
     if (state.mode === 'await_nombre') {
-      if (raw.length < 2) {
-        await botMsg('¿Me dices tu nombre, por favor?');
-        return;
-      }
+      if (raw.length < 2) { await botMsg('¿Me dices tu nombre, por favor?'); return; }
       return setNombre(raw);
     }
     if (state.mode === 'await_telefono') {
       const digits = raw.replace(/\D/g, '');
-      if (digits.length !== 9) {
-        await botMsg('Necesito un teléfono de 9 dígitos. ¿Puedes revisarlo?');
-        return;
-      }
+      if (digits.length !== 9) { await botMsg('Necesito un teléfono de 9 dígitos. ¿Puedes revisarlo?'); return; }
       return setTelefono(digits);
     }
     if (state.mode === 'await_direccion') {
-      if (raw.length < 5) {
-        await botMsg('¿Puedes darme una dirección un poco más completa?');
-        return;
-      }
+      if (raw.length < 5) { await botMsg('¿Puedes darme una dirección un poco más completa?'); return; }
       return setDireccion(raw);
     }
 
-    if (/(pedido|pedir|llevar|domicilio|recoger|takeaway|delivery)/.test(text)) return startPedido();
-    if (/(reserv|mesa|cita|reservar)/.test(text)) return startReserva();
-    if (/(carta|menu|platos|comer|comida)/.test(text)) return handleIntent('carta');
+    if (/(pedido|pedir|llevar|domicilio|recoger|takeaway|delivery|para llevar|quiero pedir)/.test(text)) return startPedido();
+    if (/(reserv|mesa|cita|cenar|comer|sentar|noche)/.test(text)) return startReserva();
+    if (/(carta|menu|platos|que tienen|que hay)/.test(text)) return handleIntent('carta');
+    if (/(precio|cuanto|cuesta|coste|tarifa|vale)/.test(text)) return handleIntent('precio');
     if (/(alerg|intoleran|vegano|vegetarian|celiac|gluten)/.test(text)) return handleIntent('alergia');
     if (/(horario|cuando|abierto|hora|abren|cierran)/.test(text)) return handleIntent('horario');
-    if (/(precio|cuanto|cuesta|coste|tarifa|vale)/.test(text)) return handleIntent('precio');
+    if (/(sushi|japones|bambu|chef)/.test(text)) return handleIntent('sushi');
     if (/(donde|ubicacion|direccion|aparcar|parking|llegar|estais|sitio)/.test(text)) return handleIntent('donde');
-    if (/(evento|celebracion|cumpleanos|boda|empresa|grupo|privad)/.test(text)) return handleIntent('evento');
-    if (/(hola|buenas|buenos|hey|holi)/.test(text)) {
-      await botMsg('¡Hola! 👋 ¿En qué puedo ayudarte?');
+    if (/(hola|buenas|buenos|hey|holi|irasshaimase)/.test(text)) {
+      await botMsg('¡Irasshaimase! 🎋 ¿En qué puedo ayudarte?');
       quickReplies([
         { label: '📅 Reservar mesa', onClick: () => startReserva() },
-        { label: '🛵 Hacer pedido', onClick: () => startPedido() },
-        { label: '🍽️ Ver la carta', onClick: () => handleIntent('carta') },
-        { label: '⏰ Horarios', onClick: () => handleIntent('horario') }
+        { label: '🛵 Pedir ahora', onClick: () => startPedido() },
+        { label: '🍣 Ver la carta', onClick: () => handleIntent('carta') }
       ]);
       return;
     }
-    if (/(gracias|merci|ok|vale|perfecto)/.test(text)) {
-      await botMsg('¡A ti! ¿Algo más en lo que pueda ayudarte? 😊');
+    if (/(gracias|arigato|merci|ok|vale|perfecto)/.test(text)) {
+      await botMsg('¡A ti! 🙏 ¿Algo más en lo que pueda ayudarte?');
       return;
     }
 
-    await botMsg('¿Quieres hacer una reserva, un pedido a domicilio o tienes alguna consulta?');
+    await botMsg('¿Te ayudo con una reserva, un pedido o tienes alguna consulta? 🎋');
     quickReplies([
       { label: '📅 Reservar mesa', onClick: () => startReserva() },
-      { label: '🛵 Hacer pedido', onClick: () => startPedido() },
-      { label: '🍽️ Ver la carta', onClick: () => handleIntent('carta') },
-      { label: '⏰ Horarios', onClick: () => handleIntent('horario') }
+      { label: '🛵 Pedir ahora', onClick: () => startPedido() },
+      { label: '🍣 Ver la carta', onClick: () => handleIntent('carta') }
     ]);
   }
 </script>
