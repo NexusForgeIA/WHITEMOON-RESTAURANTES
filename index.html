@@ -262,8 +262,14 @@
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: 32px;
     align-items: center;
+    overflow: visible;
+  }
+  .about-content {
+    overflow: visible;
+    max-width: 100%;
+    min-width: 0;
   }
   .about-img {
     position: relative;
@@ -353,10 +359,11 @@
   .menu-pane.active { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
   .dish-row {
-    display: flex;
-    align-items: stretch;
-    gap: 14px;
-    padding: 14px;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 12px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 12px;
@@ -368,11 +375,10 @@
     transform: translateY(-2px);
   }
   .dish-row .photo {
-    width: 80px; height: 80px;
+    width: 80px;
+    height: 80px;
     border-radius: 8px;
     overflow: hidden;
-    flex-shrink: 0;
-    align-self: center;
   }
   .dish-row .photo img {
     width: 100%; height: 100%;
@@ -381,52 +387,55 @@
   }
   .dish-row:hover .photo img { transform: scale(1.08); }
   .dish-row .info {
-    flex: 1;
-    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 4px;
-  }
-  .dish-row .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 10px;
+    min-width: 0;
   }
   .dish-row h3 {
     font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--texto);
+    font-size: 0.85rem;
     line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dish-row .desc {
+    font-size: 0.74rem;
+    color: var(--muted);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dish-row .foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+    gap: 10px;
   }
   .dish-row .price {
     color: var(--verde);
     font-weight: 700;
     font-family: 'Noto Serif JP', serif;
-    font-size: 16px;
+    font-size: 0.88rem;
     white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .dish-row .desc {
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.4;
-    margin-bottom: 6px;
-    flex: 1;
   }
   .dish-row .add-btn {
-    align-self: flex-end;
     background: rgba(74, 222, 128, 0.1);
     color: var(--verde);
     border: 1px solid var(--border);
-    padding: 6px 12px;
+    padding: 5px 11px;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     cursor: pointer;
     transition: all .2s;
     font-family: 'Inter', sans-serif;
+    white-space: nowrap;
   }
   .dish-row .add-btn:hover {
     background: var(--verde);
@@ -1116,13 +1125,12 @@
     /* CARTA */
     .tabs { margin: 0 -18px 28px; padding: 4px 18px 12px; }
     .menu-pane.active { grid-template-columns: 1fr; gap: 10px; }
-    .dish-row { padding: 12px; gap: 12px; }
+    .dish-row { grid-template-columns: 60px 1fr; padding: 10px; gap: 10px; }
     .dish-row .photo { width: 60px; height: 60px; }
-    .dish-row .head { flex-direction: column; gap: 2px; }
-    .dish-row h3 { font-size: 14px; }
-    .dish-row .price { font-size: 14px; }
-    .dish-row .desc { font-size: 11.5px; margin-bottom: 8px; }
-    .dish-row .add-btn { padding: 6px 10px; font-size: 11px; }
+    .dish-row h3 { font-size: 0.82rem; }
+    .dish-row .desc { font-size: 0.7rem; }
+    .dish-row .price { font-size: 0.85rem; }
+    .dish-row .add-btn { padding: 4px 9px; font-size: 10.5px; }
 
     /* GALERÍA */
     .gal-grid { grid-template-columns: 1fr; gap: 10px; }
@@ -1210,7 +1218,7 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-img">
-        <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=800&q=80" alt="Chef de Bambú Sushi" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80" alt="Espacio Bambú Sushi" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&q=80'" />
       </div>
       <div class="about-content">
         <span class="section-eyebrow">Nuestra historia</span>
@@ -1401,26 +1409,33 @@
   }
 
   /* ───────── FOTOS ───────── */
+  const URL_SUSHI    = 'https://images.unsplash.com/photo-1562802378-063ec186a863?w=400&q=80';
+  const URL_SASHIMI  = 'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=400&q=80';
+  const URL_GYOZAS   = 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400&q=80';
+  const URL_RAMEN    = 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400&q=80';
+  const URL_MOCHI    = 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80';
+  const URL_FALLBACK = 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400&q=80';
+
   const PHOTOS = {
-    fallback:    'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400&q=80',
-    edamame:     'https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&q=80',
-    tartarSalmon:'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80',
-    tartarAtun:  'https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=400&q=80',
-    sashimi:     'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=400&q=80',
-    sopaMiso:    'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400&q=80',
-    gyozas:      'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400&q=80',
-    takoyaki:    'https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=400&q=80',
-    nigiriSalmon:'https://images.unsplash.com/photo-1617196034099-b85200b455fd?w=400&q=80',
-    nigiriAtun:  'https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?w=400&q=80',
-    uramaki:     'https://images.unsplash.com/photo-1562802378-063ec186a863?w=400&q=80',
-    futomaki:    'https://images.unsplash.com/photo-1617196034776-bde0a2b44bbd?w=400&q=80',
-    rainbow:     'https://images.unsplash.com/photo-1553621042-f6e147245754?w=400&q=80',
-    bambuBox:    'https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=400&q=80',
-    pollo:       'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80',
-    tataki:      'https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=400&q=80',
-    poke:        'https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?w=400&q=80',
-    mochi:       'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80',
-    tartaQueso:  'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80'
+    fallback:    URL_FALLBACK,
+    edamame:     URL_FALLBACK,
+    tartarSalmon:URL_SASHIMI,
+    tartarAtun:  URL_SASHIMI,
+    sashimi:     URL_SASHIMI,
+    sopaMiso:    URL_RAMEN,
+    gyozas:      URL_GYOZAS,
+    takoyaki:    URL_GYOZAS,
+    nigiriSalmon:URL_SASHIMI,
+    nigiriAtun:  URL_SASHIMI,
+    uramaki:     URL_SUSHI,
+    futomaki:    URL_SUSHI,
+    rainbow:     URL_SUSHI,
+    bambuBox:    URL_SUSHI,
+    pollo:       URL_FALLBACK,
+    tataki:      URL_SASHIMI,
+    poke:        URL_FALLBACK,
+    mochi:       URL_MOCHI,
+    tartaQueso:  URL_MOCHI
   };
 
   /* ───────── DATA CARTA COMPLETA (web) ───────── */
@@ -1568,14 +1583,14 @@
         const img = it.img || PHOTOS.fallback;
         return `<article class="dish-row">
           ${star}
-          <div class="photo"><img src="${img}" alt="${escapeHtml(it.name)}" loading="lazy" /></div>
+          <div class="photo"><img src="${img}" alt="${escapeHtml(it.name)}" loading="lazy" onerror="this.src='${URL_FALLBACK}'" /></div>
           <div class="info">
-            <div class="head">
-              <h3>${escapeHtml(it.name)}</h3>
+            <h3 title="${escapeHtml(it.name)}">${escapeHtml(it.name)}</h3>
+            <p class="desc" title="${escapeHtml(it.desc)}">${escapeHtml(it.desc)}</p>
+            <div class="foot">
               <span class="price">${fmt(it.price)}</span>
+              <button class="add-btn" type="button" onclick="addFromCarta('${safeName}', ${it.price})">➕ Añadir</button>
             </div>
-            <p class="desc">${escapeHtml(it.desc)}</p>
-            <button class="add-btn" type="button" onclick="addFromCarta('${safeName}', ${it.price})">➕ Añadir al pedido</button>
           </div>
         </article>`;
       }).join('');
