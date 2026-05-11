@@ -1415,33 +1415,41 @@
   }
 
   /* ───────── FOTOS (whitelist Japonesa) ───────── */
-  const URL_SUSHI    = 'https://images.unsplash.com/photo-1562802378-063ec186a863?w=400&q=80'; // rolls
+  const URL_SUSHI    = 'https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=400&q=80'; // sushi variado
   const URL_SASHIMI  = 'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=400&q=80'; // sashimi
-  const URL_NIGIRI   = 'https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?w=400&q=80'; // nigiri salmón
-  const URL_MESA     = 'https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=400&q=80'; // mesa con platos
-  const URL_VARIADO  = 'https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=400&q=80'; // sushi variado
+  const URL_NIGIRI   = 'https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?w=400&q=80'; // nigiri
+  const URL_ROLL     = 'https://images.unsplash.com/photo-1562802378-063ec186a863?w=400&q=80'; // rolls
+  const URL_GYOZA    = 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400&q=80'; // gyozas
+  const URL_MISO     = 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80'; // sopa miso
+  const URL_EDAMAME  = 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?w=400&q=80'; // edamame
+  const URL_TARTAR   = 'https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=400&q=80'; // tartar salmón
+  const URL_POLLO    = 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=400&q=80'; // pollo teriyaki
+  const URL_POKE     = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80'; // poke bowl
+  const URL_MOCHI    = 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&q=80'; // mochi
+  const URL_TATAKI   = 'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=400&q=80'; // tataki
+  const URL_MESA     = 'https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=400&q=80'; // mesa sushi
   const URL_FALLBACK = 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400&q=80'; // bandeja sushi
 
   const PHOTOS = {
     fallback:    URL_FALLBACK,
-    edamame:     URL_FALLBACK,
-    tartarSalmon:URL_SASHIMI,
-    tartarAtun:  URL_SASHIMI,
+    edamame:     URL_EDAMAME,
+    tartarSalmon:URL_TARTAR,
+    tartarAtun:  URL_TARTAR,
     sashimi:     URL_SASHIMI,
-    sopaMiso:    URL_VARIADO,
-    gyozas:      URL_VARIADO,
-    takoyaki:    URL_VARIADO,
+    sopaMiso:    URL_MISO,
+    gyozas:      URL_GYOZA,
+    takoyaki:    URL_GYOZA,
     nigiriSalmon:URL_NIGIRI,
     nigiriAtun:  URL_NIGIRI,
-    uramaki:     URL_SUSHI,
-    futomaki:    URL_SUSHI,
+    uramaki:     URL_ROLL,
+    futomaki:    URL_ROLL,
     rainbow:     URL_SUSHI,
     bambuBox:    URL_MESA,
-    pollo:       URL_FALLBACK,
-    tataki:      URL_SASHIMI,
-    poke:        URL_FALLBACK,
-    mochi:       URL_FALLBACK,
-    tartaQueso:  URL_FALLBACK
+    pollo:       URL_POLLO,
+    tataki:      URL_TATAKI,
+    poke:        URL_POKE,
+    mochi:       URL_MOCHI,
+    tartaQueso:  URL_MOCHI
   };
 
   /* ───────── DATA CARTA COMPLETA (web) ───────── */
@@ -1888,7 +1896,7 @@
       items.forEach((it, idx) => {
         const star = it.star ? ' ⭐' : '';
         const img = it.img || PHOTOS.fallback;
-        html += `<div class="item"><img class="thumb" src="${img}" alt="" loading="lazy" /><span class="name">${escapeHtml(it.name)}${star}</span><span class="price">${fmt(it.price)}</span><button class="add" data-cat="${escapeHtml(cat)}" data-idx="${idx}" type="button">+</button></div>`;
+        html += `<div class="item"><img class="thumb" src="${img}" alt="" loading="lazy" onerror="this.src='${URL_FALLBACK}'" /><span class="name">${escapeHtml(it.name)}${star}</span><span class="price">${fmt(it.price)}</span><button class="add" data-cat="${escapeHtml(cat)}" data-idx="${idx}" type="button">+</button></div>`;
       });
     });
     html += `<div class="confirm-row"><span class="total">Total: <b id="picker-total">0,00€</b></span><button class="confirm-btn" id="picker-confirm" type="button" disabled>✅ Confirmar pedido</button></div>`;
