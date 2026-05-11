@@ -1606,6 +1606,12 @@
 
   /* ───────── CHATBOT ───────── */
   const WA_NUMBER = '34643199580';
+  const ENVIO = {
+    gratis_desde: 30,      // pedido mínimo envío gratis
+    coste: 2.50,           // coste envío si no llega al mínimo
+    minimo_pedido: 15,     // pedido mínimo para delivery
+    radio_km: 5            // radio máximo de entrega
+  };
   const body = () => document.getElementById('chatBody');
   let state = resetState();
   let chatStarted = false;
@@ -1619,6 +1625,12 @@
   }
   function fmt(n) { return n.toFixed(2).replace('.', ',') + '€'; }
   function calcTotal() { return state.pedido.reduce((s, it) => s + it.price * it.qty, 0); }
+  function esDomicilio() { return state.tipoPedido === 'A domicilio'; }
+  function costeEnvio() {
+    if (!esDomicilio()) return 0;
+    return calcTotal() >= ENVIO.gratis_desde ? 0 : ENVIO.coste;
+  }
+  function calcTotalConEnvio() { return calcTotal() + costeEnvio(); }
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   }
@@ -1859,7 +1871,9 @@
     state.mode = 'pedido';
     if (preTipo) state.tipoPedido = preTipo;
     updateChatChrome();
-    await botMsg('¡Vamos con tu pedido! 🛵\nSelecciona tus platos:');
+    await botMsg('¡Vamos con tu pedido! 🛵');
+    await botMsg(`🚚 Envío GRATIS en pedidos desde ${ENVIO.gratis_desde}€\nPor debajo: ${fmt(ENVIO.coste)} · Pedido mínimo ${ENVIO.minimo_pedido}€`);
+    await botMsg('Selecciona tus platos:');
     showMenuPicker();
   }
 
@@ -1913,6 +1927,7 @@
     const total = calcTotal();
     await botMsg(`Tu pedido 🛒:\n${lista}\n─────────────\nTotal: ${fmt(total)}`);
     if (state.tipoPedido) {
+      if (!(await aplicarEnvio())) return;
       await askDireccionOrName();
     } else {
       await botMsg('¿Recoger en local o a domicilio?');
@@ -1925,8 +1940,31 @@
     }
   }
 
+  // Devuelve true si el flujo puede continuar; false si queda a la espera de una acción del usuario.
+  async function aplicarEnvio() {
+    if (!esDomicilio()) return true;
+    const total = calcTotal();
+    if (total < ENVIO.minimo_pedido) {
+      await botMsg(`El pedido mínimo para domicilio es ${ENVIO.minimo_pedido}€.\n¿Quieres añadir algo más o recoger en local?`);
+      state.mode = 'await_dishes';
+      updateChatChrome();
+      quickReplies([
+        { label: '➕ Añadir más', onClick: () => showMenuPicker() },
+        { label: '🏃 Recoger en local', onClick: async () => { state.tipoPedido = 'Recoger en local'; await askDireccionOrName(); } }
+      ]);
+      return false;
+    }
+    if (total >= ENVIO.gratis_desde) {
+      await botMsg(`🚚 Envío: GRATIS 🎉 (tu pedido supera los ${ENVIO.gratis_desde}€)`);
+    } else {
+      await botMsg(`🚚 Envío: ${fmt(ENVIO.coste)} · Gratis a partir de ${ENVIO.gratis_desde}€`);
+    }
+    return true;
+  }
+
   async function setTipoPedido(tipo) {
     state.tipoPedido = tipo;
+    if (!(await aplicarEnvio())) return;
     await askDireccionOrName();
   }
 
@@ -1968,7 +2006,9 @@
     let rows = '';
     if (state.intent === 'pedido') {
       const lista = state.pedido.map(p => `${escapeHtml(p.name)}${p.qty > 1 ? ' x' + p.qty : ''} — ${fmt(p.price * p.qty)}`).join('<br>');
-      const total = calcTotal();
+      const envioRow = esDomicilio()
+        ? `<div class="row"><span>Envío</span><b>${costeEnvio() === 0 ? 'GRATIS 🎉' : fmt(costeEnvio())}</b></div>`
+        : '';
       rows = `
         <h5>Resumen de pedido</h5>
         <div class="row"><span>Nombre</span><b>${escapeHtml(state.nombre)}</b></div>
@@ -1976,7 +2016,8 @@
         <div class="row"><span>Pedido</span><b>${lista}</b></div>
         <div class="row"><span>Tipo</span><b>${escapeHtml(state.tipoPedido)}</b></div>
         ${state.direccion ? `<div class="row"><span>Dirección</span><b>${escapeHtml(state.direccion)}</b></div>` : ''}
-        <div class="row total-row"><span>Total</span><b>${fmt(total)}</b></div>
+        ${envioRow}
+        <div class="row total-row"><span>Total</span><b>${fmt(calcTotalConEnvio())}</b></div>
       `;
     } else {
       rows = `
@@ -2004,9 +2045,9 @@
   function buildWaMessage() {
     if (state.intent === 'pedido') {
       const lista = state.pedido.map(p => `• ${p.name}${p.qty > 1 ? ' x' + p.qty : ''} — ${fmt(p.price * p.qty)}`).join('\n');
-      const total = calcTotal();
       const dir = state.direccion ? `\n📍 *Dirección:* ${state.direccion}` : '';
-      return `🛵 *PEDIDO — Bambú Sushi*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n🍣 *Pedido:*\n${lista}\n💰 *Total:* ${fmt(total)}\n📦 *Tipo:* ${state.tipoPedido}${dir}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
+      const envioLine = esDomicilio() ? `\n🚚 *Envío:* ${costeEnvio() === 0 ? 'GRATIS' : fmt(costeEnvio())}` : '';
+      return `🛵 *PEDIDO — Bambú Sushi*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n🍣 *Pedido:*\n${lista}${envioLine}\n💰 *Total:* ${fmt(calcTotalConEnvio())}\n📦 *Tipo:* ${state.tipoPedido}${dir}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
     }
     return `🎋 *RESERVA — Bambú Sushi*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n👥 *Personas:* ${state.personas}\n📅 *Día:* ${state.dia}\n🕐 *Hora:* ${state.hora}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
   }
