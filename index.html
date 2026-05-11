@@ -2039,13 +2039,21 @@
     }
     card.innerHTML = `${rows}<a class="wa-link" href="${wa}" target="_blank" rel="noopener">📲 Confirmar por WhatsApp</a>`;
     body().appendChild(card);
+    if (state.intent === 'reserva') {
+      const waLink = card.querySelector('.wa-link');
+      waLink.addEventListener('click', () => {
+        if (waLink.dataset.confirmado) return;
+        waLink.dataset.confirmado = '1';
+        botMsg('✅ ¡Perfecto! Hemos recibido tus datos.\nNos pondremos en contacto contigo en breve para confirmar tu reserva.\n\n¡Te esperamos en Bambú Sushi! 🎋');
+      });
+    }
     scrollChat();
     state.mode = 'done';
     updateChatChrome();
     setTimeout(async () => {
       const final = state.intent === 'pedido'
         ? 'Pulsa el botón verde para enviar tu pedido por WhatsApp y lo confirmaremos en breve. ¡Arigatō! 🎋'
-        : 'Pulsa el botón verde para enviar tu reserva por WhatsApp. ¡Te esperamos! 🎋';
+        : 'Pulsa el botón verde para enviarnos tu solicitud.\nTe confirmaremos la reserva por WhatsApp en menos de 1 hora. ¡Arigatō! 🎋';
       await botMsg(final);
     }, 800);
   }
