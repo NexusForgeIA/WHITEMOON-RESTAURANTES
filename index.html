@@ -866,6 +866,12 @@
     margin: 10px 0 8px;
   }
   .menu-picker .cat:first-child { margin-top: 0; }
+  .menu-picker .note {
+    color: var(--verde);
+    font-size: 11px;
+    margin: 0 0 10px;
+    opacity: 0.85;
+  }
   .menu-picker .item {
     display: flex;
     justify-content: space-between;
@@ -1441,67 +1447,67 @@
   /* ───────── DATA CARTA COMPLETA (web) ───────── */
   const CARTA = {
     frios: [
-      { name: 'Edamame', price: 6.00, desc: 'Judías de soja con sal marina.', img: PHOTOS.edamame },
-      { name: 'Wakame', price: 6.50, desc: 'Ensalada de algas con sésamo.', img: PHOTOS.fallback },
-      { name: 'Wakame Especial', price: 8.00, desc: 'Con pepino y tartar de salmón.', img: PHOTOS.tartarSalmon },
-      { name: 'Ensaladilla Japo', price: 8.50, desc: 'Versión japonesa de la ensaladilla.', img: PHOTOS.fallback },
-      { name: 'Tartar de Salmón', price: 13.00, desc: 'Salmón fresco con aliño nikkei.', img: PHOTOS.tartarSalmon },
-      { name: 'Tartar de Atún', price: 14.00, desc: 'Atún rojo de almadraba.', img: PHOTOS.tartarAtun },
-      { name: 'Sashimi Mixto 6 ud.', price: 9.50, desc: 'Selección del chef.', img: PHOTOS.sashimi },
-      { name: 'Sashimi Mixto 12 ud.', price: 17.50, desc: 'Selección del chef.', img: PHOTOS.sashimi }
+      { name: 'Edamame', price: 6.60, desc: 'Judías de soja con sal marina.', img: PHOTOS.edamame },
+      { name: 'Wakame', price: 7.15, desc: 'Ensalada de algas con sésamo.', img: PHOTOS.fallback },
+      { name: 'Wakame Especial', price: 8.80, desc: 'Con pepino y tartar de salmón.', img: PHOTOS.tartarSalmon },
+      { name: 'Ensaladilla Japo', price: 9.35, desc: 'Versión japonesa de la ensaladilla.', img: PHOTOS.fallback },
+      { name: 'Tartar de Salmón', price: 14.30, desc: 'Salmón fresco con aliño nikkei.', img: PHOTOS.tartarSalmon },
+      { name: 'Tartar de Atún', price: 15.40, desc: 'Atún rojo de almadraba.', img: PHOTOS.tartarAtun },
+      { name: 'Sashimi Mixto 6 ud.', price: 10.45, desc: 'Selección del chef.', img: PHOTOS.sashimi },
+      { name: 'Sashimi Mixto 12 ud.', price: 19.25, desc: 'Selección del chef.', img: PHOTOS.sashimi }
     ],
     calientes: [
-      { name: 'Sopa Miso', price: 5.00, desc: 'Caldo tradicional de miso.', img: PHOTOS.sopaMiso },
-      { name: 'Gyozas de Verdura 6 ud.', price: 7.50, desc: 'Dumpling vegetal.', img: PHOTOS.gyozas },
-      { name: 'Gyozas de Pollo o Cerdo 6 ud.', price: 8.50, desc: 'Dumpling clásico.', img: PHOTOS.gyozas },
-      { name: 'Gyozas de Pato o Langostino 6 ud.', price: 9.00, desc: 'Versión gourmet.', img: PHOTOS.gyozas },
-      { name: 'Mix de Gyozas 8 ud.', price: 11.50, desc: 'Variedad para compartir.', img: PHOTOS.gyozas },
-      { name: 'Takoyaki', price: 8.50, desc: 'Bolitas de pulpo japonesas.', img: PHOTOS.takoyaki },
-      { name: 'Yakitori de Pollo 2 ud.', price: 6.00, desc: 'Brocheta a la brasa.', img: PHOTOS.pollo },
-      { name: 'Yakitori de Atún 2 ud.', price: 7.00, desc: 'Brocheta a la brasa.', img: PHOTOS.fallback },
-      { name: 'Rollitos Thai de Pollo 5 ud.', price: 7.00, desc: 'Crujientes con salsa.', img: PHOTOS.fallback },
-      { name: 'Rollitos Thai de Salmón 5 ud.', price: 9.00, desc: 'Crujientes con salsa.', img: PHOTOS.fallback }
+      { name: 'Sopa Miso', price: 5.50, desc: 'Caldo tradicional de miso.', img: PHOTOS.sopaMiso },
+      { name: 'Gyozas de Verdura 6 ud.', price: 8.25, desc: 'Dumpling vegetal.', img: PHOTOS.gyozas },
+      { name: 'Gyozas de Pollo o Cerdo 6 ud.', price: 9.35, desc: 'Dumpling clásico.', img: PHOTOS.gyozas },
+      { name: 'Gyozas de Pato o Langostino 6 ud.', price: 9.90, desc: 'Versión gourmet.', img: PHOTOS.gyozas },
+      { name: 'Mix de Gyozas 8 ud.', price: 12.65, desc: 'Variedad para compartir.', img: PHOTOS.gyozas },
+      { name: 'Takoyaki', price: 9.35, desc: 'Bolitas de pulpo japonesas.', img: PHOTOS.takoyaki },
+      { name: 'Yakitori de Pollo 2 ud.', price: 6.60, desc: 'Brocheta a la brasa.', img: PHOTOS.pollo },
+      { name: 'Yakitori de Atún 2 ud.', price: 7.70, desc: 'Brocheta a la brasa.', img: PHOTOS.fallback },
+      { name: 'Rollitos Thai de Pollo 5 ud.', price: 7.70, desc: 'Crujientes con salsa.', img: PHOTOS.fallback },
+      { name: 'Rollitos Thai de Salmón 5 ud.', price: 9.90, desc: 'Crujientes con salsa.', img: PHOTOS.fallback }
     ],
     nigiris: [
-      { name: 'Nigiri Aguacate o Mango x2', price: 4.00, desc: 'Opción vegetal.', img: PHOTOS.nigiriSalmon },
-      { name: 'Nigiri Salmón o Langostino x2', price: 4.50, desc: 'Sobre arroz de sushi.', img: PHOTOS.nigiriSalmon },
-      { name: 'Nigiri Atún, Salmón Flambeado, Pez Mantequilla... x2', price: 5.00, desc: 'Selección premium.', img: PHOTOS.nigiriAtun },
-      { name: 'Nigiri Anguila x2', price: 5.50, desc: 'Anguila glaseada.', img: PHOTOS.nigiriAtun }
+      { name: 'Nigiri Aguacate o Mango x2', price: 4.40, desc: 'Opción vegetal.', img: PHOTOS.nigiriSalmon },
+      { name: 'Nigiri Salmón o Langostino x2', price: 4.95, desc: 'Sobre arroz de sushi.', img: PHOTOS.nigiriSalmon },
+      { name: 'Nigiri Atún, Salmón Flambeado, Pez Mantequilla... x2', price: 5.50, desc: 'Selección premium.', img: PHOTOS.nigiriAtun },
+      { name: 'Nigiri Anguila x2', price: 6.05, desc: 'Anguila glaseada.', img: PHOTOS.nigiriAtun }
     ],
     rolls: [
-      { name: 'Hosomaki Pepino o Aguacate x8', price: 5.00, desc: 'Roll fino vegetal.', img: PHOTOS.uramaki },
-      { name: 'Hosomaki Mango o Tamago x8', price: 5.50, desc: 'Roll fino dulce.', img: PHOTOS.uramaki },
-      { name: 'Hosomaki Surimi/Atún/Salmón x8', price: 7.00, desc: 'Roll fino marino.', img: PHOTOS.uramaki },
-      { name: 'Futomaki Pollo Teriyaki x10', price: 11.00, desc: 'Roll grueso de pollo.', img: PHOTOS.futomaki },
-      { name: 'Futomaki Atún y Aguacate x10', price: 13.00, desc: 'Roll grueso clásico.', img: PHOTOS.futomaki },
-      { name: 'Futomaki Tartar de Atún x10', price: 13.50, desc: 'Roll grueso premium.', img: PHOTOS.futomaki },
-      { name: 'Uramaki Pepino y Surimi x10', price: 9.50, desc: 'Roll del revés.', img: PHOTOS.uramaki },
-      { name: 'Uramaki Salmón y Aguacate x10', price: 11.00, desc: 'Roll del revés clásico.', img: PHOTOS.uramaki },
-      { name: 'Uramaki Langostino Panko x10', price: 12.00, desc: 'Crujiente con langostino.', img: PHOTOS.rainbow },
-      { name: 'Uramaki Tartar de Atún x10', price: 13.50, desc: 'Roll del revés premium.', img: PHOTOS.uramaki },
-      { name: 'Uramaki Anguila y Aguacate x10', price: 13.50, desc: 'Con anguila glaseada.', img: PHOTOS.uramaki },
-      { name: 'Uramaki Tataki de Atún y Aguacate x10', price: 14.00, desc: 'Atún marcado.', star: true, img: PHOTOS.rainbow }
+      { name: 'Hosomaki Pepino o Aguacate x8', price: 5.50, desc: 'Roll fino vegetal.', img: PHOTOS.uramaki },
+      { name: 'Hosomaki Mango o Tamago x8', price: 6.05, desc: 'Roll fino dulce.', img: PHOTOS.uramaki },
+      { name: 'Hosomaki Surimi/Atún/Salmón x8', price: 7.70, desc: 'Roll fino marino.', img: PHOTOS.uramaki },
+      { name: 'Futomaki Pollo Teriyaki x10', price: 12.10, desc: 'Roll grueso de pollo.', img: PHOTOS.futomaki },
+      { name: 'Futomaki Atún y Aguacate x10', price: 14.30, desc: 'Roll grueso clásico.', img: PHOTOS.futomaki },
+      { name: 'Futomaki Tartar de Atún x10', price: 14.85, desc: 'Roll grueso premium.', img: PHOTOS.futomaki },
+      { name: 'Uramaki Pepino y Surimi x10', price: 10.45, desc: 'Roll del revés.', img: PHOTOS.uramaki },
+      { name: 'Uramaki Salmón y Aguacate x10', price: 12.10, desc: 'Roll del revés clásico.', img: PHOTOS.uramaki },
+      { name: 'Uramaki Langostino Panko x10', price: 13.20, desc: 'Crujiente con langostino.', img: PHOTOS.rainbow },
+      { name: 'Uramaki Tartar de Atún x10', price: 14.85, desc: 'Roll del revés premium.', img: PHOTOS.uramaki },
+      { name: 'Uramaki Anguila y Aguacate x10', price: 14.85, desc: 'Con anguila glaseada.', img: PHOTOS.uramaki },
+      { name: 'Uramaki Tataki de Atún y Aguacate x10', price: 15.40, desc: 'Atún marcado.', star: true, img: PHOTOS.rainbow }
     ],
     bambubox: [
-      { name: 'Nigiris 4 ud.', price: 8.00, desc: 'Selección del chef.', img: PHOTOS.nigiriSalmon },
-      { name: 'Nigiris 8 ud.', price: 16.00, desc: 'Selección del chef.', img: PHOTOS.nigiriSalmon },
-      { name: 'Bambú Box 6 piezas', price: 9.50, desc: 'Surtido para 1 persona.', img: PHOTOS.bambuBox },
-      { name: 'Bambú Box 12 piezas', price: 17.00, desc: 'Surtido para compartir.', img: PHOTOS.bambuBox },
-      { name: 'Bambú Box 24 piezas', price: 23.00, desc: 'Surtido grande.', img: PHOTOS.bambuBox },
-      { name: 'Bambú Box 40 piezas', price: 36.50, desc: 'Para grupo.', star: true, img: PHOTOS.bambuBox }
+      { name: 'Nigiris 4 ud.', price: 8.80, desc: 'Selección del chef.', img: PHOTOS.nigiriSalmon },
+      { name: 'Nigiris 8 ud.', price: 17.60, desc: 'Selección del chef.', img: PHOTOS.nigiriSalmon },
+      { name: 'Bambú Box 6 piezas', price: 10.45, desc: 'Surtido para 1 persona.', img: PHOTOS.bambuBox },
+      { name: 'Bambú Box 12 piezas', price: 18.70, desc: 'Surtido para compartir.', img: PHOTOS.bambuBox },
+      { name: 'Bambú Box 24 piezas', price: 25.30, desc: 'Surtido grande.', img: PHOTOS.bambuBox },
+      { name: 'Bambú Box 40 piezas', price: 40.15, desc: 'Para grupo.', star: true, img: PHOTOS.bambuBox }
     ],
     otros: [
-      { name: 'Pollo Teriyaki', price: 10.00, desc: 'Salsa teriyaki casera.', img: PHOTOS.pollo },
-      { name: 'Salmón Teriyaki', price: 11.00, desc: 'Salsa teriyaki casera.', img: PHOTOS.tataki },
-      { name: 'Tataki de Salmón', price: 14.00, desc: 'Salmón marcado en plancha.', img: PHOTOS.tataki },
-      { name: 'Tataki de Atún', price: 15.00, desc: 'Atún marcado en plancha.', img: PHOTOS.tataki },
-      { name: 'Secreto a Baja Temperatura', price: 17.00, desc: 'Cerdo ibérico jugoso.', img: PHOTOS.fallback },
-      { name: 'Poke Vegano', price: 11.50, desc: 'Bowl con verduras y arroz.', img: PHOTOS.poke },
-      { name: 'Poke de Salmón/Atún', price: 14.00, desc: 'Bowl con pescado fresco.', img: PHOTOS.poke },
-      { name: 'Wok', price: 8.50, desc: 'Salteado oriental (base).', img: PHOTOS.fallback },
-      { name: 'Dorayaki Casero', price: 5.00, desc: 'Pastelito de azuki.', img: PHOTOS.mochi },
-      { name: 'Tarta de Queso Casera', price: 5.00, desc: 'Receta de la casa.', img: PHOTOS.tartaQueso },
-      { name: 'Mochi 1 ud.', price: 3.00, desc: 'Postre japonés.', img: PHOTOS.mochi }
+      { name: 'Pollo Teriyaki', price: 11.00, desc: 'Salsa teriyaki casera.', img: PHOTOS.pollo },
+      { name: 'Salmón Teriyaki', price: 12.10, desc: 'Salsa teriyaki casera.', img: PHOTOS.tataki },
+      { name: 'Tataki de Salmón', price: 15.40, desc: 'Salmón marcado en plancha.', img: PHOTOS.tataki },
+      { name: 'Tataki de Atún', price: 16.50, desc: 'Atún marcado en plancha.', img: PHOTOS.tataki },
+      { name: 'Secreto a Baja Temperatura', price: 18.70, desc: 'Cerdo ibérico jugoso.', img: PHOTOS.fallback },
+      { name: 'Poke Vegano', price: 12.65, desc: 'Bowl con verduras y arroz.', img: PHOTOS.poke },
+      { name: 'Poke de Salmón/Atún', price: 15.40, desc: 'Bowl con pescado fresco.', img: PHOTOS.poke },
+      { name: 'Wok', price: 9.35, desc: 'Salteado oriental (base).', img: PHOTOS.fallback },
+      { name: 'Dorayaki Casero', price: 5.50, desc: 'Pastelito de azuki.', img: PHOTOS.mochi },
+      { name: 'Tarta de Queso Casera', price: 5.50, desc: 'Receta de la casa.', img: PHOTOS.tartaQueso },
+      { name: 'Mochi 1 ud.', price: 3.30, desc: 'Postre japonés.', img: PHOTOS.mochi }
     ]
   };
 
@@ -1517,49 +1523,49 @@
   /* ───────── DATA MENÚ CHATBOT (selección destacada con precios reales) ───────── */
   const MENU = {
     'Entrantes Fríos': [
-      { name: 'Edamame', price: 6.00, img: PHOTOS.edamame },
-      { name: 'Wakame Especial', price: 8.00, img: PHOTOS.tartarSalmon },
-      { name: 'Tartar de Salmón', price: 13.00, img: PHOTOS.tartarSalmon },
-      { name: 'Tartar de Atún', price: 14.00, img: PHOTOS.tartarAtun },
-      { name: 'Sashimi Mixto 6 ud.', price: 9.50, img: PHOTOS.sashimi },
-      { name: 'Sashimi Mixto 12 ud.', price: 17.50, img: PHOTOS.sashimi }
+      { name: 'Edamame', price: 6.60, img: PHOTOS.edamame },
+      { name: 'Wakame Especial', price: 8.80, img: PHOTOS.tartarSalmon },
+      { name: 'Tartar de Salmón', price: 14.30, img: PHOTOS.tartarSalmon },
+      { name: 'Tartar de Atún', price: 15.40, img: PHOTOS.tartarAtun },
+      { name: 'Sashimi Mixto 6 ud.', price: 10.45, img: PHOTOS.sashimi },
+      { name: 'Sashimi Mixto 12 ud.', price: 19.25, img: PHOTOS.sashimi }
     ],
     'Entrantes Calientes': [
-      { name: 'Sopa Miso', price: 5.00, img: PHOTOS.sopaMiso },
-      { name: 'Gyozas Pollo/Cerdo 6 ud.', price: 8.50, img: PHOTOS.gyozas },
-      { name: 'Mix Gyozas 8 ud.', price: 11.50, img: PHOTOS.gyozas },
-      { name: 'Takoyaki', price: 8.50, img: PHOTOS.takoyaki },
-      { name: 'Yakitori Pollo 2 ud.', price: 6.00, img: PHOTOS.pollo },
-      { name: 'Rollitos Thai Pollo 5 ud.', price: 7.00, img: PHOTOS.fallback }
+      { name: 'Sopa Miso', price: 5.50, img: PHOTOS.sopaMiso },
+      { name: 'Gyozas Pollo/Cerdo 6 ud.', price: 9.35, img: PHOTOS.gyozas },
+      { name: 'Mix Gyozas 8 ud.', price: 12.65, img: PHOTOS.gyozas },
+      { name: 'Takoyaki', price: 9.35, img: PHOTOS.takoyaki },
+      { name: 'Yakitori Pollo 2 ud.', price: 6.60, img: PHOTOS.pollo },
+      { name: 'Rollitos Thai Pollo 5 ud.', price: 7.70, img: PHOTOS.fallback }
     ],
     'Nigiris': [
-      { name: 'Nigiri Salmón/Langostino x2', price: 4.50, img: PHOTOS.nigiriSalmon },
-      { name: 'Nigiri Atún x2', price: 5.00, img: PHOTOS.nigiriAtun },
-      { name: 'Nigiri Anguila x2', price: 5.50, img: PHOTOS.nigiriAtun }
+      { name: 'Nigiri Salmón/Langostino x2', price: 4.95, img: PHOTOS.nigiriSalmon },
+      { name: 'Nigiri Atún x2', price: 5.50, img: PHOTOS.nigiriAtun },
+      { name: 'Nigiri Anguila x2', price: 6.05, img: PHOTOS.nigiriAtun }
     ],
     'Rolls': [
-      { name: 'Hosomaki Salmón x8', price: 7.00, img: PHOTOS.uramaki },
-      { name: 'Futomaki Atún y Aguacate x10', price: 13.00, img: PHOTOS.futomaki },
-      { name: 'Uramaki Salmón y Aguacate x10', price: 11.00, img: PHOTOS.uramaki },
-      { name: 'Uramaki Langostino Panko x10', price: 12.00, img: PHOTOS.rainbow },
-      { name: 'Uramaki Tataki Atún x10', price: 14.00, img: PHOTOS.rainbow }
+      { name: 'Hosomaki Salmón x8', price: 7.70, img: PHOTOS.uramaki },
+      { name: 'Futomaki Atún y Aguacate x10', price: 14.30, img: PHOTOS.futomaki },
+      { name: 'Uramaki Salmón y Aguacate x10', price: 12.10, img: PHOTOS.uramaki },
+      { name: 'Uramaki Langostino Panko x10', price: 13.20, img: PHOTOS.rainbow },
+      { name: 'Uramaki Tataki Atún x10', price: 15.40, img: PHOTOS.rainbow }
     ],
     'Bambú Box': [
-      { name: 'Bambú Box 6 piezas', price: 9.50, img: PHOTOS.bambuBox },
-      { name: 'Bambú Box 12 piezas', price: 17.00, img: PHOTOS.bambuBox },
-      { name: 'Bambú Box 24 piezas', price: 23.00, img: PHOTOS.bambuBox },
-      { name: 'Bambú Box 40 piezas', price: 36.50, img: PHOTOS.bambuBox }
+      { name: 'Bambú Box 6 piezas', price: 10.45, img: PHOTOS.bambuBox },
+      { name: 'Bambú Box 12 piezas', price: 18.70, img: PHOTOS.bambuBox },
+      { name: 'Bambú Box 24 piezas', price: 25.30, img: PHOTOS.bambuBox },
+      { name: 'Bambú Box 40 piezas', price: 40.15, img: PHOTOS.bambuBox }
     ],
     'Otros': [
-      { name: 'Pollo Teriyaki', price: 10.00, img: PHOTOS.pollo },
-      { name: 'Tataki de Salmón', price: 14.00, img: PHOTOS.tataki },
-      { name: 'Poke de Salmón/Atún', price: 14.00, img: PHOTOS.poke },
-      { name: 'Wok', price: 8.50, img: PHOTOS.fallback }
+      { name: 'Pollo Teriyaki', price: 11.00, img: PHOTOS.pollo },
+      { name: 'Tataki de Salmón', price: 15.40, img: PHOTOS.tataki },
+      { name: 'Poke de Salmón/Atún', price: 15.40, img: PHOTOS.poke },
+      { name: 'Wok', price: 9.35, img: PHOTOS.fallback }
     ],
     'Postres': [
-      { name: 'Dorayaki Casero', price: 5.00, img: PHOTOS.mochi },
-      { name: 'Tarta de Queso Casera', price: 5.00, img: PHOTOS.tartaQueso },
-      { name: 'Mochi', price: 3.00, img: PHOTOS.mochi }
+      { name: 'Dorayaki Casero', price: 5.50, img: PHOTOS.mochi },
+      { name: 'Tarta de Queso Casera', price: 5.50, img: PHOTOS.tartaQueso },
+      { name: 'Mochi', price: 3.30, img: PHOTOS.mochi }
     ]
   };
   const CAT_ICON = {
@@ -1862,7 +1868,7 @@
     updateChatChrome();
     const wrap = document.createElement('div');
     wrap.className = 'menu-picker';
-    let html = '';
+    let html = '<div class="note">Precios con IVA incluido (10%)</div>';
     Object.entries(MENU).forEach(([cat, items]) => {
       html += `<div class="cat">${CAT_ICON[cat] || ''} ${cat.toUpperCase()}</div>`;
       items.forEach((it, idx) => {
