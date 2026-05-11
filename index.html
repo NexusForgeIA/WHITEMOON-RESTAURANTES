@@ -914,8 +914,21 @@
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     gap: 10px;
+  }
+  .menu-picker .picker-totals {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .menu-picker .picker-totals .sep {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3px 0;
+    width: 100%;
   }
   .menu-picker .total {
     color: var(--verde);
@@ -1624,6 +1637,29 @@
   const body = () => document.getElementById('chatBody');
   let state = resetState();
   let chatStarted = false;
+  let activePicker = null;
+
+  function updatePickerTotals() {
+    if (!activePicker) return;
+    const subEl = activePicker.querySelector('#picker-subtotal');
+    if (!subEl) return;
+    subEl.textContent = fmt(calcTotal());
+    const envioRow = activePicker.querySelector('#picker-envio-row');
+    const sep = activePicker.querySelector('#picker-sep');
+    const totalRow = activePicker.querySelector('#picker-total-row');
+    if (state.tipoPedido && state.pedido.length) {
+      const envio = costeEnvio();
+      activePicker.querySelector('#picker-envio').textContent = envio === 0 ? 'GRATIS 🎉' : fmt(envio);
+      activePicker.querySelector('#picker-total').textContent = fmt(calcTotalConEnvio());
+      envioRow.style.display = '';
+      sep.style.display = '';
+      totalRow.style.display = '';
+    } else {
+      envioRow.style.display = 'none';
+      sep.style.display = 'none';
+      totalRow.style.display = 'none';
+    }
+  }
 
   function resetState() {
     return { mode: 'idle', intent: null, personas: null, dia: null, hora: null, nombre: null, telefono: null, pedido: [], tipoPedido: null, direccion: null };
@@ -1900,9 +1936,16 @@
         html += `<div class="item"><img class="thumb" src="${img}" alt="" loading="lazy" onerror="this.src='${URL_FALLBACK}'" /><span class="name">${escapeHtml(it.name)}${star}</span><span class="price">${fmt(it.price)}</span><button class="add" data-cat="${escapeHtml(cat)}" data-idx="${idx}" type="button">+</button></div>`;
       });
     });
-    html += `<div class="confirm-row"><span class="total">Total: <b id="picker-total">0,00€</b></span><button class="confirm-btn" id="picker-confirm" type="button" disabled>✅ Confirmar pedido</button></div>`;
+    html += `<div class="confirm-row"><div class="picker-totals">` +
+      `<span>Subtotal: <b id="picker-subtotal">0,00€</b></span>` +
+      `<span id="picker-envio-row" style="display:none">Envío: <b id="picker-envio">—</b></span>` +
+      `<hr class="sep" id="picker-sep" style="display:none">` +
+      `<span class="total" id="picker-total-row" style="display:none">Total: <b id="picker-total">0,00€</b></span>` +
+      `</div><button class="confirm-btn" id="picker-confirm" type="button" disabled>✅ Confirmar pedido</button></div>`;
     wrap.innerHTML = html;
     body().appendChild(wrap);
+    activePicker = wrap;
+    updatePickerTotals();
     scrollChat();
 
     wrap.querySelectorAll('.item .add').forEach(btn => {
@@ -1916,7 +1959,7 @@
         btn.classList.add('added');
         btn.textContent = '✓';
         setTimeout(() => { btn.textContent = '+'; btn.classList.remove('added'); }, 600);
-        wrap.querySelector('#picker-total').textContent = fmt(calcTotal());
+        updatePickerTotals();
         wrap.querySelector('#picker-confirm').disabled = state.pedido.length === 0;
       });
     });
@@ -1959,7 +2002,7 @@
       updateChatChrome();
       quickReplies([
         { label: '➕ Añadir más', onClick: () => showMenuPicker() },
-        { label: '🏃 Recoger en local', onClick: async () => { state.tipoPedido = 'Recoger en local'; await askDireccionOrName(); } }
+        { label: '🏃 Recoger en local', onClick: async () => { state.tipoPedido = 'Recoger en local'; updatePickerTotals(); await askDireccionOrName(); } }
       ]);
       return false;
     }
@@ -1973,6 +2016,7 @@
 
   async function setTipoPedido(tipo) {
     state.tipoPedido = tipo;
+    updatePickerTotals();
     if (!(await aplicarEnvio())) return;
     await askDireccionOrName();
   }
