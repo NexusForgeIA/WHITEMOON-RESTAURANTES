@@ -1715,10 +1715,9 @@
     const closeBtn = document.querySelector('.chat-close');
     const modal = document.getElementById('chatModal');
     const isOpen = modal.classList.contains('open');
-    const step = chatStep();
     if (isOpen) {
       launcher.style.display = 'none';
-      closeBtn.style.visibility = (step === 1) ? 'hidden' : 'visible';
+      closeBtn.style.visibility = 'visible';
     } else {
       launcher.style.display = 'flex';
       closeBtn.style.visibility = 'visible';
@@ -1743,7 +1742,6 @@
     }
   }
   function closeChat() {
-    if (chatStep() === 1) return;
     document.getElementById('chatModal').classList.remove('open');
     updateChatChrome();
   }
