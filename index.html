@@ -1357,9 +1357,9 @@
       <div>
         <h4>Contacto</h4>
         <ul>
-          <li>Calle Bambú 24</li>
-          <li>28001 — Madrid</li>
-          <li>+34 643 19 95 80</li>
+          <li>Av. del Aeropuerto, 6</li>
+          <li>Poniente Sur, 14004 — Córdoba</li>
+          <li>633 624 904 / 957 927 670</li>
           <li>hola@bambusushi.es</li>
         </ul>
       </div>
@@ -1613,7 +1613,7 @@
   document.addEventListener('DOMContentLoaded', renderCarta);
 
   /* ───────── CHATBOT ───────── */
-  const WA_NUMBER = '34643199580';
+  const WA_NUMBER = '34633624904';
   const ENVIO = {
     gratis_desde: 30,      // pedido mínimo envío gratis
     coste: 2.50,           // coste envío si no llega al mínimo
@@ -1819,7 +1819,7 @@
       return;
     }
     if (intent === 'donde') {
-      await botMsg('Estamos en el centro de la ciudad 📍\nAl confirmar tu reserva o pedido te enviamos la ubicación exacta por WhatsApp.');
+      await botMsg('Estamos en Av. del Aeropuerto, 6\nPoniente Sur, 14004 Córdoba 📍\nTel: 633 624 904 / 957 927 670\nAl confirmar tu reserva te enviamos la ubicación exacta por WhatsApp.');
       quickReplies([
         { label: '📅 Reservar mesa', onClick: () => startReserva() },
         { label: '🛵 Pedir ahora', onClick: () => startPedido() }
