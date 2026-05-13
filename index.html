@@ -2002,7 +2002,52 @@
   }
 
   /* ───────── PEDIDO FLOW ───────── */
+  function isAbierto() {
+    const now = new Date();
+    const totalMin = now.getHours() * 60 + now.getMinutes();
+    const comida1 = totalMin >= 13 * 60 && totalMin < 16 * 60;
+    const cena = totalMin >= 20 * 60 + 30 && totalMin < 23 * 60 + 30;
+    return comida1 || cena;
+  }
+  function tiempoHastaApertura() {
+    const now = new Date();
+    const totalMin = now.getHours() * 60 + now.getMinutes();
+    const apertura1 = 13 * 60;
+    const apertura2 = 20 * 60 + 30;
+    let next;
+    if (totalMin < apertura1) next = { mins: apertura1 - totalMin, hora: '13:00' };
+    else if (totalMin < apertura2) next = { mins: apertura2 - totalMin, hora: '20:30' };
+    else next = { mins: (24 * 60 - totalMin) + apertura1, hora: '13:00' };
+    const h = Math.floor(next.mins / 60);
+    const m = next.mins % 60;
+    let falta;
+    if (h === 0) falta = `${m} min`;
+    else if (m === 0) falta = `${h} ${h === 1 ? 'hora' : 'horas'}`;
+    else falta = `${h}h ${m}min`;
+    return { falta, hora: next.hora };
+  }
+  async function avisarCerrado() {
+    await botMsg('😔 Lo sentimos, ahora mismo estamos cerrados.\n\n🕐 Nuestro horario de cocina:\n🍱 Comidas: 13:00 - 16:00\n🌙 Cenas: 20:30 - 23:30\n\n¿Quieres hacer una reserva para cuando abramos?');
+    quickReplies([
+      { label: '📅 Reservar mesa', onClick: () => startReserva() },
+      { label: '🔔 ¿Cuándo abren?', onClick: () => mostrarProximaApertura() }
+    ]);
+  }
+  async function mostrarProximaApertura() {
+    const { falta, hora } = tiempoHastaApertura();
+    await botMsg(`Abrimos en ${falta} — próximo servicio a las ${hora}`);
+    quickReplies([
+      { label: '📅 Reservar mesa', onClick: () => startReserva() }
+    ]);
+  }
   async function startPedido(preTipo) {
+    if (!isAbierto()) {
+      state = resetState();
+      state.mode = 'cerrado';
+      updateChatChrome();
+      await avisarCerrado();
+      return;
+    }
     state = resetState();
     state.intent = 'pedido';
     state.mode = 'pedido';
