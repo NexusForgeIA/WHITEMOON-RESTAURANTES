@@ -1674,7 +1674,10 @@
       <div>
         <h4>Horarios</h4>
         <ul>
-          <li>Lunes a Domingo: 13:00-16:00 y 20:30-23:00</li>
+          <li>Miércoles a Jueves: 13:00-16:00 y 20:30-23:00</li>
+          <li>Viernes: 13:00-16:00 y 20:30-23:30</li>
+          <li>Sábado a Domingo: 13:00-16:00 y 20:30-23:30</li>
+          <li>Lunes a Martes: 13:00-16:00 y 20:30-23:00</li>
           <li>Última reserva: 22:45h</li>
           <li>Abierto todos los días de la semana</li>
         </ul>
@@ -2216,7 +2219,7 @@
       return;
     }
     if (intent === 'horario') {
-      await botMsg('🗓️ Abierto todos los días\n🍱 Comidas: 13:00-16:00\n🌙 Cenas: 20:30-23:30 (vie/sáb/dom)\n         20:30-23:00 (resto)\n⏰ Última reserva: 22:45h\n¿Reservamos?');
+      await botMsg('🗓️ Abierto todos los días\n• Miércoles a Jueves: 13:00-16:00 y 20:30-23:00\n• Viernes: 13:00-16:00 y 20:30-23:30\n• Sábado a Domingo: 13:00-16:00 y 20:30-23:30\n• Lunes a Martes: 13:00-16:00 y 20:30-23:00\n⏰ Última reserva: 22:45h\n¿Reservamos?');
       quickReplies([
         { label: '📅 Reservar mesa', onClick: () => startReserva() },
         { label: '🛵 Pedir ahora', onClick: () => startPedido() }
