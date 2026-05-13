@@ -2417,12 +2417,11 @@
     card.className = 'summary-card';
     if (state.intent === 'pedido') {
       const now = new Date();
+      const fecha = String(now.getDate()).padStart(2,'0') +
+                    String(now.getMonth()+1).padStart(2,'0');
       const hora = String(now.getHours()).padStart(2,'0') +
                    String(now.getMinutes()).padStart(2,'0');
-      const productos = state.pedido
-        .map(p => p.name.split(' ')[0].substring(0,3).toUpperCase())
-        .join('');
-      state.numeroPedido = 'BS-' + hora + '-' + productos;
+      state.numeroPedido = 'BS-' + fecha + hora;
     }
     const wa = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildWaMessage())}`;
     let rows = '';
