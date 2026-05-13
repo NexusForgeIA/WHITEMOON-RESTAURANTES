@@ -106,7 +106,7 @@
       "name": "¿Cuál es el horario de Bambú Sushi Córdoba?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Abrimos todos los días: comidas de 13:00 a 16:00 y cenas de 20:30 a 23:30 (viernes, sábado y domingo hasta las 23:30)."
+        "text": "Abrimos todos los días: comidas de 13:00 a 16:00 y cenas de 20:30 a 23:00 (viernes, sábado y domingo hasta las 23:30). Última reserva: 22:45h."
       }
     },
     {
@@ -1660,7 +1660,7 @@
   <p>Bambú Sushi es el restaurante japonés más valorado de Córdoba con más de 15 años de experiencia. Especialistas en nigiris, uramaki, futomaki, sashimi y tartar de salmón. Pescado fresco seleccionado cada día. Premio Restaurante Guru 2022.</p>
 
   <h2>Reservar mesa en Bambú Sushi Córdoba</h2>
-  <p>Reserva tu mesa en Bambú Sushi Córdoba online, por WhatsApp al 643 498 465 o llamando al 633 624 904. Confirmamos en menos de 1 hora. Abierto todos los días, comidas 13:00-16:00 y cenas 20:30-23:30.</p>
+  <p>Reserva tu mesa en Bambú Sushi Córdoba online, por WhatsApp al 643 498 465 o llamando al 633 624 904. Confirmamos en menos de 1 hora. Abierto todos los días, comidas 13:00-16:00 y cenas 20:30-23:00 (vie/sáb/dom hasta 23:30). Última reserva: 22:45h.</p>
 </section>
 
 <!-- ─────── FOOTER ─────── -->
@@ -2216,7 +2216,7 @@
       return;
     }
     if (intent === 'horario') {
-      await botMsg('🗓️ Abierto todos los días\n• Miércoles a Jueves: 13:00-16:00 y 20:30-23:00\n• Viernes: 13:00-16:00 y 20:30-23:30\n• Sábado a Domingo: 13:00-16:00 y 20:30-23:30\n• Lunes a Martes: 13:00-16:00 y 20:30-23:00\n¿Reservamos?');
+      await botMsg('🗓️ Abierto todos los días\n🍱 Comidas: 13:00-16:00\n🌙 Cenas: 20:30-23:30 (vie/sáb/dom)\n         20:30-23:00 (resto)\n⏰ Última reserva: 22:45h\n¿Reservamos?');
       quickReplies([
         { label: '📅 Reservar mesa', onClick: () => startReserva() },
         { label: '🛵 Pedir ahora', onClick: () => startPedido() }
