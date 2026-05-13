@@ -1275,7 +1275,7 @@
         <div class="stat-label">Pescado del día</div>
       </div>
       <div>
-        <div class="stat-num">4.9★</div>
+        <div class="stat-num">4.4★</div>
         <div class="stat-label">Valoración Google</div>
       </div>
     </div>
@@ -1418,10 +1418,11 @@
       <div>
         <h4>Horarios</h4>
         <ul>
-          <li>Martes a Domingo</li>
-          <li>Comidas: 13:00 - 16:00</li>
-          <li>Cenas: 20:00 - 23:30</li>
-          <li>Lunes cerrado</li>
+          <li>Miércoles a Jueves: 13:00-16:00 y 20:30-23:00</li>
+          <li>Viernes: 13:00-16:00 y 20:30-23:30</li>
+          <li>Sábado a Domingo: 13:00-16:00 y 20:30-23:30</li>
+          <li>Lunes a Martes: 13:00-16:00 y 20:30-23:00</li>
+          <li>Abierto todos los días de la semana</li>
         </ul>
       </div>
       <div>
@@ -1931,7 +1932,7 @@
       return;
     }
     if (intent === 'horario') {
-      await botMsg('🗓️ Martes a Domingo\n🍱 Comidas: 13:00 - 16:00\n🌙 Cenas: 20:00 - 23:30\n🚫 Lunes cerrado\n¿Reservamos?');
+      await botMsg('🗓️ Abierto todos los días\n• Miércoles a Jueves: 13:00-16:00 y 20:30-23:00\n• Viernes: 13:00-16:00 y 20:30-23:30\n• Sábado a Domingo: 13:00-16:00 y 20:30-23:30\n• Lunes a Martes: 13:00-16:00 y 20:30-23:00\n¿Reservamos?');
       quickReplies([
         { label: '📅 Reservar mesa', onClick: () => startReserva() },
         { label: '🛵 Pedir ahora', onClick: () => startPedido() }
