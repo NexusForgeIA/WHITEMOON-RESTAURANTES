@@ -1556,6 +1556,7 @@
       <button class="tab" data-tab="rolls" onclick="switchTab('rolls')">Sushi · Rolls</button>
       <button class="tab" data-tab="bambubox" onclick="switchTab('bambubox')">Bambú Box</button>
       <button class="tab" data-tab="otros" onclick="switchTab('otros')">Otros & Postres</button>
+      <button class="tab" data-tab="bebidas" onclick="switchTab('bebidas')">Bebidas</button>
     </div>
 
     <div class="menu-pane active" id="pane-frios"></div>
@@ -1564,6 +1565,7 @@
     <div class="menu-pane" id="pane-rolls"></div>
     <div class="menu-pane" id="pane-bambubox"></div>
     <div class="menu-pane" id="pane-otros"></div>
+    <div class="menu-pane" id="pane-bebidas"></div>
   </div>
 </section>
 
@@ -1848,6 +1850,15 @@
       { name: 'Dorayaki Casero', price: 5.50, desc: 'Pastelito de azuki.', img: PHOTOS.dorayaki },
       { name: 'Tarta de Queso Casera', price: 5.50, desc: 'Receta de la casa.', img: PHOTOS.tartaQueso },
       { name: 'Mochi 1 ud.', price: 3.30, desc: 'Postre japonés.', img: PHOTOS.mochi }
+    ],
+    bebidas: [
+      { name: 'Agua 0.33cl', price: 1.65, desc: 'Botella de agua mineral.', img: URL_FALLBACK },
+      { name: 'Refresco Pepsi/Schweppes/Tónica', price: 2.53, desc: 'Refresco frío.', img: URL_FALLBACK },
+      { name: 'Lata Coca Cola/Zero/Fanta', price: 1.98, desc: 'Lata 33cl.', img: URL_FALLBACK },
+      { name: 'Aquarade / Lipton', price: 2.75, desc: 'Isotónico o té frío.', img: URL_FALLBACK },
+      { name: 'Tercio Ámbar Morena o Alhambra 1925', price: 3.30, desc: 'Cerveza premium.', img: URL_FALLBACK },
+      { name: 'Tercio Estrella Galicia S/Gluten', price: 2.48, desc: 'Cerveza sin gluten.', img: URL_FALLBACK },
+      { name: 'Tercio Ambar 0\'0 / Tostada / Radler', price: 2.75, desc: 'Cerveza sin alcohol y variedades.', img: URL_FALLBACK }
     ]
   };
 
@@ -1857,7 +1868,8 @@
     nigiris: 'Sushi · Nigiris',
     rolls: 'Sushi · Rolls',
     bambubox: 'Bambú Box',
-    otros: 'Otros & Postres'
+    otros: 'Otros & Postres',
+    bebidas: 'Bebidas'
   };
 
   /* ───────── DATA MENÚ CHATBOT (selección destacada con precios reales) ───────── */
@@ -1906,6 +1918,15 @@
       { name: 'Dorayaki Casero', price: 5.50, img: PHOTOS.dorayaki },
       { name: 'Tarta de Queso Casera', price: 5.50, img: PHOTOS.tartaQueso },
       { name: 'Mochi', price: 3.30, img: PHOTOS.mochi }
+    ],
+    'Bebidas': [
+      { name: 'Agua 0.33cl', price: 1.65, img: URL_FALLBACK },
+      { name: 'Refresco Pepsi/Schweppes/Tónica', price: 2.53, img: URL_FALLBACK },
+      { name: 'Lata Coca Cola/Zero/Fanta', price: 1.98, img: URL_FALLBACK },
+      { name: 'Aquarade / Lipton', price: 2.75, img: URL_FALLBACK },
+      { name: 'Tercio Ámbar Morena o Alhambra 1925', price: 3.30, img: URL_FALLBACK },
+      { name: 'Tercio Estrella Galicia S/Gluten', price: 2.48, img: URL_FALLBACK },
+      { name: 'Tercio Ambar 0\'0 / Tostada / Radler', price: 2.75, img: URL_FALLBACK }
     ]
   };
   const CAT_ICON = {
@@ -1915,7 +1936,8 @@
     'Rolls': '🍱',
     'Bambú Box': '📦',
     'Otros': '🍽️',
-    'Postres': '🍮'
+    'Postres': '🍮',
+    'Bebidas': '🥤'
   };
 
   /* ───────── RENDER CARTA WEB ───────── */
