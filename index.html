@@ -1965,7 +1965,7 @@
     const envioRow = activePicker.querySelector('#picker-envio-row');
     const sep = activePicker.querySelector('#picker-sep');
     const totalRow = activePicker.querySelector('#picker-total-row');
-    if (state.tipoPedido && state.pedido.length) {
+    if (esDomicilio() && state.pedido.length) {
       const envio = costeEnvio();
       activePicker.querySelector('#picker-envio').textContent = envio === 0 ? 'GRATIS 🎉' : fmt(envio);
       activePicker.querySelector('#picker-total').textContent = fmt(calcTotalConEnvio());
@@ -2280,7 +2280,9 @@
     if (preTipo) state.tipoPedido = preTipo;
     updateChatChrome();
     await botMsg('¡Vamos con tu pedido! 🛵');
-    await botMsg(`🚚 Envío GRATIS en pedidos desde ${ENVIO.gratis_desde}€\nPor debajo: ${fmt(ENVIO.coste)} · Pedido mínimo ${ENVIO.minimo_pedido}€`);
+    if (esDomicilio()) {
+      await botMsg(`🚚 Envío GRATIS en pedidos desde ${ENVIO.gratis_desde}€\nPor debajo: ${fmt(ENVIO.coste)} · Pedido mínimo ${ENVIO.minimo_pedido}€`);
+    }
     await botMsg('Selecciona tus platos:');
     showMenuPicker();
   }
