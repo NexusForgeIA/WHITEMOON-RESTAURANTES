@@ -2442,7 +2442,12 @@
         <div class="row"><span>Hora</span><b>${escapeHtml(state.hora)}</b></div>
       `;
     }
-    card.innerHTML = `${rows}<a class="wa-link" href="${wa}" target="_blank" rel="noopener">📲 Confirmar por WhatsApp</a>`;
+    const waLinkHtml = `<a class="wa-link" href="${wa}" target="_blank" rel="noopener">📲 Confirmar por WhatsApp</a>`;
+    if (state.intent === 'pedido') {
+      card.innerHTML = rows;
+    } else {
+      card.innerHTML = `${rows}${waLinkHtml}`;
+    }
     body().appendChild(card);
     if (state.intent === 'reserva') {
       const waLink = card.querySelector('.wa-link');
@@ -2455,12 +2460,21 @@
     scrollChat();
     state.mode = 'done';
     updateChatChrome();
-    setTimeout(async () => {
-      const final = state.intent === 'pedido'
-        ? 'Pulsa el botón verde para enviar tu pedido por WhatsApp y lo confirmaremos en breve. ¡Arigatō! 🎋'
-        : 'Pulsa el botón verde para enviarnos tu solicitud.\nTe confirmaremos la reserva por WhatsApp en menos de 1 hora. ¡Arigatō! 🎋';
-      await botMsg(final);
-    }, 800);
+    if (state.intent === 'pedido') {
+      (async () => {
+        await botMsg('💳 Nuestro repartidor lleva datáfono por si prefieres pagar con tarjeta.');
+        const btnCard = document.createElement('div');
+        btnCard.className = 'summary-card';
+        btnCard.innerHTML = waLinkHtml;
+        body().appendChild(btnCard);
+        scrollChat();
+        await botMsg('Pulsa el botón verde para enviar tu pedido por WhatsApp y lo confirmaremos en breve. ¡Arigatō! 🎋');
+      })();
+    } else {
+      setTimeout(async () => {
+        await botMsg('Pulsa el botón verde para enviarnos tu solicitud.\nTe confirmaremos la reserva por WhatsApp en menos de 1 hora. ¡Arigatō! 🎋');
+      }, 800);
+    }
   }
 
   function buildWaMessage() {
