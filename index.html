@@ -228,19 +228,24 @@
     text-transform: uppercase;
     color: var(--muted);
   }
+  .premios-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
   .premio-badge {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-top: 32px;
-    margin-left: auto;
-    margin-right: auto;
     padding: 12px 24px;
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 30px;
     width: fit-content;
+    text-decoration: none;
   }
   .premio-badge img {
     height: 48px;
@@ -1186,6 +1191,7 @@
     }
     .stat-num { font-size: 30px; }
     .stat-label { font-size: 11px; letter-spacing: 1.2px; }
+    .premios-row { flex-direction: column; align-items: center; }
     .premio-badge img { height: 36px; }
     .premio-badge span { font-size: 12px; }
 
@@ -1279,12 +1285,23 @@
         <div class="stat-label">Valoración Google</div>
       </div>
     </div>
-    <div class="premio-badge">
-      <img src="premio-restaurante-guru.jpeg"
-           alt="Premio Restaurante Guru — Bambú Sushi Córdoba"
-           loading="lazy"
-           onerror="this.style.display='none'"/>
-      <span>Premio Restaurante Guru 2022</span>
+    <div class="premios-row">
+      <div class="premio-badge">
+        <img src="premio-restaurante-guru.jpeg"
+             alt="Premio Restaurante Guru — Bambú Sushi Córdoba"
+             loading="lazy"
+             onerror="this.style.display='none'"/>
+        <span>Premio Restaurante Guru 2022</span>
+      </div>
+      <a href="https://www.tripadvisor.es/Restaurant_Review-g187430-d21433606-Reviews-Restaurante_Bambu-Cordoba_Province_of_Cordoba_Andalucia.html"
+         target="_blank" rel="noopener"
+         class="premio-badge tripadvisor-badge">
+        <img src="tripadvisor.jpeg"
+             alt="Bambú Sushi Córdoba en TripAdvisor"
+             loading="lazy"
+             onerror="this.style.display='none'"/>
+        <span>Valorado en TripAdvisor</span>
+      </a>
     </div>
   </div>
 </header>
