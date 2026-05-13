@@ -2415,6 +2415,14 @@
   function showSummary() {
     const card = document.createElement('div');
     card.className = 'summary-card';
+    if (state.intent === 'pedido') {
+      const now = new Date();
+      const fecha = now.getFullYear().toString() +
+        String(now.getMonth()+1).padStart(2,'0') +
+        String(now.getDate()).padStart(2,'0');
+      const rand = Math.floor(1000 + Math.random() * 9000);
+      state.numeroPedido = 'BS-' + fecha + '-' + rand;
+    }
     const wa = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildWaMessage())}`;
     let rows = '';
     if (state.intent === 'pedido') {
@@ -2424,6 +2432,7 @@
         : '';
       rows = `
         <h5>Resumen de pedido</h5>
+        <div style="color:#16a34a;font-weight:700;margin-bottom:8px">🧾 Pedido #${escapeHtml(state.numeroPedido)}</div>
         <div class="row"><span>Nombre</span><b>${escapeHtml(state.nombre)}</b></div>
         <div class="row"><span>Teléfono</span><b>+34 ${escapeHtml(state.telefono)}</b></div>
         <div class="row"><span>Pedido</span><b>${lista}</b></div>
@@ -2463,6 +2472,7 @@
     if (state.intent === 'pedido') {
       (async () => {
         await botMsg('💳 Nuestro repartidor lleva datáfono por si prefieres pagar con tarjeta.');
+        await botMsg(`Tu número de pedido es #${state.numeroPedido}\nGuárdalo para cualquier consulta 🧾`);
         const btnCard = document.createElement('div');
         btnCard.className = 'summary-card';
         btnCard.innerHTML = waLinkHtml;
@@ -2482,7 +2492,7 @@
       const lista = state.pedido.map(p => `• ${p.name}${p.qty > 1 ? ' x' + p.qty : ''} — ${fmt(p.price * p.qty)}`).join('\n');
       const dir = state.direccion ? `\n📍 *Dirección:* ${state.direccion}` : '';
       const envioLine = esDomicilio() ? `\n🚚 *Envío:* ${costeEnvio() === 0 ? 'GRATIS' : fmt(costeEnvio())}` : '';
-      return `🛵 *PEDIDO — Bambú Sushi*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n🍣 *Pedido:*\n${lista}${envioLine}\n💰 *Total:* ${fmt(calcTotalConEnvio())}\n📦 *Tipo:* ${state.tipoPedido}${dir}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
+      return `🧾 *Pedido #${state.numeroPedido}*\n\n🛵 *PEDIDO — Bambú Sushi*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n🍣 *Pedido:*\n${lista}${envioLine}\n💰 *Total:* ${fmt(calcTotalConEnvio())}\n📦 *Tipo:* ${state.tipoPedido}${dir}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
     }
     return `🎋 *RESERVA — Bambú Sushi*\n\n👤 *Nombre:* ${state.nombre}\n📞 *Tel:* +34${state.telefono}\n👥 *Personas:* ${state.personas}\n📅 *Día:* ${state.dia}\n🕐 *Hora:* ${state.hora}\n\n_Vía chatbot WhiteMoon · whitemoon.es_`;
   }
