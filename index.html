@@ -2476,9 +2476,14 @@
       (async () => {
         await botMsg('💳 Nuestro repartidor lleva datáfono por si prefieres pagar con tarjeta.');
         await botMsg(`Tu número de pedido es #${state.numeroPedido}\nGuárdalo para cualquier consulta 🧾`);
+        const hora = new Date().getHours();
+        const altaDemanda = hora >= 21;
+        const avisoDemandaHtml = altaDemanda
+          ? `<div style="background:rgba(220,38,38,0.15);border:1px solid #ef4444;border-radius:8px;padding:10px 14px;color:#ef4444;font-size:13px;margin-bottom:10px">⚠️ Alta demanda — Los pedidos realizados a partir de las 21:00h pueden tardar entre 25-30 minutos en ser entregados. ¡Gracias por tu paciencia!</div>`
+          : '';
         const btnCard = document.createElement('div');
         btnCard.className = 'summary-card';
-        btnCard.innerHTML = waLinkHtml;
+        btnCard.innerHTML = `${avisoDemandaHtml}${waLinkHtml}`;
         body().appendChild(btnCard);
         scrollChat();
         await botMsg('Pulsa el botón verde para enviar tu pedido por WhatsApp y lo confirmaremos en breve. ¡Arigatō! 🎋');
