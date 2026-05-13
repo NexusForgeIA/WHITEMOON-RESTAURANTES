@@ -228,6 +228,31 @@
     text-transform: uppercase;
     color: var(--muted);
   }
+  .premio-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px 24px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 30px;
+    width: fit-content;
+  }
+  .premio-badge img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+  }
+  .premio-badge span {
+    color: var(--texto2);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
 
   /* ───────── SECTIONS ───────── */
   section { padding: 110px 0; }
@@ -1161,6 +1186,8 @@
     }
     .stat-num { font-size: 30px; }
     .stat-label { font-size: 11px; letter-spacing: 1.2px; }
+    .premio-badge img { height: 36px; }
+    .premio-badge span { font-size: 12px; }
 
     /* CARTA */
     .tabs { margin: 0 -18px 28px; padding: 4px 18px 12px; }
@@ -1251,6 +1278,13 @@
         <div class="stat-num">4.9★</div>
         <div class="stat-label">Valoración Google</div>
       </div>
+    </div>
+    <div class="premio-badge">
+      <img src="premio-restaurante-guru.jpeg"
+           alt="Premio Restaurante Guru — Bambú Sushi Córdoba"
+           loading="lazy"
+           onerror="this.style.display='none'"/>
+      <span>Premio Restaurante Guru 2024</span>
     </div>
   </div>
 </header>
