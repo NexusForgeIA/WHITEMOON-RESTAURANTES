@@ -79,6 +79,48 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://bambusushi.es/blog/</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bambusushi.es/blog/tipos-de-sushi/</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bambusushi.es/blog/historia-sushi-japon/</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bambusushi.es/blog/beneficios-pescado-crudo/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bambusushi.es/blog/como-comer-sushi-correctamente/</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bambusushi.es/blog/sushi-domicilio-cordoba-guia/</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bambusushi.es/blog/diferencia-sushi-sashimi-maki/</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://bambusushi.es/politica-privacidad/</loc>
     <lastmod>2026-05-14</lastmod>
     <changefreq>yearly</changefreq>
