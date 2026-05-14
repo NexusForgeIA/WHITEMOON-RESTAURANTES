@@ -1433,6 +1433,101 @@
     .quick-replies { gap: 6px; }
     .qr-btn { padding: 7px 11px; font-size: 12px; }
   }
+
+  /* ───────── COOKIE BANNER ───────── */
+  .cookie-banner {
+    position: fixed;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    z-index: 95;
+    max-width: 1080px;
+    margin: 0 auto;
+    background: rgba(13, 26, 15, 0.97);
+    color: var(--texto);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(14px);
+    display: none;
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+    align-items: center;
+    animation: cookieIn .35s ease;
+  }
+  .cookie-banner.show { display: grid; }
+  @keyframes cookieIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .cookie-text {
+    font-size: 14px;
+    color: var(--texto2);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+  .cookie-text strong {
+    color: var(--verde);
+    font-weight: 600;
+    display: block;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-family: 'Inter', sans-serif;
+  }
+  .cookie-text a {
+    color: var(--verde);
+    text-decoration: underline;
+  }
+  .cookie-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .cookie-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .cookie-btn.accept {
+    background: var(--verde);
+    color: var(--negro);
+  }
+  .cookie-btn.accept:hover {
+    background: var(--verde2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(74, 222, 128, 0.25);
+  }
+  .cookie-btn.config {
+    background: transparent;
+    color: var(--verde);
+    border: 1.5px solid var(--verde);
+  }
+  .cookie-btn.config:hover {
+    background: var(--verde);
+    color: var(--negro);
+  }
+  @media (max-width: 720px) {
+    .cookie-banner {
+      grid-template-columns: 1fr;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      padding: 18px 20px;
+    }
+    .cookie-actions { justify-content: stretch; }
+    .cookie-btn { flex: 1; justify-content: center; }
+  }
 </style>
 </head>
 <body>
@@ -1698,6 +1793,14 @@
           <li><a href="#reservas">Reservas</a></li>
           <li><a href="#nosotros">Nosotros</a></li>
           <li><a href="#" onclick="openChatPedido(); return false;">Pedidos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/politica-privacidad/">Política de privacidad</a></li>
+          <li><a href="/politica-cookies/">Política de cookies</a></li>
+          <li><a href="/aviso-legal/">Aviso legal</a></li>
         </ul>
       </div>
       <div>
@@ -2654,6 +2757,46 @@
 
 <script src="https://nexusforgeia.github.io/whitemoon-cdn/license-check.js"
   data-token="WM-cd9c74b6ad550fe07cd5cbcd"></script>
+
+<!-- ─────── COOKIE BANNER ─────── -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+  <div class="cookie-text">
+    <strong>🍪 Cookies</strong>
+    Usamos cookies propias y de terceros para mejorar tu experiencia.
+    <a href="/politica-cookies/">Más información</a>
+  </div>
+  <div class="cookie-actions">
+    <button type="button" class="cookie-btn config" onclick="cookieConfig()">⚙️ Configurar</button>
+    <button type="button" class="cookie-btn accept" onclick="cookieAccept()">✅ Aceptar</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var STORAGE_KEY = 'bs_cookie_consent';
+    var banner = document.getElementById('cookieBanner');
+    try {
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        setTimeout(function() { banner.classList.add('show'); }, 600);
+      }
+    } catch (e) {
+      banner.classList.add('show');
+    }
+    window.cookieAccept = function() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          accepted: true,
+          analytics: true,
+          date: new Date().toISOString()
+        }));
+      } catch (e) {}
+      banner.classList.remove('show');
+    };
+    window.cookieConfig = function() {
+      window.location.href = '/politica-cookies/';
+    };
+  })();
+</script>
 
 </body>
 </html>
