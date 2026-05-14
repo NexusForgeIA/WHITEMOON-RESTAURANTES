@@ -283,6 +283,8 @@
 <link rel="alternate" hreflang="es" href="https://bambusushi.es/" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+<link rel="preload" as="image" href="BAMBU.jpeg" fetchpriority="high" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -319,6 +321,16 @@
 
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; display: block; }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
 
   .container { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
 
@@ -623,7 +635,7 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 20px;
   }
-  .value h4 { font-size: 16px; margin-bottom: 4px; color: var(--verde); font-family: 'Inter', sans-serif; font-weight: 600; }
+  .value h3 { font-size: 16px; margin-bottom: 4px; color: var(--verde); font-family: 'Inter', sans-serif; font-weight: 600; }
   .value p { font-size: 14px; color: var(--muted); margin: 0; }
 
   /* ───────── CARTA ───────── */
@@ -915,7 +927,7 @@
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 22px;
   }
-  .step h4 {
+  .step h3 {
     font-size: 18px;
     margin-bottom: 8px;
     color: var(--texto);
@@ -937,7 +949,7 @@
     gap: 50px;
     margin-bottom: 50px;
   }
-  .footer-grid h4 {
+  .footer-grid h3 {
     font-size: 13px;
     color: var(--verde);
     text-transform: uppercase;
@@ -1344,7 +1356,7 @@
     max-width: 100%;
     font-size: 13px;
   }
-  .summary-card h5 {
+  .summary-card h4 {
     color: var(--verde);
     font-size: 12px;
     letter-spacing: 1.5px;
@@ -1617,7 +1629,7 @@
 <!-- ─────── NAV ─────── -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="logo"><img class="logo-img" src="BAMBU.jpeg" alt="Bambú Sushi" /></a>
+    <a href="#" class="logo" aria-label="Bambú Sushi · Inicio"><img class="logo-img" src="BAMBU.jpeg" alt="Bambú Sushi" width="120" height="48" loading="eager" fetchpriority="high" /></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#carta">Carta</a></li>
       <li><a href="#reservas">Reservas</a></li>
@@ -1637,7 +1649,8 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-badge">🎋 Cocina japonesa auténtica</div>
-    <img class="hero-logo" src="BAMBU.jpeg" alt="Bambú Sushi" />
+    <h1 class="visually-hidden">Bambú Sushi Córdoba · Restaurante japonés</h1>
+    <img class="hero-logo" src="BAMBU.jpeg" alt="Bambú Sushi" width="200" height="80" loading="eager" fetchpriority="high" />
     <p class="hero-sub">Pescado fresco del día. Técnica tradicional. Experiencia única.</p>
     <div class="hero-actions">
       <button class="btn btn-verde" onclick="openChat()">Reservar mesa</button>
@@ -1661,15 +1674,18 @@
       <div class="premio-badge">
         <img src="premio-restaurante-guru.jpeg"
              alt="Premio Restaurante Guru — Bambú Sushi Córdoba"
+             width="188" height="229"
              loading="lazy"
              onerror="this.style.display='none'"/>
         <span>Premio Restaurante Guru 2022</span>
       </div>
       <a href="https://www.tripadvisor.es/Restaurant_Review-g187430-d21433606-Reviews-Restaurante_Bambu-Cordoba_Province_of_Cordoba_Andalucia.html"
          target="_blank" rel="noopener"
-         class="premio-badge tripadvisor-badge">
+         class="premio-badge tripadvisor-badge"
+         aria-label="TripAdvisor Bambú Sushi Córdoba — 4.9 estrellas">
         <img src="tripadvisor.jpeg"
              alt="Bambú Sushi Córdoba en TripAdvisor"
+             width="254" height="74"
              loading="lazy"
              onerror="this.style.display='none'"/>
         <span>4.9 ⭐ en TripAdvisor</span>
@@ -1683,7 +1699,7 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-img">
-        <img src="nosotros.jpeg" alt="Chef japonés Bambú Sushi" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80'" />
+        <img src="nosotros.jpeg" alt="Chef japonés Bambú Sushi" width="933" height="616" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80'" />
       </div>
       <div class="about-content">
         <span class="section-eyebrow">Nuestra historia</span>
@@ -1694,21 +1710,21 @@
           <div class="value">
             <div class="value-icon">🎋</div>
             <div>
-              <h4>Producto fresco</h4>
+              <h3>Producto fresco</h3>
               <p>Pescado seleccionado a diario en lonja por nuestro chef.</p>
             </div>
           </div>
           <div class="value">
             <div class="value-icon">🍃</div>
             <div>
-              <h4>Técnica japonesa</h4>
+              <h3>Técnica japonesa</h3>
               <p>Cortes precisos y arroz preparado según la tradición.</p>
             </div>
           </div>
           <div class="value">
             <div class="value-icon">⭐</div>
             <div>
-              <h4>Experiencia premium</h4>
+              <h3>Experiencia premium</h3>
               <p>Un espacio íntimo para disfrutar con todos los sentidos.</p>
             </div>
           </div>
@@ -1756,12 +1772,12 @@
       <p>Un ambiente íntimo, oscuro y elegante con guiños a la naturaleza japonesa.</p>
     </div>
     <div class="gal-grid">
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=600&q=80" alt="Sashimi fresco" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80'" /></div>
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=500&q=80" alt="Chef" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&q=80'" /></div>
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?auto=format&fit=crop&w=500&q=80" alt="Plato japonés" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&q=80'" /></div>
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?auto=format&fit=crop&w=500&q=80" alt="Nigiri" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&q=80'" /></div>
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80" alt="Sushi roll especial" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80'" /></div>
-      <div class="gal-item"><img src="https://images.unsplash.com/photo-1562802378-063ec186a863?auto=format&fit=crop&w=500&q=80" alt="Roll" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&q=80'" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=600&q=80" alt="Sashimi fresco" width="600" height="600" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80'" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=500&q=80" alt="Chef" width="500" height="500" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&q=80'" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?auto=format&fit=crop&w=500&q=80" alt="Plato japonés" width="500" height="500" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&q=80'" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?auto=format&fit=crop&w=500&q=80" alt="Nigiri" width="500" height="500" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&q=80'" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80" alt="Sushi roll especial" width="600" height="600" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80'" /></div>
+      <div class="gal-item"><img src="https://images.unsplash.com/photo-1562802378-063ec186a863?auto=format&fit=crop&w=500&q=80" alt="Roll" width="500" height="500" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=500&q=80'" /></div>
     </div>
   </div>
 </section>
@@ -1790,7 +1806,7 @@
             <line x1="38" y1="38" x2="41" y2="38" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
-        <h4>Elige día y hora</h4>
+        <h3>Elige día y hora</h3>
         <p>Selecciona la fecha y franja horaria que prefieras.</p>
       </div>
       <div class="step">
@@ -1804,7 +1820,7 @@
             <polyline points="35,36 37,38 41,34" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
           </svg>
         </div>
-        <h4>Confirma personas</h4>
+        <h3>Confirma personas</h3>
         <p>Indícanos cuántos seréis y tus preferencias.</p>
       </div>
       <div class="step">
@@ -1818,7 +1834,7 @@
             <polyline points="28,36 32,40" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" opacity="0.6" fill="none"/>
           </svg>
         </div>
-        <h4>Recibe confirmación</h4>
+        <h3>Recibe confirmación</h3>
         <p>Te confirmamos por WhatsApp con todos los detalles.</p>
       </div>
     </div>
@@ -1859,7 +1875,7 @@
         <p>Frescura japonesa. Sabor auténtico. Cocina tradicional con técnica precisa y producto del día.</p>
       </div>
       <div>
-        <h4>Horarios</h4>
+        <h3>Horarios</h3>
         <ul>
           <li>Miércoles a Jueves: 13:00-16:00 y 20:30-23:00</li>
           <li>Viernes: 13:00-16:00 y 20:30-23:30</li>
@@ -1870,7 +1886,7 @@
         </ul>
       </div>
       <div>
-        <h4>Contacto</h4>
+        <h3>Contacto</h3>
         <ul>
           <li>Av. del Aeropuerto, 6</li>
           <li>Poniente Sur, 14004 — Córdoba</li>
@@ -1879,7 +1895,7 @@
         </ul>
       </div>
       <div>
-        <h4>Enlaces</h4>
+        <h3>Enlaces</h3>
         <ul>
           <li><a href="#carta">Carta</a></li>
           <li><a href="#reservas">Reservas</a></li>
@@ -1889,7 +1905,7 @@
         </ul>
       </div>
       <div>
-        <h4>Legal</h4>
+        <h3>Legal</h3>
         <ul>
           <li><a href="/politica-privacidad/">Política de privacidad</a></li>
           <li><a href="/politica-cookies/">Política de cookies</a></li>
@@ -1897,11 +1913,11 @@
         </ul>
       </div>
       <div>
-        <h4>Síguenos</h4>
+        <h3>Síguenos</h3>
         <div class="social-links">
           <a href="https://www.instagram.com/bambusushicordoba"
              target="_blank" rel="noopener"
-             class="social-link" aria-label="Instagram">
+             class="social-link" aria-label="Instagram Bambú Sushi Córdoba">
             <svg xmlns="http://www.w3.org/2000/svg"
                  width="22" height="22" viewBox="0 0 24 24"
                  fill="currentColor">
@@ -1910,7 +1926,7 @@
           </a>
           <a href="https://www.facebook.com/bambusushicordoba"
              target="_blank" rel="noopener"
-             class="social-link" aria-label="Facebook">
+             class="social-link" aria-label="Facebook Bambú Sushi Córdoba">
             <svg xmlns="http://www.w3.org/2000/svg"
                  width="22" height="22" viewBox="0 0 24 24"
                  fill="currentColor">
@@ -1920,8 +1936,9 @@
         </div>
       </div>
       <div>
-        <h4>Cómo llegar</h4>
+        <h3>Cómo llegar</h3>
         <iframe
+          title="Mapa Bambú Sushi Córdoba"
           src="https://www.google.com/maps?q=Av.+del+Aeropuerto,+6,+Poniente+Sur,+14004+C%C3%B3rdoba&output=embed"
           width="100%"
           height="300"
@@ -2186,7 +2203,7 @@
         const img = it.img || PHOTOS.fallback;
         return `<article class="dish-row">
           ${star}
-          <div class="photo"><img src="${img}" alt="${escapeHtml(it.name)}" loading="lazy" onerror="this.src='${URL_FALLBACK}'" /></div>
+          <div class="photo"><img src="${img}" alt="${escapeHtml(it.name)}" width="400" height="300" loading="lazy" onerror="this.src='${URL_FALLBACK}'" /></div>
           <div class="info">
             <h3 title="${escapeHtml(it.name)}">${escapeHtml(it.name)}</h3>
             <p class="desc" title="${escapeHtml(it.desc)}">${escapeHtml(it.desc)}</p>
@@ -2555,7 +2572,7 @@
       items.forEach((it, idx) => {
         const star = it.star ? ' ⭐' : '';
         const img = it.img || PHOTOS.fallback;
-        html += `<div class="item"><img class="thumb" src="${img}" alt="" loading="lazy" onerror="this.src='${URL_FALLBACK}'" /><span class="name">${escapeHtml(it.name)}${star}</span><span class="price">${fmt(it.price)}</span><button class="add" data-cat="${escapeHtml(cat)}" data-idx="${idx}" type="button">+</button></div>`;
+        html += `<div class="item"><img class="thumb" src="${img}" alt="" width="64" height="64" loading="lazy" onerror="this.src='${URL_FALLBACK}'" /><span class="name">${escapeHtml(it.name)}${star}</span><span class="price">${fmt(it.price)}</span><button class="add" data-cat="${escapeHtml(cat)}" data-idx="${idx}" type="button">+</button></div>`;
       });
     });
     html += `<div class="confirm-row"><div class="picker-totals">` +
@@ -2693,7 +2710,7 @@
         ? `<div class="row"><span>Envío</span><b>${costeEnvio() === 0 ? 'GRATIS 🎉' : fmt(costeEnvio())}</b></div>`
         : '';
       rows = `
-        <h5>Resumen de pedido</h5>
+        <h4>Resumen de pedido</h4>
         <div style="color:#16a34a;font-weight:700;margin-bottom:8px">🧾 Pedido #${escapeHtml(state.numeroPedido)}</div>
         <div class="row"><span>Nombre</span><b>${escapeHtml(state.nombre)}</b></div>
         <div class="row"><span>Teléfono</span><b>+34 ${escapeHtml(state.telefono)}</b></div>
@@ -2705,7 +2722,7 @@
       `;
     } else {
       rows = `
-        <h5>Resumen de reserva</h5>
+        <h4>Resumen de reserva</h4>
         <div class="row"><span>Nombre</span><b>${escapeHtml(state.nombre)}</b></div>
         <div class="row"><span>Teléfono</span><b>+34 ${escapeHtml(state.telefono)}</b></div>
         <div class="row"><span>Personas</span><b>${escapeHtml(state.personas)}</b></div>
