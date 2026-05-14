@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Política de Privacidad | Bambú Sushi Córdoba</title>
+<meta name="description" content="Política de privacidad de Bambú Sushi SL (bambusushi.es). Información sobre el tratamiento de datos personales conforme al RGPD y la LOPDGDD.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://bambusushi.es/politica-privacidad/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --verde: #4ade80;
+    --verde2: #22c55e;
+    --verde-dark: #166534;
+    --negro: #080f0a;
+    --negro2: #0d1a0f;
+    --negro3: #111f13;
+    --card: #0f1f11;
+    --texto: #f0fdf4;
+    --texto2: #86efac;
+    --muted: #4b7a52;
+    --border: rgba(74, 222, 128, .15);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--negro);
+    color: var(--texto);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    color: var(--texto);
+  }
+
+  a { color: var(--verde); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .container { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(8, 15, 10, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(74, 222, 128, 0.2);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 28px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .logo {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--verde);
+    display: flex; align-items: center; gap: 8px;
+    letter-spacing: 0.5px;
+  }
+  .nav-links {
+    display: flex; gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--texto);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--verde); text-decoration: none; }
+
+  /* HERO */
+  .legal-hero {
+    padding: 90px 0 50px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: radial-gradient(ellipse at top, rgba(22, 101, 52, 0.25), transparent 60%);
+  }
+  .legal-hero .eyebrow {
+    color: var(--verde);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .legal-hero h1 {
+    font-size: clamp(36px, 6vw, 56px);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    background: linear-gradient(180deg, #f0fdf4 0%, var(--verde) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .legal-hero p {
+    color: var(--texto2);
+    font-size: 16px;
+    max-width: 640px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+
+  /* CONTENT */
+  .legal-content {
+    padding: 60px 0 100px;
+  }
+  .legal-content h2 {
+    font-size: 26px;
+    color: var(--verde);
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .legal-content h2:first-of-type { margin-top: 0; }
+  .legal-content h3 {
+    font-size: 19px;
+    color: var(--texto2);
+    margin: 28px 0 12px;
+  }
+  .legal-content p, .legal-content li {
+    color: var(--texto2);
+    font-size: 15.5px;
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+  .legal-content ul, .legal-content ol {
+    margin: 0 0 18px 22px;
+  }
+  .legal-content li { margin-bottom: 8px; }
+  .legal-content strong { color: var(--texto); font-weight: 600; }
+
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin: 24px 0 32px;
+  }
+  .info-card p { margin-bottom: 6px; }
+  .info-card p:last-child { margin-bottom: 0; }
+
+  .last-update {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--negro);
+    color: var(--texto2);
+    padding: 50px 0 30px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-grid h4 {
+    font-size: 13px;
+    color: var(--verde);
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    margin-bottom: 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+  .footer-grid p, .footer-grid li {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 300;
+  }
+  .footer-grid ul { list-style: none; }
+  .footer-grid li a {
+    color: var(--muted);
+    transition: color .25s;
+  }
+  .footer-grid li a:hover { color: var(--verde); text-decoration: none; }
+  .footer-logo {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 24px;
+    color: var(--verde);
+    margin-bottom: 14px;
+    font-weight: 900;
+  }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .footer-bottom a { color: var(--verde); }
+
+  @media (max-width: 820px) {
+    .nav-links { display: none; }
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">🎋 Bambú Sushi</a>
+    <ul class="nav-links">
+      <li><a href="/#nosotros">Nosotros</a></li>
+      <li><a href="/#carta">Carta</a></li>
+      <li><a href="/#reservas">Reservas</a></li>
+      <li><a href="/#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="legal-hero">
+  <div class="container">
+    <div class="eyebrow">Información Legal</div>
+    <h1>Política de Privacidad</h1>
+    <p>Información sobre el tratamiento de tus datos personales conforme al Reglamento (UE) 2016/679 (RGPD) y la LOPDGDD 3/2018.</p>
+  </div>
+</header>
+
+<main class="legal-content">
+  <div class="container">
+
+    <h2>1. Responsable del tratamiento</h2>
+    <p>El responsable del tratamiento de los datos personales recogidos a través de este sitio web es:</p>
+    <div class="info-card">
+      <p><strong>Razón social:</strong> BAMBU SUSHI SL</p>
+      <p><strong>NIF:</strong> B19373760</p>
+      <p><strong>Dirección:</strong> Av. del Aeropuerto, 6, 14004 Córdoba (España)</p>
+      <p><strong>Correo electrónico:</strong> <a href="mailto:bambusushicordoba@gmail.com">bambusushicordoba@gmail.com</a></p>
+      <p><strong>Web:</strong> <a href="https://bambusushi.es">bambusushi.es</a></p>
+    </div>
+
+    <h2>2. Datos personales que recogemos</h2>
+    <p>Tratamos los datos personales que el usuario nos facilita voluntariamente al realizar una reserva, un pedido o ponerse en contacto con nosotros a través del formulario o del chat de la web. En concreto:</p>
+    <ul>
+      <li><strong>Nombre y apellidos.</strong></li>
+      <li><strong>Número de teléfono</strong> de contacto.</li>
+      <li>De forma opcional, dirección de entrega cuando se realiza un pedido a domicilio y observaciones que el usuario quiera comunicarnos.</li>
+    </ul>
+    <p>No recogemos categorías especiales de datos (datos sensibles) ni datos de menores de 14 años.</p>
+
+    <h2>3. Finalidad del tratamiento</h2>
+    <p>Tratamos los datos personales del usuario con las siguientes finalidades:</p>
+    <ul>
+      <li>Gestionar las <strong>reservas de mesa</strong> solicitadas a través de la web, teléfono o WhatsApp.</li>
+      <li>Gestionar los <strong>pedidos</strong> de comida (recogida en local o entrega a domicilio).</li>
+      <li>Atender consultas, peticiones o solicitudes de información remitidas por el usuario.</li>
+      <li>Cumplir con las obligaciones legales aplicables a la actividad de restauración.</li>
+    </ul>
+
+    <h2>4. Base legal del tratamiento</h2>
+    <p>La base jurídica que legitima el tratamiento de los datos es:</p>
+    <ul>
+      <li>El <strong>consentimiento</strong> del usuario, otorgado al facilitar voluntariamente sus datos para realizar una reserva, pedido o consulta (art. 6.1.a RGPD).</li>
+      <li>La <strong>ejecución de un contrato</strong> o medidas precontractuales en el caso de pedidos y reservas (art. 6.1.b RGPD).</li>
+      <li>El <strong>cumplimiento de obligaciones legales</strong> a las que está sujeto el responsable (art. 6.1.c RGPD).</li>
+    </ul>
+
+    <h2>5. Conservación de los datos</h2>
+    <p>Los datos personales se conservarán durante el tiempo estrictamente necesario para cumplir con la finalidad para la que fueron recabados y, en todo caso, durante los plazos legales que resulten aplicables:</p>
+    <ul>
+      <li>Datos de reservas y pedidos: hasta la prestación del servicio y, posteriormente, durante los plazos exigidos por la normativa fiscal y mercantil (hasta 6 años).</li>
+      <li>Datos de consultas: durante el tiempo necesario para resolver la consulta y un máximo de 1 año.</li>
+    </ul>
+    <p>Transcurridos dichos plazos, los datos serán suprimidos o bloqueados conforme a la normativa vigente.</p>
+
+    <h2>6. Destinatarios y cesiones</h2>
+    <p>Los datos personales no serán cedidos a terceros, salvo obligación legal. Únicamente podrán ser tratados por proveedores que prestan servicios al responsable (por ejemplo, hosting o plataformas de mensajería) en calidad de encargados del tratamiento, con las garantías exigidas por el RGPD. No se realizan transferencias internacionales de datos fuera del Espacio Económico Europeo.</p>
+
+    <h2>7. Derechos del usuario</h2>
+    <p>El usuario podrá ejercer en cualquier momento los siguientes derechos sobre sus datos personales:</p>
+    <ul>
+      <li><strong>Acceso:</strong> conocer qué datos suyos estamos tratando.</li>
+      <li><strong>Rectificación:</strong> solicitar la modificación de datos inexactos o incompletos.</li>
+      <li><strong>Supresión</strong> (derecho al olvido): solicitar la eliminación de los datos cuando ya no sean necesarios.</li>
+      <li><strong>Oposición:</strong> oponerse al tratamiento de sus datos por motivos relacionados con su situación particular.</li>
+      <li><strong>Limitación</strong> del tratamiento en los supuestos previstos por la ley.</li>
+      <li><strong>Portabilidad:</strong> recibir sus datos en un formato estructurado, de uso común y lectura mecánica.</li>
+      <li><strong>Retirar el consentimiento</strong> prestado en cualquier momento, sin que ello afecte a la licitud del tratamiento previo.</li>
+    </ul>
+    <p>Para ejercer estos derechos, el usuario puede dirigir su solicitud por escrito al correo electrónico <a href="mailto:bambusushicordoba@gmail.com">bambusushicordoba@gmail.com</a>, indicando "Protección de datos" en el asunto y acompañando copia de su DNI o documento equivalente que acredite su identidad.</p>
+
+    <h2>8. Autoridad de control</h2>
+    <p>El usuario tiene derecho a presentar una reclamación ante la autoridad de control competente si considera que el tratamiento de sus datos personales infringe la normativa vigente. En España, la autoridad de control es la <strong>Agencia Española de Protección de Datos (AEPD)</strong>, con domicilio en C/ Jorge Juan, 6 - 28001 Madrid, y sitio web <a href="https://www.aepd.es" target="_blank" rel="noopener">aepd.es</a>.</p>
+
+    <h2>9. Medidas de seguridad</h2>
+    <p>BAMBU SUSHI SL ha adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad, confidencialidad e integridad de los datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado, atendiendo al estado de la tecnología, la naturaleza de los datos y los riesgos a los que están expuestos.</p>
+
+    <h2>10. Modificaciones</h2>
+    <p>El responsable se reserva el derecho a modificar la presente Política de Privacidad para adaptarla a novedades legislativas, jurisprudenciales o de su actividad. En tales casos, anunciará en esta página los cambios introducidos con razonable antelación a su puesta en práctica.</p>
+
+    <p class="last-update">Última actualización: mayo de 2026</p>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">🎋 Bambú Sushi</div>
+        <p>Frescura japonesa. Sabor auténtico. Cocina tradicional con técnica precisa y producto del día.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li>Av. del Aeropuerto, 6</li>
+          <li>14004 — Córdoba</li>
+          <li>633 624 904</li>
+          <li><a href="mailto:bambusushicordoba@gmail.com">bambusushicordoba@gmail.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/politica-privacidad/">Política de privacidad</a></li>
+          <li><a href="/politica-cookies/">Política de cookies</a></li>
+          <li><a href="/aviso-legal/">Aviso legal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © Bambú Sushi SL · Web creada por <a href="http://whitemoon.es" target="_blank" rel="noopener">WhiteMoon · whitemoon.es</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
