@@ -55,6 +55,30 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://bambusushi.es/sushi-cordoba/</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bambusushi.es/pedir-sushi-cordoba/</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bambusushi.es/sushi-poniente-sur-cordoba/</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bambusushi.es/japones-cordoba/</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://bambusushi.es/politica-privacidad/</loc>
     <lastmod>2026-05-14</lastmod>
     <changefreq>yearly</changefreq>
