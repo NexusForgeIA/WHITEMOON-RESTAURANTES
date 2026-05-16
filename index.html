@@ -1345,6 +1345,8 @@
     <div class="tabs">
       <button class="tab active" data-tab="frios" onclick="switchTab('frios')">Entrantes Fríos</button>
       <button class="tab" data-tab="calientes" onclick="switchTab('calientes')">Entrantes Calientes</button>
+      <button class="tab" data-tab="baos" onclick="switchTab('baos')">Baos</button>
+      <button class="tab" data-tab="wok" onclick="switchTab('wok')">Wok</button>
       <button class="tab" data-tab="nigiris" onclick="switchTab('nigiris')">Sushi · Nigiris</button>
       <button class="tab" data-tab="rolls" onclick="switchTab('rolls')">Sushi · Rolls</button>
       <button class="tab" data-tab="bambubox" onclick="switchTab('bambubox')">Bambú Box</button>
@@ -1354,6 +1356,8 @@
 
     <div class="menu-pane active" id="pane-frios"></div>
     <div class="menu-pane" id="pane-calientes"></div>
+    <div class="menu-pane" id="pane-baos"></div>
+    <div class="menu-pane" id="pane-wok"></div>
     <div class="menu-pane" id="pane-nigiris"></div>
     <div class="menu-pane" id="pane-rolls"></div>
     <div class="menu-pane" id="pane-bambubox"></div>
@@ -2048,7 +2052,9 @@
     poke:        URL_POKE,
     mochi:       URL_MOCHI,
     dorayaki:    URL_DORAYAKI,
-    tartaQueso:  URL_TARTA
+    tartaQueso:  URL_TARTA,
+    wok:         'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&q=70',
+    bao:         'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&q=70'
   };
 
   /* ───────── DATA CARTA COMPLETA (web) ───────── */
@@ -2103,6 +2109,26 @@
       { name: 'Bambú Box 24 piezas', price: 25.30, desc: 'Surtido grande.', img: PHOTOS.bambuBox },
       { name: 'Bambú Box 40 piezas', price: 40.15, desc: 'Para grupo.', star: true, img: PHOTOS.bambuBox }
     ],
+    baos: [
+      { name: 'Pollo Teriyaki', price: 5.00, desc: 'Bao relleno de pollo teriyaki.', img: PHOTOS.pollo },
+      { name: 'Salmón Panko', price: 6.00, desc: 'Bao con salmón crujiente panko.', img: PHOTOS.tartarSalmon },
+      { name: 'Langostino', price: 6.00, desc: 'Bao de langostino al vapor.', img: PHOTOS.bao },
+      { name: 'Pollo Panko', price: 6.00, desc: 'Bao con pollo crujiente.', img: PHOTOS.pollo },
+      { name: 'Pato', price: 7.00, desc: 'Bao de pato con salsa hoisín.', img: PHOTOS.bao },
+      { name: 'Tataki de Atún', price: 7.00, desc: 'Bao con tataki de atún macerado.', img: PHOTOS.tataki },
+      { name: 'Carrillada', price: 8.00, desc: 'Bao de carrillada melosa.', img: PHOTOS.bao },
+      { name: 'Secreto Ibérico', price: 8.00, desc: 'Bao de secreto ibérico a la plancha.', img: PHOTOS.bao }
+    ],
+    wok: [
+      { name: 'Wok Base', price: 8.50, desc: 'Base arroz, noodles, udon o noodles de arroz. Salsa a elegir: Yakisoba, Okonomiyaki, Soja, Curry, Picante, Chili Dulce o Sésamo.', img: PHOTOS.wok },
+      { name: 'Wok + Verduras', price: 8.50, desc: 'Wok con verduras de temporada.', img: PHOTOS.wok },
+      { name: 'Wok + Huevo', price: 9.00, desc: 'Wok con huevo (+0.5€).', img: PHOTOS.wok },
+      { name: 'Wok + Pollo', price: 9.50, desc: 'Wok con pollo (+1€).', img: PHOTOS.wok },
+      { name: 'Wok + Ternera', price: 10.50, desc: 'Wok con ternera (+2€).', img: PHOTOS.wok },
+      { name: 'Wok + Langostinos', price: 11.00, desc: 'Wok con langostinos (+2.5€).', img: PHOTOS.wok },
+      { name: 'Wok + Salmón/Atún', price: 12.00, desc: 'Wok con salmón o atún (+3.5€).', img: PHOTOS.wok },
+      { name: 'Wok + Secreto/Carrillada', price: 12.00, desc: 'Wok con secreto ibérico o carrillada (+3.5€).', img: PHOTOS.wok }
+    ],
     otros: [
       { name: 'Pollo Teriyaki', price: 11.00, desc: 'Salsa teriyaki casera.', img: PHOTOS.pollo },
       { name: 'Salmón Teriyaki', price: 12.10, desc: 'Salsa teriyaki casera.', img: PHOTOS.tataki },
@@ -2130,6 +2156,8 @@
   const CAT_LABEL = {
     frios: 'Entrantes Fríos',
     calientes: 'Entrantes Calientes',
+    baos: 'Baos',
+    wok: 'Wok',
     nigiris: 'Sushi · Nigiris',
     rolls: 'Sushi · Rolls',
     bambubox: 'Bambú Box',
@@ -2154,6 +2182,21 @@
       { name: 'Takoyaki', price: 9.35, img: PHOTOS.takoyaki },
       { name: 'Yakitori Pollo 2 ud.', price: 6.60, img: PHOTOS.pollo },
       { name: 'Rollitos Thai Pollo 5 ud.', price: 7.70, img: PHOTOS.fallback }
+    ],
+    'Baos': [
+      { name: 'Pollo Teriyaki', price: 5.00, img: PHOTOS.pollo },
+      { name: 'Salmón Panko', price: 6.00, img: PHOTOS.tartarSalmon },
+      { name: 'Langostino', price: 6.00, img: PHOTOS.bao },
+      { name: 'Pato', price: 7.00, img: PHOTOS.bao },
+      { name: 'Tataki de Atún', price: 7.00, img: PHOTOS.tataki },
+      { name: 'Carrillada', price: 8.00, img: PHOTOS.bao },
+      { name: 'Secreto Ibérico', price: 8.00, img: PHOTOS.bao }
+    ],
+    'Wok': [
+      { name: 'Wok Base', price: 8.50, img: PHOTOS.wok },
+      { name: 'Wok + Pollo', price: 9.50, img: PHOTOS.wok },
+      { name: 'Wok + Langostinos', price: 11.00, img: PHOTOS.wok },
+      { name: 'Wok + Salmón/Atún', price: 12.00, img: PHOTOS.wok }
     ],
     'Nigiris': [
       { name: 'Nigiri Salmón/Langostino x2', price: 4.95, img: PHOTOS.nigiriSalmon },
@@ -2197,6 +2240,8 @@
   const CAT_ICON = {
     'Entrantes Fríos': '🥗',
     'Entrantes Calientes': '🔥',
+    'Baos': '🥟',
+    'Wok': '🥡',
     'Nigiris': '🍣',
     'Rolls': '🍱',
     'Bambú Box': '📦',
