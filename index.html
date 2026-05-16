@@ -2393,12 +2393,14 @@
   }
 
   function openChat() {
+    gtag('event','abrir_chat_reserva',{event_category:'chatbot',event_label:'reserva'});
     document.getElementById('chatModal').classList.add('open');
     document.getElementById('chatTooltip').classList.remove('show');
     updateChatChrome();
     welcome();
   }
   function openChatPedido() {
+    gtag('event','abrir_chat_pedido',{event_category:'chatbot',event_label:'pedido'});
     document.getElementById('chatModal').classList.add('open');
     document.getElementById('chatTooltip').classList.remove('show');
     updateChatChrome();
@@ -2743,7 +2745,7 @@
         <div class="row"><span>Hora</span><b>${escapeHtml(state.hora)}</b></div>
       `;
     }
-    const waLinkHtml = `<a class="wa-link" href="${wa}" target="_blank" rel="noopener">📲 Confirmar por WhatsApp</a>`;
+    const waLinkHtml = `<a class="wa-link" href="${wa}" target="_blank" rel="noopener" onclick="gtag('event','click_whatsapp',{event_category:'contacto',event_label:'whatsapp'})">📲 Confirmar por WhatsApp</a>`;
     if (state.intent === 'pedido') {
       card.innerHTML = rows;
     } else {
